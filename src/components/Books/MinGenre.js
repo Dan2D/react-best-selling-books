@@ -5,7 +5,8 @@ function MinGenre(props) {
 
     let bookArr = props.books.map(book => {
         return <Book
-                key={props.genre.display_name+"-"+book.title} 
+                key={props.genre.display_name+"-"+book.title}
+                type='overview' 
                 book={book}
                 title={book.title}
                 bkImg={book.book_image}
