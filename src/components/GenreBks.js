@@ -47,7 +47,6 @@ function GenreBks(props) {
                 bkImg={book.book_image} 
                 rank={book.rank} 
                 dscrpt={book.description}
-                isbn={isbn}
                 rating={rating}
                 buyLnk={book.buy_links[1]}/>
     }) : <div>LOADING</div>;
