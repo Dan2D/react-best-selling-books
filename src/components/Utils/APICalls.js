@@ -1,10 +1,21 @@
-const NYT_API_KEY=process.env.REACT_APP_NYT_API_KEY;
-const NYT_API = 'https://api.nytimes.com/svc/books/v3/';
-const OVERVIEW_QRY = 'lists/overview.json?'
-const AUTHOR_QRY= 'reviews.json?author=';
-const TITLE_QRY = 'reviews.json?title='
-const GENRE_QRY = 'lists/current/';
-const GENRE_LST_QRY = 'lists/names.json?'
+
+const API_CALLS = {
+    NYT: {
+        NYT_API_KEY: process.env.REACT_APP_NYT_API_KEY,
+        NYT_API: 'https://api.nytimes.com/svc/books/v3/',
+        OVRVW_QRY: 'lists/overview.json?',
+        ATHR_QRY: 'reviews.json?author=',
+        TTL_QRY: 'reviews.json?title=',
+        GNRE_QRY: 'lists/current/',
+        GNRE_LST_QRY: 'lists/names.json?'
+    },
+    GR: {
+        GR_KEY: process.env.REACT_APP_GR_API_KEY,
+        GR_API: 'https://www.goodreads.com/book/',
+        GR_RVW_QRY: 'review_counts.json?isbns=',
+        GR_RTNG_QRY: 'show/'
+    }
+}
 
 
-export default [NYT_API_KEY, NYT_API, OVERVIEW_QRY, AUTHOR_QRY, TITLE_QRY, GENRE_QRY, GENRE_LST_QRY]
+export default API_CALLS
