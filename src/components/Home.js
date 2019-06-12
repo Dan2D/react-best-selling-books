@@ -3,8 +3,8 @@ import MinGenre from "./Books/MinGenre"
 
 function Home(props) {
 
-    if (props.genreLst){
-    console.log(props)
+    if (props.genreLst.length > 0){
+    console.log("PROPS",props)
     var mainGenres = props.genreLst.slice(0,5);
     var minGenreLst = [];
     function genMinGenre(genreLst){
@@ -14,7 +14,7 @@ function Home(props) {
             key={genreLst[i].display_name} 
             books={genreLst[i].books} 
             genre={genreLst[i]}
-            genreClick={null}/>)
+            onGenreClick={(genreName) => props.onGenreClick(genreName)}/>)
         }
     }
     genMinGenre(mainGenres);

@@ -18,7 +18,7 @@ function MinGenre(props) {
 
     return (
         <div className="mini-genre-container">
-            <button onClick={null}>{props.genre.display_name}</button>
+            <button onClick={() => props.onGenreClick(props.genre.list_name_encoded)}>{props.genre.display_name}</button>
             <div className="mini-genre-books-container">
                 {bookArr}
             </div>
