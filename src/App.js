@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import Home from "./components/Home";
-import GenreBks from "./components/GenreBks";
+import Nav from "./components/Nav";
+import Content from "./components/Content";
 import API_CALLS from "./components/Utils/APICalls";
 import "./App.css";
 
@@ -14,82 +14,82 @@ const {NYT_API_KEY,
 
 export default class App extends Component {
   constructor(props) {
-    super(props)
-  
+    super(props) 
     this.state = {
-       books: [],
-       genres: [],
-       type: 'overview',
-       searchTxt: '',
-       genreTxt: '',
-       isLoading: false,
-       error: null,
+      navGenres: [],
+      books: [],
+      genres: [],
+      content: 'home',
+      searchTxt: '',
+      genreTxt: '',
+      isLoading: false,
+      error: null,
     }
   }
 
-  componentDidMount() {
-    this.setState({isLoading: true, type: 'overview'})
-    this.goHome(NYT_API+OVRVW_QRY+'api-key='+NYT_API_KEY, 'genres', 'lists')
-  }
+  fetchURL = (input, state, property, results='results') => {
+      let stateObj = {};
+      return fetch(input)
+      .then(response => {
+        if(response.ok)
+          {return response.json()}
+        else
+          {throw new Error('Something went wrong...')}})
+      .then(data => {
+          stateObj[state] = property != null ? 
+            data[results][property] :
+            stateObj[state] = data[results];
+          this.setState(stateObj);})
+      }
+
+  setLoadAndCatch = (fetchUrl) => {
+      console.log("content", this.state.content)
+      fetchUrl.then(() => this.setState({isLoading: false}))
+      .catch(error => this.setState({error, isLoading: false}))
+    }
+
+  goHome = () => {
+    this.setState({content: 'home', isLoading: true})
+      this.fetchURL(NYT_API+OVRVW_QRY+'api-key='+NYT_API_KEY, 'genres', 'lists')
+      .then(() => this.setState({isLoading: false}))
+      .catch(error => this.setState({error, isLoading: false}))
+    }
   
-
-fetchURL = (input, state, property, results='results') => {
-  let stateObj = {};
-  return fetch(input)
-  .then(response => {
-    if(response.ok){return response.json()}
-    else{throw new Error('Something went wrong...')}
-  })
-  .then(data => {
-    stateObj[state] = property ? 
-      data[results][property] :
-      stateObj[state] = data[results];
-    this.setState(stateObj);
-    console.log(stateObj, state)
-  })
-}
-
-setLoadAndCatch = (fetchUrl) => {
-  console.log("TYPE", this.state.type)
-  fetchUrl.then(() => this.setState({isLoading: false}))
-  .catch(error => this.setState({error, isLoading: false}))
-}
-
-goHome = (fetchUrl, state, results, property) => {
-  this.setLoadAndCatch(this.fetchURL(fetchUrl, state, results, property));
-}
-
+  componentDidMount() {
+      let navGenres = this.fetchURL(NYT_API+GNRE_LST_QRY+'&api-key='+NYT_API_KEY, 'navGenres');
+      let homeContent = this.fetchURL(NYT_API+OVRVW_QRY+'api-key='+NYT_API_KEY, 'genres', 'lists');
+      this.setState({isLoading: true, content: 'home'})
+      Promise.all([navGenres, homeContent])
+      .then(() => this.setState({isLoading: false}))
+      .catch(error => this.setState({error, isLoading: false}))
+    }
+  
 handleGenreUpdate = (genreTxt) => {
-  this.setState({type: 'genre'}, () => console.log("STATE", this.state.type))
-  this.setState({genreTxt: genreTxt, type: 'genre', isLoading: true, searchTxt: ""});
-  this.fetchURL(NYT_API+GNRE_QRY+genreTxt+'.json?api-key='+NYT_API_KEY, 'genres')
-  .then(() => this.setState({isLoading: false}))
-  .catch(error => this.setState({error, isLoading: false}))
-  };
+    console.log(genreTxt, "HANDLE GENRE WAS CALLED")
+    this.setState({genreTxt: genreTxt, content: 'genre', isLoading: true, searchTxt: ""});
+    this.fetchURL(NYT_API+GNRE_QRY+genreTxt+'.json?api-key='+NYT_API_KEY, 'genres')
+    .then(() => this.setState({isLoading: false}))
+    .catch(error => this.setState({error, isLoading: false}))
+    };
+
   render() {
-    let content;
-    const {books,
-           genres, 
-           type, 
-           searchTxt, 
-           genreTxt, 
+    const {navGenres,
+           genres,
+           content, 
            isLoading, 
-           booksLoaded, 
            error} = this.state;
     if (error) {return <p>{error.message}</p>}
-    if (isLoading) {return <p>LOADING...</p>}
-    if (this.state.type === 'overview'){
-      content = <Home
-                genreLst={this.state.genres}
-                onGenreClick={this.handleGenreUpdate} />
-    }
-    if (this.state.type === 'genre'){
-      content = <GenreBks    
-                genre={this.state.genres}/>
-    }
     return (
       <div className="App">
-        {content}
+        <Nav
+        onHomeClick={this.goHome}
+        onSubGenreClick={this.handleGenreUpdate}
+        navGenres={navGenres}/>
+        <Content
+        content={content}
+        isLoading={isLoading}
+        onGenreClick={this.handleGenreUpdate}
+        genres={genres}/>
       </div>
     )
   }

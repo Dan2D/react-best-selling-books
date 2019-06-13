@@ -10,16 +10,16 @@ function BookSubInfo(props) {
             target="blank">
             Buy this Book
             </a>
-            <p>{props.rating === 0 ? 'No Rating Available' : 
+            <div>{props.rating === 0 ? 'No Rating Available' : 
             <div>
             <StarRating
             initialRating={props.rating}
             emptySymbol="far fa-star fa-lg"
             fullSymbol="fas fa-star fa-lg"
             fractions={2}
-            readonly /> {props.rating}</div>}</p>
+            readonly /> {props.rating}</div>}</div>
             <p className='book-description'>Description...</p>
-            <p >{props.dscrpt === "" ? 'No Description Available...' : props.dscrpt}</p>
+            <div>{props.dscrpt === "" ? 'No Description Available...' : props.dscrpt}</div>
     </div>
     )
 }

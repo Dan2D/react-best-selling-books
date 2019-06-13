@@ -1,5 +1,5 @@
 import React from 'react'
-import noCover from "../../Images/Cover-PlaceHolder.jpg";
+import noCover from "../../../Images/Book-Placeholder.png";
 
 function BookMainInfo(props) {
     
@@ -7,8 +7,8 @@ function BookMainInfo(props) {
         let authorTxt = props.author.split(/,|and /);
         var authorArr = authorTxt.map((author, indx) => {
             if (indx < authorTxt.length-1){
-                return <span><button className="author-btn" onClick={null}>{author},</button></span>}
-            else {return <button className="author-btn" onClick={null}>{author}</button>}
+                return <span key={author}><button className="author-btn" onClick={null}>{author},</button></span>}
+            else {return <button key={author} className="author-btn" onClick={null}>{author}</button>}
         });
     }
 let bookCover = props.bkImg !== null ? props.bkImg : noCover;

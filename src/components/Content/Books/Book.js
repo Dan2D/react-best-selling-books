@@ -6,7 +6,6 @@ import BookSubInfo from "./BookSubInfo";
 
 
 function Book(props) {
-    console.log(props.books, "BOOKSBOSDF")
     return (
         
         <div className="book-container">
