@@ -43,7 +43,6 @@ export default class App extends Component {
       }
 
   setLoadAndCatch = (fetchUrl) => {
-      console.log("content", this.state.content)
       fetchUrl.then(() => this.setState({isLoading: false}))
       .catch(error => this.setState({error, isLoading: false}))
     }
@@ -65,7 +64,6 @@ export default class App extends Component {
     }
   
 handleGenreUpdate = (genreTxt) => {
-    console.log(genreTxt, "HANDLE GENRE WAS CALLED")
     this.setState({genreTxt: genreTxt, content: 'genre', isLoading: true, searchTxt: ""});
     this.fetchURL(NYT_API+GNRE_QRY+genreTxt+'.json?api-key='+NYT_API_KEY, 'genres')
     .then(() => this.setState({isLoading: false}))

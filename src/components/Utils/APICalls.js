@@ -13,6 +13,7 @@ const API_CALLS = {
         GR_KEY: process.env.REACT_APP_GR_API_KEY,
         GR_API: 'https://www.goodreads.com/book/',
         GR_RVW_QRY: 'review_counts.json?isbns=',
+        GR_ISBN_QRY: 'isbn/',
         GR_RTNG_QRY: 'show/'
     }
 }

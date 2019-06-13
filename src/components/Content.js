@@ -7,7 +7,6 @@ export default class Content extends Component {
 
     
     render() {
-        console.log(this.props.content, "NEW GENRES")
         if (this.props.isLoading){
             return <div>LOADING...</div>
         }

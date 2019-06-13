@@ -7,14 +7,14 @@ function MinGenre(props) {
         return <Book
                 key={props.genre.display_name+"-"+book.title}
                 type='overview' 
-                book={book}
-                title={book.title}
-                bkImg={book.book_image}
-                rank={book.rank}
-                author={book.author}
-                buyLnk={book.buy_links[2]}
-                wksOnLst={book.weeks_on_list}
-                dscrpt={book.description}/>
+                book={book}/>
+                // title={book.title}
+                // bkImg={book.book_image}
+                // rank={book.rank}
+                // author={book.author}
+                // buyLnk={book.buy_links[2]}
+                // wksOnLst={book.weeks_on_list}
+                // dscrpt={book.description}/>
     })
 
     return (

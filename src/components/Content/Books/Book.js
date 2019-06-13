@@ -6,29 +6,35 @@ import BookSubInfo from "./BookSubInfo";
 
 
 function Book(props) {
+let isbns = {};
+    if (props.type === 'genre'){
+        isbns = props.book.isbns.filter((isbn, indx )=> indx === props.book.isbns.length-1)
+        isbns = isbns[0]
+    }
+    console.log(props)
     return (
         
         <div className="book-container">
             <LazyLoad height={200} once offset={100} >
                 <BookMainInfo
-                        key={props.title+'main-info'}
-                        title={props.title}
-                        author={props.author}
-                        bkImg={props.bkImg}
-                        rank={props.rank} />
+                        key={props.book.title+'main-info'}
+                        title={props.book.title}
+                        author={props.book.author}
+                        bkImg={props.book.book_image}
+                        rank={props.book.rank} />
                 {props.type === 'overview' ?
                     <MinBookSubInfo 
-                    key={props.title+'min-sub-info'}
-                    wksOnLst={props.wksOnLst}
-                    buyLnk={props.buyLnk}
-                    dscrpt={props.dscrpt}/> 
+                    key={props.book.title+'min-sub-info'}
+                    wksOnLst={props.book.weeks_on_list}
+                    buyLnk={props.book.buy_links[2]}
+                    dscrpt={props.book.dscrpt}/> 
                     :
                     <BookSubInfo 
-                    key={props.title+'sub-info'}
-                    buyLnk={props.buyLnk}
-                    isbn={props.isbn}
-                    rating={props.rating}
-                    dscrpt={props.dscrpt}/>
+                    key={props.book.title+'sub-info'}
+                    buyLnk={props.book.buy_links[1]}
+                    isbns={isbns}
+                    rating={props.book.rating}
+                    dscrpt={props.book.dscrpt}/>
                 }
             </LazyLoad>
         </div>
