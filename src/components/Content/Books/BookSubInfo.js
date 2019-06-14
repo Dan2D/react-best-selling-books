@@ -17,7 +17,7 @@ class BookSubInfo extends Component{
         let isbn = this.props.isbns;
         fetch('https://cors-anywhere.herokuapp.com/'+GR_API+GR_RVW_QRY+isbn+'&key='+GR_KEY)
         .then(response => response.json())
-        .then(data => this.setState({rating: data.books[0].average_rating}))
+        .then(data => this.setState({rating: data.books[0]}))
     }
 
     render(){
@@ -31,11 +31,15 @@ class BookSubInfo extends Component{
                 <div>{this.state.rating === 0 ? 'No Rating Available' : 
                 <div>
                 <StarRating
-                initialRating={this.state.rating}
+                initialRating={this.state.rating.average_rating}
                 emptySymbol="far fa-star fa-lg"
                 fullSymbol="fas fa-star fa-lg"
                 fractions={2}
-                readonly /> {this.state.rating}</div>}</div>
+                readonly /> {this.state.rating.average_rating}</div>}</div>
+                <a 
+                    href={'https://www.goodreads.com/book/show/'+this.state.rating['id']} 
+                    rel='noopener noreferrer'  
+                    target="_blank">Read Reviews</a>
                 <p className='book-description'>Description...</p>
                 <div>{this.props.dscrpt === "" ? 'No Description Available...' : this.props.dscrpt}</div>
         </div>

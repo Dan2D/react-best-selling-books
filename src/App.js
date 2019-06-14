@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import NotFound from "./components/Content/NotFound";
 import Nav from "./components/Nav";
 import Content from "./components/Content";
 import API_CALLS from "./components/Utils/APICalls";
@@ -84,17 +85,24 @@ export default class App extends Component {
     .then(data => this.setState({books: data, isLoading: false}))}
   
     else {
-      console.log(GR_API+GR_QRY+'id'+'?format=xml&key='+GR_KEY+'&page='+pg);
+      console.log('https://www.goodreads.com/api/author_url/'+srchTxt+'?key='+GR_KEY);
       fetch('https://cors-anywhere.herokuapp.com/https://www.goodreads.com/api/author_url/'+srchTxt+'?key='+GR_KEY)
     .then(response => response.text())
     .then(str => (new window.DOMParser()).parseFromString(str, "text/xml"))
-    .then(data => data.querySelector('author').getAttribute('id'))
+    .then(data => {
+        if (data.querySelector('author') === null) 
+          {return this.setState({books: data, isLoading: false})}
+          else 
+            {return data.querySelector('author').getAttribute('id')}}
+        )
     .then(id => fetch('https://cors-anywhere.herokuapp.com/'+GR_API+GR_QRY+id+'?format=xml&key='+GR_KEY+'&page='+pg)
           .then(response => response.text())
           .then(str => (new window.DOMParser()).parseFromString(str, "text/xml"))
-          .then(data => this.setState({books: data, isLoading: false})))}
+          .then(data => {
+            console.log(GR_API+GR_QRY+id+'?format=xml&key='+GR_KEY+'&page='+pg)
+            this.setState({books: data, isLoading: false})}))}
   }
-    
+    // this.setState({books: data, isLoading: false}))
   handleSearchTxtUpdate = (text) => {
       this.setState({searchTxt: text});
     };

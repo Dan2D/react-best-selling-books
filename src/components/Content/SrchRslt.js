@@ -2,10 +2,11 @@ import React from 'react'
 import SrchHdr from "./SearchResults/SrchHdr";
 import SrchBk from "./Books/SrchBk";
 import SrchBtns from "./SearchResults/SrchBtns";
+import NotFound from "./NotFound";
 
-// TODO(ADD FALLBACK FOR NO RESULTS FOUND)
-// TODO(ADD FUNCTION TO GEN PAGES UP TO pgNum and redirect search results on what page clicked)
 function SrchRslt(props) {
+    if (props.books.querySelector('author name') == null)
+        {return <NotFound />}
     let bkDataArr = []
     let authorLnk, authorImg, pgTotal, bksPrPg;
     let author = props.books.querySelector('author name').textContent;

@@ -7,7 +7,6 @@ import bkSymbl from "../../../Images/Book-Placeholder.png"
 
 
 function Book(props) {
-    console.log(props.book)
 let isbns = {};
     if (props.type === 'genre'){
         isbns = props.book.isbns.filter((isbn, indx )=> indx === props.book.isbns.length-1)
@@ -38,7 +37,6 @@ let isbns = {};
                     key={props.book.title+'sub-info'}
                     buyLnk={props.book.buy_links[1]}
                     isbns={isbns}
-                    rating={props.book.rating}
                     dscrpt={props.book.dscrpt}/>
                 }
             </LazyLoad>
