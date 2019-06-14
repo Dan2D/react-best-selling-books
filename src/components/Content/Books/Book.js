@@ -13,13 +13,13 @@ let isbns = {};
         isbns = isbns[0]
     }
     let placeholderImg = <img src={bkSymbl} alt="book-symbol"/>;
-    console.log(props)
     return (
         
         <div className="book-container">
             <LazyLoad height={200} once offset={100} placeholder={placeholderImg} >
                 <BookMainInfo
                         key={props.book.title+'main-info'}
+                        onAuthClick={(author, srchTyp) => props.onAuthClick(author, srchTyp)}
                         title={props.book.title}
                         author={props.book.author}
                         bkImg={props.book.book_image}

@@ -11,22 +11,23 @@ function Nav(props) {
 
 
     return (
-        <nav className="nav-container">
-        <Search 
-         searchTxt={props.searchTxt}
-         onSelectUpdate={(option) => props.onSelectUpdate(option)}
-         onSearchUpdate={(searchTxt) => props.onSearchUpdate(searchTxt)}
-         onSearchSubmit={(searchTxt) => props.onSearchSubmit(searchTxt)} />
-          <NavGenres 
+      <nav className="nav-container">
+        <Search
+          onSelectUpdate={(srchTyp) => props.onSelectUpdate(srchTyp)}
+          onSearchUpdate={(searchTxt) => props.onSearchUpdate(searchTxt)}
+          onSearchSubmit={(srchTxt, srchTyp) => props.onSearchSubmit(srchTxt, srchTyp)}
+          srchTyp={props.srchTyp} 
+          searchTxt={props.searchTxt} />
+        <NavGenres 
           onSubGenreClick={(subGenre) => props.onSubGenreClick(subGenre)}
           genreLst={props.navGenres} />
-          <button 
+        <button 
           className="home-btn-container"
           onClick={() => props.onHomeClick()}>
             <p>HOME</p>
-            <div className=" fas fa-home fa-lg"/>
-          </button>
-        </nav>
+            <div className="fas fa-home fa-lg"/>
+        </button>
+      </nav>
     )
 }
 

@@ -12,19 +12,22 @@ function Search(props) {
         return
     }
     const handleSearchSubmit = () => {
-        return props.onSearchSubmit(props.searchTxt);
+        let srchTyp = document.getElementById("search-type").value;
+        console.log(srchTyp)
+        return props.onSearchSubmit(props.searchTxt, srchTyp);
     }
 
     return (
         <div className="search-container">
-            <select 
-            // value={props.type}
+            <select id="search-type"
+            value={props.srchTyp}
             onChange={handleSelectUpdate} 
             name="search-options">
                 <option value="title">Title</option>
                 <option value="author">Author</option>
             </select>
-            <input type="text"
+            <input id="search-bar"
+             type="text"
              placeholder="Search..." 
              onChange={handleSearchText}
              onKeyDown={handleEnter}

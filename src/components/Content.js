@@ -12,15 +12,19 @@ function Content (props) {
         let content;
         if (props.content === 'home'){
             content = <Home
-                      genreLst={props.genres}
-                      onGenreClick={(genreName) => props.onGenreClick(genreName)} />
+                      onAuthClick={(author, srchTyp) => props.onAuthClick(author, srchTyp)}
+                      onGenreClick={(genreName) => props.onGenreClick(genreName)}
+                      genreLst={props.genres} />
           }
           if (props.content === 'genre'){
-            content = <GenreBks   
+            content = <GenreBks
+                        onAuthClick={(author, srchTyp) => props.onAuthClick(author, srchTyp)}   
                         genre={props.genres}/>
           }
           if(props.content === 'search') 
           {content = <SrchRslt
+                    onPgClick={(srchTxt, srchTyp, pg) => props.onPgClick(srchTxt, srchTyp, pg)}
+                    srchTyp={props.srchTyp}
                     books={props.books}/>}
         return (
             <div>

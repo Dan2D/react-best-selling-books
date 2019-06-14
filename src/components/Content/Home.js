@@ -11,7 +11,8 @@ function Home(props) {
         for (let i = 0; i < 5; i++){
              minGenreLst.push(
             <MinGenre
-            key={genreLst[i].display_name} 
+            key={genreLst[i].display_name}
+            onAuthClick={(author, srchTyp) => props.onAuthClick(author, srchTyp)} 
             books={genreLst[i].books} 
             genre={genreLst[i]}
             onGenreClick={(genreName) => props.onGenreClick(genreName)}/>)

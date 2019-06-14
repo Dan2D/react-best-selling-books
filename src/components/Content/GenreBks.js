@@ -8,7 +8,7 @@ function GenreBks(props){
         return <Book 
                 key={book.title}
                 type='genre' 
-                onClick={null}
+                onAuthClick={(author, srchTyp) => props.onAuthClick(author, srchTyp)}
                 handleRatingClick={null} 
                 book={book}/>
         });

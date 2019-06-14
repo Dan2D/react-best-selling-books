@@ -7,8 +7,8 @@ function BookMainInfo(props) {
         let authorTxt = props.author.split(/,|and /);
         var authorArr = authorTxt.map((author, indx) => {
             if (indx < authorTxt.length-1){
-                return <span key={author}><button className="author-btn" onClick={null}>{author},</button></span>}
-            else {return <button key={author} className="author-btn" onClick={null}>{author}</button>}
+                return <span key={author}><button className="author-btn" onClick={() => props.onAuthClick(author, 'author')}>{author},</button></span>}
+            else {return <button key={author} className="author-btn" onClick={() => props.onAuthClick(author, 'author')}>{author}</button>}
         });
     }
 let bookCover = props.bkImg !== null ? props.bkImg : noCover;
