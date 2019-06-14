@@ -6,7 +6,7 @@ const API_CALLS = {
         OVRVW_QRY: 'lists/overview.json?',
         ATHR_QRY: 'reviews.json?author=',
         TTL_QRY: 'reviews.json?title=',
-        GNRE_QRY: 'lists/current/',
+        GNRE_QRY: 'lists/',
         GNRE_LST_QRY: 'lists/names.json?'
     },
     GR: {

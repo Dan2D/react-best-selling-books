@@ -7,10 +7,13 @@ import bkSymbl from "../../../Images/Book-Placeholder.png"
 
 
 function Book(props) {
+    console.log(props.book)
 let isbns = {};
     if (props.type === 'genre'){
         isbns = props.book.isbns.filter((isbn, indx )=> indx === props.book.isbns.length-1)
-        isbns = isbns[0]
+        if (isbns !== null)
+            {isbns = isbns[0]}
+        isbns = props.book.primary_isbn13
     }
     let placeholderImg = <img src={bkSymbl} alt="book-symbol"/>;
     return (

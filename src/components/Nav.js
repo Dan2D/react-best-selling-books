@@ -1,5 +1,6 @@
 import React from 'react'
 import Search from "./Nav/Search";
+import Date from "./Nav/Date";
 import NavGenres from "./Nav/NavGenres";
 
 function Nav(props) {
@@ -18,8 +19,13 @@ function Nav(props) {
           onSearchSubmit={(srchTxt, srchTyp) => props.onSearchSubmit(srchTxt, srchTyp)}
           srchTyp={props.srchTyp} 
           searchTxt={props.searchTxt} />
+        <Date
+        content={props.content} 
+        genreTxt={props.genreTxt}
+        onHomeDateChange={(date) => props.onHomeClick(date)}
+        onGenreDateChange={(genreTxt, date) => props.onGenreClick(genreTxt, date)}/>
         <NavGenres 
-          onSubGenreClick={(subGenre) => props.onSubGenreClick(subGenre)}
+          onSubGenreClick={(subGenre) => props.onGenreClick(subGenre)}
           genreLst={props.navGenres} />
         <button 
           className="home-btn-container"

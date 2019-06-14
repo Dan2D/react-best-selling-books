@@ -50,9 +50,10 @@ export default class App extends Component {
       .catch(error => this.setState({error, isLoading: false}))
     }
 
-  goHome = () => {
+  goHome = (date='') => {
+    console.log(NYT_API+OVRVW_QRY+'published_date='+date+'api-key='+NYT_API_KEY)
     this.setState({content: 'home', isLoading: true, searchTxt: ""})
-      this.fetchURL(NYT_API+OVRVW_QRY+'api-key='+NYT_API_KEY, 'genres', 'lists')
+      this.fetchURL(NYT_API+OVRVW_QRY+'published_date='+date+'&api-key='+NYT_API_KEY, 'genres', 'lists')
       .then(() => this.setState({isLoading: false}))
       .catch(error => this.setState({error, isLoading: false}))
     }
@@ -98,17 +99,19 @@ export default class App extends Component {
       this.setState({searchTxt: text});
     };
   
-  handleGenreUpdate = (genreTxt) => {
+  handleGenreUpdate = (genreTxt, date='current') => {
+    console.log(NYT_API+GNRE_QRY+date+'/'+genreTxt+'.json?api-key='+NYT_API_KEY)
     this.setState({genreTxt: genreTxt, content: 'genre', isLoading: true, searchTxt: ""});
-    this.fetchURL(NYT_API+GNRE_QRY+genreTxt+'.json?api-key='+NYT_API_KEY, 'genres')
+    this.fetchURL(NYT_API+GNRE_QRY+date+'/'+genreTxt+'.json?api-key='+NYT_API_KEY, 'genres')
     .then(() => this.setState({isLoading: false}))
     .catch(error => this.setState({error, isLoading: false}))
   };
-
+// https://api.nytimes.com/svc/books/v3/lists/2015-08-02/hardcover-fiction.json?api-key=
   render() {
     const {navGenres,
            books,
            genres,
+           genreTxt,
            content,
            searchTxt,
            searchTyp, 
@@ -123,9 +126,11 @@ export default class App extends Component {
         onSelectUpdate={this.handleSelectUpdate}
         onSearchUpdate={this.handleSearchTxtUpdate}
         onSearchSubmit={this.handleSearch}
-        onSubGenreClick={this.handleGenreUpdate}
+        onGenreClick={this.handleGenreUpdate}
+        content={content}
         srchTyp={searchTyp}
         searchTxt={searchTxt}
+        genreTxt={genreTxt}
         navGenres={navGenres}/>
         <Content
         onAuthClick={this.handleSearch}
