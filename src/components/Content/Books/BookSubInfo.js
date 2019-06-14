@@ -14,6 +14,7 @@ class BookSubInfo extends Component{
     }
 
     componentDidMount(){
+        
         let isbn = this.props.isbns.isbn13;
         fetch('https://cors-anywhere.herokuapp.com/'+GR_API+GR_RVW_QRY+isbn+'&key='+GR_KEY)
         .then(response => response.json())

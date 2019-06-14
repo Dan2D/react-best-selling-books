@@ -3,6 +3,7 @@ import LazyLoad from "react-lazyload";
 import BookMainInfo from "./BookMainInfo";
 import MinBookSubInfo from "./MinBookSubInfo";
 import BookSubInfo from "./BookSubInfo";
+import bkSymbl from "../../../Images/Book-Placeholder.png"
 
 
 function Book(props) {
@@ -11,11 +12,12 @@ let isbns = {};
         isbns = props.book.isbns.filter((isbn, indx )=> indx === props.book.isbns.length-1)
         isbns = isbns[0]
     }
+    let placeholderImg = <img src={bkSymbl} alt="book-symbol"/>;
     console.log(props)
     return (
         
         <div className="book-container">
-            <LazyLoad height={200} once offset={100} >
+            <LazyLoad height={200} once offset={100} placeholder={placeholderImg} >
                 <BookMainInfo
                         key={props.book.title+'main-info'}
                         title={props.book.title}

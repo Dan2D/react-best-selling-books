@@ -11,13 +11,6 @@ function GenreBks(props){
                 onClick={null}
                 handleRatingClick={null} 
                 book={book}/>
-                // title={book.title}
-                // author={book.author}
-                // bkImg={book.book_image} 
-                // rank={book.rank} 
-                // dscrpt={book.description}
-                // rating={rating}
-                // buyLnk={book.buy_links[1]}/>
         });
 
    
