@@ -19,6 +19,9 @@ export default class App extends Component {
   constructor(props) {
     super(props) 
     this.state = {
+      date: new Date(),
+      dateMin: new Date('2010-01-01'),
+      dateMax: new Date(),
       navGenres: [],
       books: [],
       genres: [],
@@ -51,10 +54,10 @@ export default class App extends Component {
       .catch(error => this.setState({error, isLoading: false}))
     }
 
-  goHome = (date='') => {
-    console.log(NYT_API+OVRVW_QRY+'published_date='+date+'api-key='+NYT_API_KEY)
+  goHome = () => {
+    // console.log(NYT_API+OVRVW_QRY+'published_date='+date+'api-key='+NYT_API_KEY)
     this.setState({content: 'home', isLoading: true, searchTxt: ""})
-      this.fetchURL(NYT_API+OVRVW_QRY+'published_date='+date+'&api-key='+NYT_API_KEY, 'genres', 'lists')
+      this.fetchURL(NYT_API+OVRVW_QRY+'current/'+'&api-key='+NYT_API_KEY, 'genres', 'lists')
       .then(() => this.setState({isLoading: false}))
       .catch(error => this.setState({error, isLoading: false}))
     }
@@ -106,17 +109,32 @@ export default class App extends Component {
   handleSearchTxtUpdate = (text) => {
       this.setState({searchTxt: text});
     };
-  
-  handleGenreUpdate = (genreTxt, date='current') => {
-    console.log(NYT_API+GNRE_QRY+date+'/'+genreTxt+'.json?api-key='+NYT_API_KEY)
-    this.setState({genreTxt: genreTxt, content: 'genre', isLoading: true, searchTxt: ""});
-    this.fetchURL(NYT_API+GNRE_QRY+date+'/'+genreTxt+'.json?api-key='+NYT_API_KEY, 'genres')
+  handleDateUpdate = (date, content, genre) => {
+      let data;
+      if (content === 'home')
+        {this.setState({isLoading: true, searchTxt: ""});
+        data = this.fetchURL(NYT_API+OVRVW_QRY+'published_date='+date+'&api-key='+NYT_API_KEY, 'genres', 'lists')}
+      else  
+        {this.setState({genreTxt: this.state.genreTxt, isLoading: true, searchTxt: ""});
+        data = this.fetchURL(NYT_API+GNRE_QRY+date+'/'+this.state.genreTxt+'.json?api-key='+NYT_API_KEY, 'genres')
+        }
+      data.then(() => this.setState({isLoading: false}))
+      .catch(error => this.setState({error, isLoading: false}))
+    }
+
+  handleGenreUpdate = (genreTxt, dateMin, dateMax) => {
+    console.log(dateMin, dateMax);
+    this.setState({genreTxt: genreTxt, content: 'genre', isLoading: true, searchTxt: "", dateMin: new Date(dateMin), dateMax: new Date(dateMax), date: new Date(dateMax)});
+    this.fetchURL(NYT_API+GNRE_QRY+'current/'+genreTxt+'.json?api-key='+NYT_API_KEY, 'genres')
     .then(() => this.setState({isLoading: false}))
     .catch(error => this.setState({error, isLoading: false}))
   };
-// https://api.nytimes.com/svc/books/v3/lists/2015-08-02/hardcover-fiction.json?api-key=
+
   render() {
-    const {navGenres,
+    const {date, 
+           dateMin,
+           dateMax,
+           navGenres,
            books,
            genres,
            genreTxt,
@@ -135,11 +153,14 @@ export default class App extends Component {
         onSearchUpdate={this.handleSearchTxtUpdate}
         onSearchSubmit={this.handleSearch}
         onGenreClick={this.handleGenreUpdate}
+        onDateChange={this.handleDateUpdate}
         content={content}
         srchTyp={searchTyp}
         searchTxt={searchTxt}
         genreTxt={genreTxt}
-        navGenres={navGenres}/>
+        navGenres={navGenres}
+        dateMin={dateMin}
+        dateMax={dateMax}/>
         <Content
         onAuthClick={this.handleSearch}
         onGenreClick={this.handleGenreUpdate}

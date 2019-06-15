@@ -20,12 +20,14 @@ function Nav(props) {
           srchTyp={props.srchTyp} 
           searchTxt={props.searchTxt} />
         <Date
+        // onHomeDateChange={(date) => props.onHomeClick(date)}
+        onDateChange={(date, content, genreTxt) => props.onDateChange(date, content, genreTxt)}
+        dateMin={props.dateMin}
+        dateMax={props.dateMax}
         content={props.content} 
-        genreTxt={props.genreTxt}
-        onHomeDateChange={(date) => props.onHomeClick(date)}
-        onGenreDateChange={(genreTxt, date) => props.onGenreClick(genreTxt, date)}/>
+        genreTxt={props.genreTxt} />
         <NavGenres 
-          onSubGenreClick={(subGenre) => props.onGenreClick(subGenre)}
+          onGenreClick={(genre, minDate, maxDate) => props.onGenreClick(genre, minDate, maxDate)}
           genreLst={props.navGenres} />
         <button 
           className="home-btn-container"

@@ -36,7 +36,7 @@ function genGenreArr (filterTxt, flags, searchType)
     return (
         <div className='genre-category-container'>
            <NavSubGenre
-           onSubGenreClick={(subGenre) => props.onSubGenreClick(subGenre)}
+           onGenreClick={(genre, minDate, maxDate) => props.onGenreClick(genre, minDate, maxDate)}
            genreLst={genreObj.navSubGenres} />
         </div>
     )

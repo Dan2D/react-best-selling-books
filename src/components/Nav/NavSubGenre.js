@@ -10,7 +10,7 @@ function NavSubGenre(props) {
                     <h5>{genre.title}</h5>
                     <NavGenreBtns
                     key={genre.title+" sub-genre-title"}
-                    onSubGenreClick={(subGenre) => props.onSubGenreClick(subGenre)}
+                    onGenreClick={(genre, minDate, maxDate) => props.onGenreClick(genre, minDate, maxDate)}
                     subGenres={genre.array}/>
                 </div>
             });
