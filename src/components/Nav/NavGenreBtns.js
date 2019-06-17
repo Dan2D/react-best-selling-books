@@ -4,10 +4,10 @@ function NavGenreBtns(props) {
     console.log(props.subGenres, "TEST");
     
     function handleGenreClick(e){
+        console.log(e.target)
         let genre = e.target.dataset.name;
         let minDate = e.target.dataset.minDate;
         let maxDate = e.target.dataset.maxDate;
-        console.log(minDate, maxDate)
         return props.onGenreClick(genre, minDate, maxDate );
     }
 

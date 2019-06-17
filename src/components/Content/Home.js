@@ -15,7 +15,7 @@ function Home(props) {
             onAuthClick={(author, srchTyp) => props.onAuthClick(author, srchTyp)} 
             books={genreLst[i].books} 
             genre={genreLst[i]}
-            onGenreClick={(genreName) => props.onGenreClick(genreName)}/>)
+            onGenreClick={(genreName, minDate, maxDate) => props.onGenreClick(genreName, minDate, maxDate)}/>)
         }
     }
     genMinGenre(mainGenres);

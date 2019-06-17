@@ -13,12 +13,13 @@ function Content (props) {
         if (props.content === 'home'){
             content = <Home
                       onAuthClick={(author, srchTyp) => props.onAuthClick(author, srchTyp)}
-                      onGenreClick={(genreName) => props.onGenreClick(genreName)}
+                      onGenreClick={(genreName, minDate, maxDate) => props.onGenreClick(genreName, minDate, maxDate)}
                       genreLst={props.genres} />
           }
           if (props.content === 'genre'){
             content = <GenreBks
-                        onAuthClick={(author, srchTyp) => props.onAuthClick(author, srchTyp)}   
+                        onAuthClick={(author, srchTyp) => props.onAuthClick(author, srchTyp)}dateMin={props.dateMin}
+                        dateMax={props.dateMax}  
                         genre={props.genres}/>
           }
           if(props.content === 'search') 

@@ -3,12 +3,15 @@ import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css";
 
 function NavDate(props) {
-    const [startDate, setDate] = useState(props.dateMax);
-    useEffect(() => setDate(props.dateMax), [props.dateMax])
+    const [startDate, setDate] = useState(props.date);
+    useEffect(() => setDate(props.date), [props.dateMax, props.date])
+
+    if (props.content === 'search')
+        {return <div>Not available in search</div>}
+    
     function handleDtChng(date){
         setDate(date);
     }
-// TODO(ADD FUNCTIONS FOR PREV WEEK NEXT WEEK W/CONDITION ON NEXT WEEK IF AT MAXDATE)
 // ADD FALL BACK IF IN SEARCH RESULTS WHEN TRYING TO USE DATE SET TO HOME
     function handleDateSelect() {
         let srchDt = startDate.toISOString().substr(0,10);
@@ -18,9 +21,37 @@ function NavDate(props) {
         return props.onDateChange(srchDt, props.content, props.genreTxt);
     }
 
+
+    Date.prototype.plusMinusDays = function addDays(date, days, type){
+        if (type == 'add')
+            {return new Date(date.getTime()+(days*1000*60*60*24))}
+        else    
+            {return new Date(date.getTime()-(days*1000*60*60*24));}
+        
+    }
+
+    function handleWkJmpClk(e){
+        let newDate;
+        if (e.target.dataset.name === 'prev')
+            {let dateMin = props.dateMin.plusMinusDays(props.dateMin, 7, 'add');
+                if (props.date < dateMin)
+                    {return null}
+                else 
+                    {newDate = props.date.plusMinusDays(props.date, 7, 'subtract');}
+            }
+        else
+            {let dateMax = props.dateMax.plusMinusDays(props.dateMax, 7, 'subtract');
+            if (props.date > dateMax)
+                {return null}
+            else 
+                {newDate = props.date.plusMinusDays(props.date, 7, 'add');}
+        }
+        return props.onDateChange(newDate.toISOString().substr(0,10))
+    }
+
     return (
         <div>
-            <button>{'<'} pevious week</button> 
+            <button onClick={handleWkJmpClk} data-name="prev">{'<'} pevious week</button> 
             <DatePicker
                 selected={startDate}
                 onChange={handleDtChng}
@@ -31,7 +62,7 @@ function NavDate(props) {
                 showYearDropdown
                 dropdownMode="select"
             />
-            <button> next week {'>'}</button>
+            <button onClick={handleWkJmpClk} data-name="next"> next week {'>'}</button>
             <button onClick={handleDateSelect}>GO</button>
         </div>
     )

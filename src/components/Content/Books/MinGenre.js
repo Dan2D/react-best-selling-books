@@ -3,24 +3,26 @@ import Book from "./Book";
 
 function MinGenre(props) {
 
+    function handleGenreClick(){
+        let genre = document.querySelector('button[data-name='+props.genre.list_name_encoded+']')
+        let genreName = genre.dataset.name;
+        let minDate = genre.dataset.minDate;
+        let maxDate = genre.dataset.maxDate;
+        return props.onGenreClick(genreName, minDate, maxDate );
+    }
+
     let bookArr = props.books.map(book => {
         return <Book
                 key={props.genre.display_name+"-"+book.title}
                 onAuthClick={(author, srchTyp) => props.onAuthClick(author, srchTyp)}
                 type='overview' 
                 book={book}/>
-                // title={book.title}
-                // bkImg={book.book_image}
-                // rank={book.rank}
-                // author={book.author}
-                // buyLnk={book.buy_links[2]}
-                // wksOnLst={book.weeks_on_list}
-                // dscrpt={book.description}/>
     })
-
+let btn = document.querySelector('button[data-name='+props.genre.list_name_encoded);
+let btnCpy = btn.cloneNode(true);
     return (
         <div className="mini-genre-container">
-            <button onClick={() => props.onGenreClick(props.genre.list_name_encoded)}>{props.genre.display_name}</button>
+            <button onClick={handleGenreClick}>{props.genre.display_name}</button>
             <div className="mini-genre-books-container">
                 {bookArr}
             </div>

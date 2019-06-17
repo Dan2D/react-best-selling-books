@@ -20,8 +20,8 @@ function Nav(props) {
           srchTyp={props.srchTyp} 
           searchTxt={props.searchTxt} />
         <Date
-        // onHomeDateChange={(date) => props.onHomeClick(date)}
-        onDateChange={(date, content, genreTxt) => props.onDateChange(date, content, genreTxt)}
+        onDateChange={(date) => props.onDateChange(date)}
+        date={props.date}
         dateMin={props.dateMin}
         dateMax={props.dateMax}
         content={props.content} 

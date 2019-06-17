@@ -5,6 +5,7 @@ import SrchBtns from "./SearchResults/SrchBtns";
 import NotFound from "./NotFound";
 
 function SrchRslt(props) {
+    console.log(props.books)
     if (props.books.querySelector('author name') == null)
         {return <NotFound />}
     let bkDataArr = []
