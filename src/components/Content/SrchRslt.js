@@ -26,7 +26,8 @@ function SrchRslt(props) {
 
     let bookCode = bkDataArr.map((book, indx) => {
         return <SrchBk
-                key={author+indx} 
+                key={author+indx}
+                onAuthClick={(author, srchTyp) => props.onAuthClick(author, srchTyp)} 
                 srchTyp={props.srchTyp} 
                 author={author} 
                 book={book} />});

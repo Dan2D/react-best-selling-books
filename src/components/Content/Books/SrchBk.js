@@ -5,6 +5,9 @@ function SrchBk(props) {
     let title, coverImg, bookId, rvwLnk, pubDt;
     function qryAssign(input)
         {return props.book.querySelector(input).textContent;}
+
+    function handleAuthClick()
+        {return props.onAuthClick(props.author, 'author');}
         
     if (props.srchTyp === 'title')
         {title = qryAssign('best_book title');
@@ -24,7 +27,7 @@ function SrchBk(props) {
         <div>
             <h5>{title}</h5>
             <img src={coverImg} alt={title}/>
-            {props.srchTyp === 'title' ? <p>by: {props.author}</p> : null}
+            {props.srchTyp === 'title' ? <div><p>by: </p><button onClick={handleAuthClick}>{props.author}</button></div> : null}
             <a href={rvwLnk} rel='noopener noreferrer'  target="_blank">...more info</a>
             <p>Published: {pubDt}</p>
         </div>

@@ -11,7 +11,7 @@ function Nav(props) {
           onSelectUpdate={(srchTyp) => props.onSelectUpdate(srchTyp)}
           onSearchUpdate={(searchTxt) => props.onSearchUpdate(searchTxt)}
           onSearchSubmit={(srchTxt, srchTyp) => props.onSearchSubmit(srchTxt, srchTyp)}
-          searchTyp={props.srchTyp} 
+          searchTyp={props.searchTyp} 
           searchTxt={props.searchTxt} />
         <Date
         onDateChange={(date) => props.onDateChange(date)}

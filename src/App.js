@@ -73,18 +73,19 @@ export default class App extends Component {
       this.setState({searchTyp: srchTyp})
   }
 
-  handleSearch = (srchTxt, srchTyp, pg=1) => {
-    this.setState({searchTxt: srchTxt, content: 'search', searchTyp: srchTyp});
-    srchTxt = srchTxt.replace(/\s/g, "+").toLowerCase();
-    srchTxt = srchTxt.replace(/'/g, "%27s");
+  handleSearch = (searchTxt, searchTyp, pg=1) => {
+    console.log(searchTxt, searchTyp)
+    this.setState({searchTxt: searchTxt, content: 'search', searchTyp: searchTyp});
+    searchTxt = searchTxt.replace(/\s/g, "+").toLowerCase();
+    searchTxt = searchTxt.replace(/'/g, "%27s");
     this.setState({isLoading: true});
-    if (srchTyp === 'title')
-      {fetch('https://cors-anywhere.herokuapp.com/'+GR_API+GR_GNRL_QRY+GR_KEY+'&search[field]=title&q='+srchTxt+'&page='+pg)
+    if (searchTyp === 'title')
+      {fetch('https://cors-anywhere.herokuapp.com/'+GR_API+GR_GNRL_QRY+GR_KEY+'&search[field]=title&q='+searchTxt+'&page='+pg)
       .then(response => response.text())
       .then(str => (new window.DOMParser()).parseFromString(str, "text/xml"))
       .then(data => this.setState({books: data, isLoading: false}))}
     else 
-      {fetch('https://cors-anywhere.herokuapp.com/https://www.goodreads.com/api/author_url/'+srchTxt+'?key='+GR_KEY)
+      {fetch('https://cors-anywhere.herokuapp.com/https://www.goodreads.com/api/author_url/'+searchTxt+'?key='+GR_KEY)
       .then(response => response.text())
       .then(str => (new window.DOMParser()).parseFromString(str, "text/xml"))
       .then(data => {
