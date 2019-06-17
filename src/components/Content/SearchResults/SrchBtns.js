@@ -4,7 +4,6 @@ import React, {useState} from 'react'
 function SrchBtns(props) {
     const [currPg, setPg] = useState(1);
     let pgArr = [];
-//TODO(FIX PAGE RE RENDER, GET DIFF NUM OF PAGE BUTTONS ON NEW PAGE CLICK)
     function handlePgBtnClick(e)
         {//Set root var to no style curr page btn and disable click events (nth child)
         let pg = e.target.innerText

@@ -5,7 +5,7 @@ import SrchRslt from "./Content/SrchRslt"
 
 
 function Content (props) {
-    console.log(props.content, "CONTENT")
+    console.log(props.content, "CONTENT LOADED")
         if (props.isLoading){
             return <div>LOADING...</div>
         }

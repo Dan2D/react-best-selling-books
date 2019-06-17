@@ -97,10 +97,11 @@ export default class App extends Component {
             else 
               {return data.querySelector('author').getAttribute('id')}}
           )
-      .then(id => fetch('https://cors-anywhere.herokuapp.com/'+GR_API+GR_QRY+id+'?format=xml&key='+GR_KEY+'&page='+pg)
+      .then(id => {console.log(GR_API+GR_QRY+id+'?format=xml&key='+GR_KEY+'&page='+pg)
+        return fetch('https://cors-anywhere.herokuapp.com/'+GR_API+GR_QRY+id+'?format=xml&key='+GR_KEY+'&page='+pg)
         .then(response => response.text())
         .then(str => (new window.DOMParser()).parseFromString(str, "text/xml"))
-        .then(data => {this.setState({books: data, isLoading: false})}))}
+        .then(data => {this.setState({books: data, isLoading: false})})})}
   }
 
   handleSearchTxtUpdate = (text) => {

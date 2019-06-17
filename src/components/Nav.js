@@ -4,7 +4,7 @@ import Date from "./Nav/Date";
 import NavGenres from "./Nav/NavGenres";
 
 function Nav(props) {
-
+  console.log("NAV LOADED")
     // function handleGenreUpdate(genreName) {
     //     return props.onGenreUpdate(genreName);
     // }
