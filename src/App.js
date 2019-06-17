@@ -19,7 +19,7 @@ export default class App extends Component {
     super(props) 
     this.state = {
       date: new Date(),
-      dateMin: new Date('2010-01-01'),
+      dateMin: new Date('2008-06-08'),
       dateMax: new Date(),
       navGenres: [],
       books: [],
@@ -54,7 +54,8 @@ export default class App extends Component {
     }
 
   goHome = () => {
-    this.setState({content: 'home', isLoading: true, searchTxt: ""})
+    console.log(NYT_API+OVRVW_QRY+'current/&api-key='+NYT_API_KEY)
+    this.setState({content: 'home', isLoading: true, searchTxt: "", searchTyp: 'Title', date: new Date(), dateMin: new Date('2008-06-08'), dateMax: new Date()})
       this.fetchURL(NYT_API+OVRVW_QRY+'current/&api-key='+NYT_API_KEY, 'genres', 'lists')
       .then(() => this.setState({isLoading: false}))
       .catch(error => this.setState({error, isLoading: false}))

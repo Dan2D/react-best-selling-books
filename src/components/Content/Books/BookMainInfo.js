@@ -4,7 +4,7 @@ import noCover from "../../../Images/Book-Placeholder.png";
 function BookMainInfo(props) {
     
     if (props.author){
-        let authorTxt = props.author.split(/,|and|with/);
+        let authorTxt = props.author.split(/,|\sand\s|\swith\s/);
         var authorArr = authorTxt.map((author, indx) => {
             if (indx < authorTxt.length-1){
                 return <span key={author}><button className="author-btn" onClick={() => props.onAuthClick(author, 'author')}>{author},</button></span>}
