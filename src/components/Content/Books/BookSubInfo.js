@@ -3,7 +3,7 @@ import StarRating from "react-rating";
 import API_CALLS from "../../Utils/APICalls";
 
 
-const {GR_KEY, GR_API, GR_RVW_QRY, GR_ISBN_QRY, GR_RTNG_QRY} = API_CALLS['GR']
+const {GR_KEY, GR_API, GR_RVW_QRY} = API_CALLS['GR']
 
 class BookSubInfo extends Component{
     constructor(props) {
@@ -36,8 +36,7 @@ class BookSubInfo extends Component{
                 fullSymbol="fas fa-star fa-lg"
                 fractions={2}
                 readonly /> {this.state.rating.average_rating}</div>}</div>
-                <a 
-                    href={'https://www.goodreads.com/book/show/'+this.state.rating['id']} 
+                <a  href={'https://www.goodreads.com/book/show/'+this.state.rating['id']} 
                     rel='noopener noreferrer'  
                     target="_blank">Read Reviews</a>
                 <p className='book-description'>Description...</p>

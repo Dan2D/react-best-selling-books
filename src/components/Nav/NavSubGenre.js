@@ -2,7 +2,6 @@ import React from 'react'
 import NavGenreBtns from "./NavGenreBtns";
 
 function NavSubGenre(props) {
-
     function genGenreLst (genreArr) 
         {let subGenreArr =  genreArr.map(genre => {
         return <div key={genre.title}

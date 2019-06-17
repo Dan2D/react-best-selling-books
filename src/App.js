@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import NotFound from "./components/Content/NotFound";
 import Nav from "./components/Nav";
 import Content from "./components/Content";
 import API_CALLS from "./components/Utils/APICalls";
@@ -56,7 +55,7 @@ export default class App extends Component {
 
   goHome = () => {
     this.setState({content: 'home', isLoading: true, searchTxt: ""})
-      this.fetchURL(NYT_API+OVRVW_QRY+'current/'+'&api-key='+NYT_API_KEY, 'genres', 'lists')
+      this.fetchURL(NYT_API+OVRVW_QRY+'current/&api-key='+NYT_API_KEY, 'genres', 'lists')
       .then(() => this.setState({isLoading: false}))
       .catch(error => this.setState({error, isLoading: false}))
     }
@@ -75,20 +74,17 @@ export default class App extends Component {
   }
 
   handleSearch = (srchTxt, srchTyp, pg=1) => {
-    console.log(pg, "PAGe")
     this.setState({searchTxt: srchTxt, content: 'search', searchTyp: srchTyp});
     srchTxt = srchTxt.replace(/\s/g, "+").toLowerCase();
     srchTxt = srchTxt.replace(/'/g, "%27s");
     this.setState({isLoading: true});
     if (srchTyp === 'title')
-      {console.log(GR_API+GR_GNRL_QRY+GR_KEY+'&search[field]=title&q='+srchTxt);
-      fetch('https://cors-anywhere.herokuapp.com/'+GR_API+GR_GNRL_QRY+GR_KEY+'&search[field]=title&q='+srchTxt+'&page='+pg)
+      {fetch('https://cors-anywhere.herokuapp.com/'+GR_API+GR_GNRL_QRY+GR_KEY+'&search[field]=title&q='+srchTxt+'&page='+pg)
       .then(response => response.text())
       .then(str => (new window.DOMParser()).parseFromString(str, "text/xml"))
       .then(data => this.setState({books: data, isLoading: false}))}
     else 
-      {console.log('https://www.goodreads.com/api/author_url/'+srchTxt+'?key='+GR_KEY);
-      fetch('https://cors-anywhere.herokuapp.com/https://www.goodreads.com/api/author_url/'+srchTxt+'?key='+GR_KEY)
+      {fetch('https://cors-anywhere.herokuapp.com/https://www.goodreads.com/api/author_url/'+srchTxt+'?key='+GR_KEY)
       .then(response => response.text())
       .then(str => (new window.DOMParser()).parseFromString(str, "text/xml"))
       .then(data => {
@@ -97,8 +93,7 @@ export default class App extends Component {
             else 
               {return data.querySelector('author').getAttribute('id')}}
           )
-      .then(id => {console.log(GR_API+GR_QRY+id+'?format=xml&key='+GR_KEY+'&page='+pg)
-        return fetch('https://cors-anywhere.herokuapp.com/'+GR_API+GR_QRY+id+'?format=xml&key='+GR_KEY+'&page='+pg)
+      .then(id => {return fetch('https://cors-anywhere.herokuapp.com/'+GR_API+GR_QRY+id+'?format=xml&key='+GR_KEY+'&page='+pg)
         .then(response => response.text())
         .then(str => (new window.DOMParser()).parseFromString(str, "text/xml"))
         .then(data => {this.setState({books: data, isLoading: false})})})}
@@ -122,7 +117,6 @@ export default class App extends Component {
     }
 
   handleGenreUpdate = (genreTxt, dateMin, dateMax) => {
-    console.log(dateMin, dateMax);
     this.setState({genreTxt: genreTxt, content: 'genre', isLoading: true, searchTxt: "", dateMin: new Date(dateMin), dateMax: new Date(dateMax), date: new Date(dateMax)});
     this.fetchURL(NYT_API+GNRE_QRY+'current/'+genreTxt+'.json?api-key='+NYT_API_KEY, 'genres')
     .then(() => this.setState({isLoading: false}))
@@ -154,7 +148,7 @@ export default class App extends Component {
         onGenreClick={this.handleGenreUpdate}
         onDateChange={this.handleDateUpdate}
         content={content}
-        srchTyp={searchTyp}
+        searchTyp={searchTyp}
         searchTxt={searchTxt}
         genreTxt={genreTxt}
         navGenres={navGenres}
@@ -176,4 +170,3 @@ export default class App extends Component {
     )
   }
 }
-

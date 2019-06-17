@@ -5,19 +5,13 @@ import NavGenres from "./Nav/NavGenres";
 
 function Nav(props) {
   console.log("NAV LOADED")
-    // function handleGenreUpdate(genreName) {
-    //     return props.onGenreUpdate(genreName);
-    // }
-
-
-
     return (
       <nav className="nav-container">
         <Search
           onSelectUpdate={(srchTyp) => props.onSelectUpdate(srchTyp)}
           onSearchUpdate={(searchTxt) => props.onSearchUpdate(searchTxt)}
           onSearchSubmit={(srchTxt, srchTyp) => props.onSearchSubmit(srchTxt, srchTyp)}
-          srchTyp={props.srchTyp} 
+          searchTyp={props.srchTyp} 
           searchTxt={props.searchTxt} />
         <Date
         onDateChange={(date) => props.onDateChange(date)}
@@ -39,4 +33,21 @@ function Nav(props) {
     )
 }
 
-export default Nav
+// const MemoDate = React.memo(Date, (prevProps, nextProps) => {
+//   return (prevProps.genreTxt === nextProps.genreTxt && prevProps.date === nextProps.date)
+// });
+
+// const MemoNavGenres = React.memo(NavGenres, (prevProps, nextProps) => {
+//   return (prevProps.genreLst === nextProps.genreLst)
+// });
+
+const MemoNav = React.memo(Nav, (prevProps, nextProps) => {
+  return (prevProps.genreTxt === nextProps.genreTxt &&
+          prevProps.date === nextProps.date &&
+          prevProps.navGenres === nextProps.navGenres &&
+          prevProps.searchTxt === nextProps.searchTxt &&
+          prevProps.searchTyp === nextProps.searchTyp &&
+          prevProps.content === nextProps.content)
+})
+
+export default MemoNav

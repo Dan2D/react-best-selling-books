@@ -7,16 +7,15 @@ import bkSymbl from "../../../Images/Book-Placeholder.png"
 
 
 function Book(props) {
-let isbns = {};
-    if (props.type === 'genre'){
-        isbns = props.book.isbns.filter((isbn, indx )=> indx === props.book.isbns.length-1)
+    let isbns = {};
+    if (props.type === 'genre')
+        {isbns = props.book.isbns.filter((isbn, indx )=> indx === props.book.isbns.length-1);
         if (isbns !== null)
             {isbns = isbns[0]}
         isbns = props.book.primary_isbn13
-    }
+        }
     let placeholderImg = <img src={bkSymbl} alt="book-symbol"/>;
     return (
-        
         <div className="book-container">
             <LazyLoad height={200} once offset={100} placeholder={placeholderImg} >
                 <BookMainInfo
@@ -41,8 +40,7 @@ let isbns = {};
                 }
             </LazyLoad>
         </div>
-        
     )
 }
 
-export default Book
+export default Book;

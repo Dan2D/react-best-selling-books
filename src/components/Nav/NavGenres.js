@@ -1,10 +1,10 @@
 import React from 'react'
 import NavSubGenre from "./NavSubGenre";
 
-function NavGenres (props)
-    {let genreObj={
-    navSubGenres: [],
-    }
+function NavGenres (props){
+    let genreObj= {
+        navSubGenres: [],
+        };
 
 function genGenreArr (filterTxt, flags, searchType) 
     {let regxStr = new RegExp(filterTxt, flags);
@@ -42,10 +42,4 @@ function genGenreArr (filterTxt, flags, searchType)
     )
 }
 
-const MemoNavGenres = React.memo(NavGenres, (prevProps, nextProps) => 
-    {if (prevProps.genreLst === nextProps.genreLst)
-        {return true;}
-    return false;
-    });
-
-export default MemoNavGenres
+export default NavGenres

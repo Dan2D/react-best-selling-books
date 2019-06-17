@@ -12,15 +12,14 @@ function Search(props) {
         return
     }
     const handleSearchSubmit = () => {
-        let srchTyp = document.getElementById("search-type").value;
-        console.log(srchTyp)
-        return props.onSearchSubmit(props.searchTxt, srchTyp);
+        let searchTyp = document.getElementById("search-type").value;
+        return props.onSearchSubmit(props.searchTxt, searchTyp);
     }
 
     return (
         <div className="search-container">
             <select id="search-type"
-            value={props.srchTyp}
+            value={props.searchTyp}
             onChange={handleSelectUpdate} 
             name="search-options">
                 <option value="title">Title</option>
@@ -37,4 +36,9 @@ function Search(props) {
     )
 }
 
-export default React.memo(Search);
+const MemoSearch = React.memo(Search, (prevProps, nextProps) => {
+    if (prevProps === nextProps){return true}
+    return false
+})
+
+export default MemoSearch

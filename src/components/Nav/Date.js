@@ -8,43 +8,40 @@ function NavDate(props) {
 
     if (props.content === 'search')
         {return <div>Not available in search</div>}
+
+   function plusMinusDays(date, days, type){
+            if (type === 'add')
+                {return new Date(date.getTime()+(days*1000*60*60*24));}
+            else    
+                {return new Date(date.getTime()-(days*1000*60*60*24));}
+        }
     
     function handleDtChng(date){
         setDate(date);
     }
-// ADD FALL BACK IF IN SEARCH RESULTS WHEN TRYING TO USE DATE SET TO HOME
+
     function handleDateSelect() {
         let srchDt = startDate.toISOString().substr(0,10);
-        console.log(props.genreTxt, srchDt, "SEARCH")
         if (props.content === 'home')
             {return props.onDateChange(srchDt, props.content);}
         return props.onDateChange(srchDt, props.content, props.genreTxt);
     }
 
-
-    Date.prototype.plusMinusDays = function addDays(date, days, type){
-        if (type == 'add')
-            {return new Date(date.getTime()+(days*1000*60*60*24))}
-        else    
-            {return new Date(date.getTime()-(days*1000*60*60*24));}
-        
-    }
-
     function handleWkJmpClk(e){
         let newDate;
         if (e.target.dataset.name === 'prev')
-            {let dateMin = props.dateMin.plusMinusDays(props.dateMin, 7, 'add');
+            {let dateMin = plusMinusDays(props.dateMin, 7, 'add');
                 if (props.date < dateMin)
                     {return null}
                 else 
-                    {newDate = props.date.plusMinusDays(props.date, 7, 'subtract');}
+                    {newDate = plusMinusDays(props.date, 7, 'subtract');}
             }
         else
-            {let dateMax = props.dateMax.plusMinusDays(props.dateMax, 7, 'subtract');
+            {let dateMax = plusMinusDays(props.dateMax, 7, 'subtract');
             if (props.date > dateMax)
                 {return null}
             else 
-                {newDate = props.date.plusMinusDays(props.date, 7, 'add');}
+                {newDate = plusMinusDays(props.date, 7, 'add');}
         }
         return props.onDateChange(newDate.toISOString().substr(0,10))
     }

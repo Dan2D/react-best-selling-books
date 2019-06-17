@@ -5,10 +5,7 @@ import SrchRslt from "./Content/SrchRslt"
 
 
 function Content (props) {
-    console.log(props.content, "CONTENT LOADED")
-        if (props.isLoading){
-            return <div>LOADING...</div>
-        }
+    console.log("CONTENT LOADED")
         let content;
         if (props.content === 'home'){
             content = <Home
@@ -37,7 +34,6 @@ function Content (props) {
 
 const MemoContent = React.memo(Content, (prevProps, nextProps) => {
     if (prevProps.genres === nextProps.genres && 
-        prevProps.isLoading === nextProps.isLoading && 
         prevProps.books === nextProps.books)
         {return true;}
     return false;

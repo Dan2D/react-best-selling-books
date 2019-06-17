@@ -3,9 +3,10 @@ import Book from "./Books/Book";
 
 
 function GenreBks(props){ 
-    let bookArr = props.genre.books.map((book) => {
+    console.log("GENRE BOOKS LOADED")
+    let bookArr = props.genre.books.map((book, indx) => {
         return <Book 
-                key={book.title}
+                key={book.title+indx}
                 type='genre' 
                 onAuthClick={(author, srchTyp) => props.onAuthClick(author, srchTyp)}
                 handleRatingClick={null} 
