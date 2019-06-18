@@ -14,6 +14,7 @@ function MinGenre(props) {
     let bookArr = props.books.map(book => {
         return <Book
                 key={props.genre.display_name+"-"+book.title}
+                onTtlClick={(book) => props.onTtlClick(book)}
                 onAuthClick={(author, srchTyp) => props.onAuthClick(author, srchTyp)}
                 type='overview' 
                 book={book}/>

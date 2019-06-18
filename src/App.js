@@ -158,6 +158,7 @@ export default class App extends Component {
         dateMin={dateMin}
         dateMax={dateMax}/>
         <Content
+        onTtlClick={(book) => {this.setState({books: book, content: 'book'})}}
         onAuthClick={this.handleSearch}
         onGenreClick={this.handleGenreUpdate}
         onPgClick={this.handleSearch}

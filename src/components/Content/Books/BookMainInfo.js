@@ -2,7 +2,8 @@ import React from 'react'
 import noCover from "../../../Images/Book-Placeholder.png";
 
 function BookMainInfo(props) {
-    
+    function handleTtlClick()
+        {return props.onTtlClick(props.book);}
     if (props.author){
         let authorTxt = props.author.split(/,|\sand\s|\swith\s/);
         var authorArr = authorTxt.map((author, indx) => {
@@ -14,9 +15,9 @@ function BookMainInfo(props) {
 let bookCover = props.bkImg !== null ? props.bkImg : noCover;
     return (
     <div className="book-general-info">
-        <div><strong>#{props.rank}</strong></div>
+        {props.type === 'book' ? null : <div><strong>#{props.rank}</strong></div>}
         <img src={bookCover} alt={props.title}/>
-        <h5>{props.title}</h5>
+        <button onClick={handleTtlClick}>{props.title}</button>
         <div className="author-info">
             <p>by</p>
             <div className="author-btn-container">{authorArr}</div>

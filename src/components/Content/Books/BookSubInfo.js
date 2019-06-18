@@ -12,15 +12,16 @@ class BookSubInfo extends Component{
              rating: 0,
         }
     }
-
+    
     componentDidMount(){
-        let isbn = this.props.isbns;
+        let isbn = this.props.isbn;
         fetch('https://cors-anywhere.herokuapp.com/'+GR_API+GR_RVW_QRY+isbn+'&key='+GR_KEY)
         .then(response => response.json())
         .then(data => this.setState({rating: data.books[0]}))
     }
 
     render(){
+        console.log(this.props.dscrpt)
         return (
             <div className="book-review-info">
                 <a className="book-buy-link" 
@@ -28,14 +29,17 @@ class BookSubInfo extends Component{
                 target="blank">
                 Buy this Book
                 </a>
-                <div>{this.state.rating === 0 ? 'No Rating Available' : 
                 <div>
-                <StarRating
-                initialRating={this.state.rating.average_rating}
-                emptySymbol="far fa-star fa-lg"
-                fullSymbol="fas fa-star fa-lg"
-                fractions={2}
-                readonly /> {this.state.rating.average_rating}</div>}</div>
+                    {this.state.rating === 0 ? 
+                    'No Rating Available' : 
+                    <div>
+                    <StarRating
+                    initialRating={this.state.rating.average_rating}
+                    emptySymbol="far fa-star fa-lg"
+                    fullSymbol="fas fa-star fa-lg"
+                    fractions={2}
+                    readonly /> {this.state.rating.average_rating}</div>}
+                </div>
                 <a  href={'https://www.goodreads.com/book/show/'+this.state.rating['id']} 
                     rel='noopener noreferrer'  
                     target="_blank">Read Reviews</a>

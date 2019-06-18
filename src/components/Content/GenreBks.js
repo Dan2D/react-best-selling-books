@@ -6,10 +6,9 @@ function GenreBks(props){
     console.log("GENRE BOOKS LOADED")
     let bookArr = props.genre.books.map((book, indx) => {
         return <Book 
-                key={book.title+indx}
+                key={book.title+'-'+indx}
                 type='genre' 
                 onAuthClick={(author, srchTyp) => props.onAuthClick(author, srchTyp)}
-                handleRatingClick={null} 
                 book={book}/>
         });
     
