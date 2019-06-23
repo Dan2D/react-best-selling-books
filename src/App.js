@@ -14,6 +14,8 @@ const {GR_KEY,
        GR_GNRL_QRY, 
        GR_QRY } = API_CALLS['GR'];
 
+const CORS = 'https://cors-anywhere.herokuapp.com/';
+
 export default class App extends Component {
   constructor(props) {
     super(props) 
@@ -36,7 +38,7 @@ export default class App extends Component {
     let navGenres = this.fetchJSON(NYT_API+GNRE_LST_QRY+'&api-key='+NYT_API_KEY, 'navGenres');
     let homeContent = this.fetchJSON(NYT_API+OVRVW_QRY+'api-key='+NYT_API_KEY, 'genres', 'lists');
     this.setState({content: 'home'});
-    Promise.all([navGenres, homeContent])
+    Promise.all([navGenres, homeContent]);
   }
 
   fetchXML = (input, state) => {
@@ -68,13 +70,15 @@ export default class App extends Component {
         if(response.ok)
           {return response.json()}
         else
-          {throw new Error('Something went wrong...')}})
+          {throw new Error('Something went wrong...')}
+        })
       .then(data => {
-          stateObj[state] = property != null ? 
-            data[results][property] :
-            stateObj[state] = data[results];
-          stateObj['isLoading'] = false;
-          this.setState(stateObj)})
+        stateObj[state] = property != null ? 
+          data[results][property] :
+          stateObj[state] = data[results];
+        stateObj['isLoading'] = false;
+        this.setState(stateObj)
+        })
           .catch(error => this.setState({error, isLoading: false}))
     }
 
@@ -97,16 +101,16 @@ export default class App extends Component {
     searchTxt = searchTxt.replace(/\s/g, "+").toLowerCase();
     searchTxt = searchTxt.replace(/'/g, "%27s");
     if (searchTyp === 'title')
-      {this.fetchXML('https://cors-anywhere.herokuapp.com/'+GR_API+GR_GNRL_QRY+GR_KEY+'&search[field]=title&q='+searchTxt+'&page='+pg, 'books')}
+      {this.fetchXML(CORS+GR_API+GR_GNRL_QRY+GR_KEY+'&search[field]=title&q='+searchTxt+'&page='+pg, 'books')}
     else 
-      {this.fetchXML('https://cors-anywhere.herokuapp.com/https://www.goodreads.com/api/author_url/'+searchTxt+'?key='+GR_KEY)
+      {this.fetchXML(CORS+GR_API+'api/author_url/'+searchTxt+'?key='+GR_KEY)
        .then(data => {
             if (data.querySelector('author') === null) 
               {return this.setState({books: data})}
             else 
               {return data.querySelector('author').getAttribute('id')}}
             )
-        .then(id => {return this.fetchXML('https://cors-anywhere.herokuapp.com/'+GR_API+GR_QRY+id+'?format=xml&key='+GR_KEY+'&page='+pg, 'books')})
+        .then(id => {return this.fetchXML(CORS+GR_API+GR_QRY+id+'?format=xml&key='+GR_KEY+'&page='+pg, 'books')})
       }
   }
 

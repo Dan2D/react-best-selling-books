@@ -6,11 +6,11 @@ function SrchBtns(props) {
     let pgArr = [];
     function handlePgBtnClick(e)
         {//Set root var to no style curr page btn and disable click events (nth child)
-        let pg = e.target.innerText
-        document.documentElement.style(currPg);
-        let srchTxt = document.getElementById("search-bar").value
-        setPg(pg)
-        return props.onPgClick(srchTxt, props.srchTyp, pg)
+        let pg = e.target.innerText;
+        // document.documentElement.style(currPg);
+        let srchTxt = document.getElementById("search-bar").value;
+        setPg(pg);
+        return props.onPgClick(srchTxt, props.srchTyp, pg);
         }
 
         function genPgBtns (pgTotal)
