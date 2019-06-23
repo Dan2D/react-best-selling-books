@@ -32,9 +32,37 @@ export default class App extends Component {
       error: null,
     }
   }
+  componentDidMount() {
+    let navGenres = this.fetchJSON(NYT_API+GNRE_LST_QRY+'&api-key='+NYT_API_KEY, 'navGenres');
+    let homeContent = this.fetchJSON(NYT_API+OVRVW_QRY+'api-key='+NYT_API_KEY, 'genres', 'lists');
+    this.setState({content: 'home'});
+    Promise.all([navGenres, homeContent])
+  }
 
-  fetchURL = (input, state, property, results='results') => {
+  fetchXML = (input, state) => {
+    let stateObj = {};
+    this.setState({isLoading: true});
+    return fetch(input)
+    .then(response => {
+      if (response.ok)
+        {return response.text()}
+      else 
+        {throw new Error('Bad Response')}
+    })
+    .then(str => (new window.DOMParser()).parseFromString(str, "text/xml"))
+    .then(data => {
+        if (state === undefined) 
+          {return data}
+        else
+          {stateObj[state] = data;
+            stateObj['isLoading'] = false;
+            this.setState(stateObj);}
+      })
+    }
+
+  fetchJSON = (input, state, property, results='results') => {
       let stateObj = {};
+      this.setState({isLoading: true});
       return fetch(input)
       .then(response => {
         if(response.ok)
@@ -45,60 +73,41 @@ export default class App extends Component {
           stateObj[state] = property != null ? 
             data[results][property] :
             stateObj[state] = data[results];
-          this.setState(stateObj);})
-      }
-
-  setLoadAndCatch = (fetchUrl) => {
-      fetchUrl.then(() => this.setState({isLoading: false}))
-      .catch(error => this.setState({error, isLoading: false}))
+          stateObj['isLoading'] = false;
+          this.setState(stateObj)})
+          .catch(error => this.setState({error, isLoading: false}))
     }
 
   goHome = () => {
-    console.log(NYT_API+OVRVW_QRY+'current/&api-key='+NYT_API_KEY)
-    this.setState({content: 'home', isLoading: true, searchTxt: "", searchTyp: 'Title', date: new Date(), dateMin: new Date('2008-06-08'), dateMax: new Date()})
-      this.fetchURL(NYT_API+OVRVW_QRY+'current/&api-key='+NYT_API_KEY, 'genres', 'lists')
-      .then(() => this.setState({isLoading: false}))
-      .catch(error => this.setState({error, isLoading: false}))
+    this.setState({content: 'home',
+                   searchTxt: "", 
+                   searchTyp: 'Title', 
+                   date: new Date(), 
+                   dateMin: new Date('2008-06-08'), 
+                   dateMax: new Date()});
+    this.fetchJSON(NYT_API+OVRVW_QRY+'current/&api-key='+NYT_API_KEY, 'genres', 'lists')
     }
   
-  componentDidMount() {
-      let navGenres = this.fetchURL(NYT_API+GNRE_LST_QRY+'&api-key='+NYT_API_KEY, 'navGenres');
-      let homeContent = this.fetchURL(NYT_API+OVRVW_QRY+'api-key='+NYT_API_KEY, 'genres', 'lists');
-      this.setState({isLoading: true, content: 'home'})
-      Promise.all([navGenres, homeContent])
-      .then(() => this.setState({isLoading: false}))
-      .catch(error => this.setState({error, isLoading: false}))
-    }
-
   handleSelectUpdate = (srchTyp) => {
       this.setState({searchTyp: srchTyp})
   }
 
   handleSearch = (searchTxt, searchTyp, pg=1) => {
-    console.log(searchTxt, searchTyp)
     this.setState({searchTxt: searchTxt, content: 'search', searchTyp: searchTyp});
     searchTxt = searchTxt.replace(/\s/g, "+").toLowerCase();
     searchTxt = searchTxt.replace(/'/g, "%27s");
-    this.setState({isLoading: true});
     if (searchTyp === 'title')
-      {fetch('https://cors-anywhere.herokuapp.com/'+GR_API+GR_GNRL_QRY+GR_KEY+'&search[field]=title&q='+searchTxt+'&page='+pg)
-      .then(response => response.text())
-      .then(str => (new window.DOMParser()).parseFromString(str, "text/xml"))
-      .then(data => this.setState({books: data, isLoading: false}))}
+      {this.fetchXML('https://cors-anywhere.herokuapp.com/'+GR_API+GR_GNRL_QRY+GR_KEY+'&search[field]=title&q='+searchTxt+'&page='+pg, 'books')}
     else 
-      {fetch('https://cors-anywhere.herokuapp.com/https://www.goodreads.com/api/author_url/'+searchTxt+'?key='+GR_KEY)
-      .then(response => response.text())
-      .then(str => (new window.DOMParser()).parseFromString(str, "text/xml"))
-      .then(data => {
-          if (data.querySelector('author') === null) 
-            {return this.setState({books: data, isLoading: false})}
+      {this.fetchXML('https://cors-anywhere.herokuapp.com/https://www.goodreads.com/api/author_url/'+searchTxt+'?key='+GR_KEY)
+       .then(data => {
+            if (data.querySelector('author') === null) 
+              {return this.setState({books: data})}
             else 
               {return data.querySelector('author').getAttribute('id')}}
-          )
-      .then(id => {return fetch('https://cors-anywhere.herokuapp.com/'+GR_API+GR_QRY+id+'?format=xml&key='+GR_KEY+'&page='+pg)
-        .then(response => response.text())
-        .then(str => (new window.DOMParser()).parseFromString(str, "text/xml"))
-        .then(data => {this.setState({books: data, isLoading: false})})})}
+            )
+        .then(id => {return this.fetchXML('https://cors-anywhere.herokuapp.com/'+GR_API+GR_QRY+id+'?format=xml&key='+GR_KEY+'&page='+pg, 'books')})
+      }
   }
 
   handleSearchTxtUpdate = (text) => {
@@ -106,23 +115,25 @@ export default class App extends Component {
     };
 
   handleDateUpdate = (date) => {
-      let data;
       if (this.state.content === 'home')
-        {this.setState({isLoading: true, searchTxt: "", date: new Date(date)});
-        data = this.fetchURL(NYT_API+OVRVW_QRY+'published_date='+date+'&api-key='+NYT_API_KEY, 'genres', 'lists')}
+        {this.setState({searchTxt: "", date: new Date(date)});
+        this.fetchJSON(NYT_API+OVRVW_QRY+'published_date='+date+'&api-key='+NYT_API_KEY, 'genres', 'lists')}
       else  
-        {this.setState({genreTxt: this.state.genreTxt, isLoading: true, searchTxt: "", date: new Date(date)});
-        data = this.fetchURL(NYT_API+GNRE_QRY+date+'/'+this.state.genreTxt+'.json?api-key='+NYT_API_KEY, 'genres')
+        {this.setState({genreTxt: this.state.genreTxt, 
+                        searchTxt: "", 
+                        date: new Date(date)});
+        this.fetchJSON(NYT_API+GNRE_QRY+date+'/'+this.state.genreTxt+'.json?api-key='+NYT_API_KEY, 'genres')
         }
-      data.then(() => this.setState({isLoading: false}))
-      .catch(error => this.setState({error, isLoading: false}))
     }
 
   handleGenreUpdate = (genreTxt, dateMin, dateMax) => {
-    this.setState({genreTxt: genreTxt, content: 'genre', isLoading: true, searchTxt: "", dateMin: new Date(dateMin), dateMax: new Date(dateMax), date: new Date(dateMax)});
-    this.fetchURL(NYT_API+GNRE_QRY+'current/'+genreTxt+'.json?api-key='+NYT_API_KEY, 'genres')
-    .then(() => this.setState({isLoading: false}))
-    .catch(error => this.setState({error, isLoading: false}))
+    this.setState({genreTxt: genreTxt, 
+                   content: 'genre', 
+                   searchTxt: "", 
+                   dateMin: new Date(dateMin), 
+                   dateMax: new Date(dateMax), 
+                   date: new Date(dateMax)});
+    this.fetchJSON(NYT_API+GNRE_QRY+'current/'+genreTxt+'.json?api-key='+NYT_API_KEY, 'genres')
   };
 
   render() {
@@ -145,7 +156,7 @@ export default class App extends Component {
       <Nav
         onHomeClick={this.goHome}
         onSelectUpdate={this.handleSelectUpdate}
-        onSearchUpdate={this.handleSearchTxtUpdate}
+        onSearchUpdate={(text) => {this.setState({searchTxt: text})}}
         onSearchSubmit={this.handleSearch}
         onGenreClick={this.handleGenreUpdate}
         onDateChange={this.handleDateUpdate}
@@ -157,7 +168,7 @@ export default class App extends Component {
         date={date}
         dateMin={dateMin}
         dateMax={dateMax}/>
-        <Content
+      <Content
         onTtlClick={(book) => {this.setState({books: book, content: 'book'})}}
         onAuthClick={this.handleSearch}
         onGenreClick={this.handleGenreUpdate}

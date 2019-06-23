@@ -8,7 +8,7 @@ import "./Book.css";
 
 
 function Book(props) {
-    console.log(props.book)
+    console.log(props.book.primary_isbn13)
     // Still need to assign isbn to single book view for rating lookup
     let isbn = props.book.primary_isbn13;
     if (props.type === 'genre')
@@ -37,6 +37,9 @@ function Book(props) {
                     <BookSubInfo 
                     key={props.book.title+'sub-info'}
                     buyLnk={props.book.buy_links[1]}
+                    title={props.book.title}
+                    author={props.book.author}
+                    type={props.type}
                     isbn={isbn}
                     dscrpt={props.book.description}/>
                 }

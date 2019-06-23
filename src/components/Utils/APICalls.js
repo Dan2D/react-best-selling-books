@@ -13,12 +13,11 @@ const API_CALLS = {
         GR_KEY: process.env.REACT_APP_GR_API_KEY,
         GR_API: 'https://www.goodreads.com/',
         GR_RVW_QRY: 'book/review_counts.json?isbns=',
+        GR_ISBN_QRY: 'book/isbn/',
         GR_GNRL_QRY: 'search/index.xml?key=',
         GR_RTNG_QRY: 'book/show/',
         GR_QRY: 'author/list/'
     }
 }
-// https://www.goodreads.com/search/index.xml?key=dYOk0dlwaFMBnnKyNlv2EQ&q=Stephen+King
-// https://www.goodreads.com/search/index.xml?key=dYOk0dlwaFMBnnKyNlv2EQ&q=Ender%27s+Game
 
 export default API_CALLS
