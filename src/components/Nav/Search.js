@@ -12,26 +12,26 @@ function Search(props) {
         return
     }
     const handleSearchSubmit = () => {
-        let searchTyp = document.getElementById("search-type").value;
+        let searchTyp = document.getElementsByClassName("search__type")[0].value;
         return props.onSearchSubmit(props.searchTxt, searchTyp);
     }
 
     return (
-        <div className="search-container">
-            <select id="search-type"
-            value={props.searchTyp}
-            onChange={handleSelectUpdate} 
-            name="search-options">
-                <option value="title">Title</option>
-                <option value="author">Author</option>
-            </select>
-            <input id="search-bar"
+        <div className="search">
+            <input className="search search__input"
              type="text"
              placeholder="Search..." 
              onChange={handleSearchText}
              onKeyDown={handleEnter}
              value={props.searchTxt}/>
-            <button onClick={handleSearchSubmit}>Search</button>
+             <select className="search search__type"
+                    value={props.searchTyp}
+                    onChange={handleSelectUpdate} 
+                    name="search-options">
+                <option value="title">Title</option>
+                <option value="author">Author</option>
+            </select>
+            <button className="search search__btn" onClick={handleSearchSubmit}>Search</button>
         </div>
     )
 }

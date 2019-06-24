@@ -7,7 +7,7 @@ function NavDate(props) {
     useEffect(() => setDate(props.date), [props.dateMax, props.date])
 
     if (props.content === 'search')
-        {return <div>Not available in search</div>}
+        {return <></>}
 
    function plusMinusDays(date, days, type){
             if (type === 'add')

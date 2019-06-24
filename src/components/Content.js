@@ -42,7 +42,7 @@ function Content (props) {
         
         return (
             
-            <div className='content-container'>>
+            <div className='content-container'>
                 {content }
             </div>
         )

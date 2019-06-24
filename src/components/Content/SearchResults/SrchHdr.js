@@ -4,12 +4,12 @@ function SrchHdr(props) {
     return (
         <div>
             <h2>{props.author}</h2>
+            <img src={props.authImg} alt={props.author}/>
             <a href={props.authLnk} 
             rel='noopener noreferrer' 
             target='_blank'>
                 More on the author...
             </a>
-            <img src={props.authImg} alt={props.author}/>
         </div>
     )
 }

@@ -5,7 +5,7 @@ import BookSubInfo from "./BookSubInfo";
 import ContentLoader from "react-content-loader";
 import "./Book.css";
 
-
+//TODO(FIX ISSUE WITH ISBN[0] NOT BEING FOUND OCCASIONALLY)
 function Book(props) {
     let isbn = props.book.primary_isbn13;
     if (props.type === 'genre')

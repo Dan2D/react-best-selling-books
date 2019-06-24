@@ -6,29 +6,32 @@ import NavGenres from "./Nav/NavGenres";
 function Nav(props) {
   console.log("NAV LOADED")
     return (
-      <nav className="nav-container">
+      <nav className="nav">
+        <div className="nav__title-corner">
+          <button 
+            className="nav__home-btn"
+            onClick={() => props.onHomeClick()}>
+              <div className="fas fa-home fa-lg"/>
+          </button>
+          <h1 className="nav__site-title">BSB</h1>
+        </div>
         <Search
           onSelectUpdate={(srchTyp) => props.onSelectUpdate(srchTyp)}
           onSearchUpdate={(searchTxt) => props.onSearchUpdate(searchTxt)}
           onSearchSubmit={(srchTxt, srchTyp) => props.onSearchSubmit(srchTxt, srchTyp)}
           searchTyp={props.searchTyp} 
           searchTxt={props.searchTxt} />
-        <Date
-        onDateChange={(date) => props.onDateChange(date)}
-        date={props.date}
-        dateMin={props.dateMin}
-        dateMax={props.dateMax}
-        content={props.content} 
-        genreTxt={props.genreTxt} />
+          
         <NavGenres 
           onGenreClick={(genre, minDate, maxDate) => props.onGenreClick(genre, minDate, maxDate)}
           genreLst={props.navGenres} />
-        <button 
-          className="home-btn-container"
-          onClick={() => props.onHomeClick()}>
-            <p>HOME</p>
-            <div className="fas fa-home fa-lg"/>
-        </button>
+          <Date
+            onDateChange={(date) => props.onDateChange(date)}
+            date={props.date}
+            dateMin={props.dateMin}
+            dateMax={props.dateMax}
+            content={props.content} 
+            genreTxt={props.genreTxt} />
       </nav>
     )
 }

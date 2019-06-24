@@ -25,7 +25,7 @@ function genGenreArr (filterTxt, flags, searchType)
         {genreObj.navSubGenres.push(genGenreSubObj(title, array));}
 
     let genreFicAndNonArr = genGenreArr('.fiction', 'i', true);
-    genGenreMainObj('Fiction and Non-Fiction', genreFicAndNonArr);
+    genGenreMainObj('Fiction/Non-Fiction', genreFicAndNonArr);
     let genreYngAdult = genGenreArr('adult', 'i', true);
     genGenreMainObj('Young Adult', genreYngAdult);
     let genreKids = genGenreArr('children', 'i', true);
@@ -34,7 +34,7 @@ function genGenreArr (filterTxt, flags, searchType)
     genGenreMainObj('Misc.', genreMisc);
 
     return (
-        <div className='genre-category-container'>
+        <div className='genres'>
            <NavSubGenre
            onGenreClick={(genre, minDate, maxDate) => props.onGenreClick(genre, minDate, maxDate)}
            genreLst={genreObj.navSubGenres} />
