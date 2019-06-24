@@ -14,7 +14,6 @@ class BookSubInfo extends Component{
              id: ''
         }
     }
-
    componentDidMount(){
         let isbn = this.props.isbn;
         if (this.props.type === 'book')
@@ -39,7 +38,7 @@ class BookSubInfo extends Component{
                 )
             }
         else
-            {fetch(+GR_API+GR_RVW_QRY+isbn+'&key='+GR_KEY)
+            {fetch(CORS+GR_API+GR_RVW_QRY+isbn+'&key='+GR_KEY)
             .then(response => response.json())
             .then(data => {
                     let id = data.books[0].id;
@@ -47,10 +46,11 @@ class BookSubInfo extends Component{
                     this.setState({rating: avgRating, id: id})
                     }
                 )
-            }
+            }    
     }
     render(){
-        console.log(this.props.dscrpt)
+        if (this.props.rating !== 0)
+            {this.props.isBkRdy()}
         return (
             <div className="book-review-info">
                 <a className="book-buy-link" 

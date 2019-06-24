@@ -10,7 +10,8 @@ function Content (props) {
     function handleAuthClick(author, srchTyp){
         return props.onAuthClick(author, srchTyp);
     }
-        let content;
+    let content;
+        
         if (props.content === 'home')
             {content = <Home
                       onTtlClick={(book) => props.onTtlClick(book)}
@@ -18,29 +19,31 @@ function Content (props) {
                       onGenreClick={(genreName, minDate, maxDate) => props.onGenreClick(genreName, minDate, maxDate)}
                       genreLst={props.genres} />
           }
-          if (props.content === 'genre')
+          else if (props.content === 'genre')
             {content = <GenreBks
                         onAuthClick={handleAuthClick}
                         dateMin={props.dateMin}
                         dateMax={props.dateMax}  
                         genre={props.genres}/>
           }
-          if(props.content === 'search') 
+          else if(props.content === 'search') 
             {content = <SrchRslt
-                    onPgClick={(srchTxt, srchTyp, pg) => props.onPgClick(srchTxt, srchTyp, pg)}
-                    onAuthClick={handleAuthClick}
-                    srchTyp={props.srchTyp}
-                    books={props.books}/>}
-            if(props.content === 'book') 
-                {content =  <div className='book-single-container'>
-                                <Book
-                                type='book' 
-                                onAuthClick={(author, srchTyp) => props.onAuthClick(author, srchTyp)}
-                                book={props.books}/>
-                            </div>}
+                        onPgClick={(srchTxt, srchTyp, pg) => props.onPgClick(srchTxt, srchTyp, pg)}
+                        onAuthClick={handleAuthClick}
+                        srchTyp={props.srchTyp}
+                        books={props.books}/>}
+        else
+            {content =  <div className='book-single-container'>
+                            <Book
+                            type='book' 
+                            onAuthClick={(author, srchTyp) => props.onAuthClick(author, srchTyp)}
+                            book={props.books}/>
+                        </div>}
+        
         return (
-            <div className='content-container'>
-                {content}
+            
+            <div className='content-container'>>
+                {content }
             </div>
         )
 
