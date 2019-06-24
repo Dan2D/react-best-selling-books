@@ -1,15 +1,14 @@
 import React from 'react'
 
 function SrchHdr(props) {
-
-
-
     return (
         <div>
+            <h2>{props.author}</h2>
             <a href={props.authLnk} 
             rel='noopener noreferrer' 
-            target='_blank'>{props.author}</a>
-            <h2>{props.author}</h2>
+            target='_blank'>
+                More on the author...
+            </a>
             <img src={props.authImg} alt={props.author}/>
         </div>
     )

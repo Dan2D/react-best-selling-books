@@ -40,7 +40,7 @@ function SrchRslt(props) {
             <SrchHdr
                 author={author}
                 authLnk={authorLnk}
-                authImg={authorImg} /> :  null}
+                authImg={authorImg} /> :  <h2>TITLE SEARCH RESULTS</h2>}
             {bookCode}
             <SrchBtns
                 onPgClick={(srchTxt, srchTyp, pg) => props.onPgClick(srchTxt, srchTyp, pg)}
