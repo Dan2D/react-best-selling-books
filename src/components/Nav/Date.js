@@ -58,6 +58,7 @@ function NavDate(props) {
                 minDate={props.dateMin}
                 maxDate={props.dateMax}
                 peekNextMonth
+                onFocus={(e) => e.target.readOnly = true}
                 showMonthDropdown
                 showYearDropdown
                 dropdownMode="select"

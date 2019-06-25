@@ -1,5 +1,4 @@
 import React from 'react'
-import LazyLoad from "react-lazyload"
 
 function SrchBk(props) {
     let title, coverImg, bookId, rvwLnk, pubDt;
@@ -23,7 +22,6 @@ function SrchBk(props) {
         pubDt = qryAssign('publication_year');
         }
     return (
-        <LazyLoad height={200} once offset={100} >
         <div>
             <h5>{title}</h5>
             <img src={coverImg} alt={title}/>
@@ -31,7 +29,6 @@ function SrchBk(props) {
             <a href={rvwLnk} rel='noopener noreferrer'  target="_blank">...more info</a>
             <p>Published: {pubDt}</p>
         </div>
-        </LazyLoad>
     )
 }
 

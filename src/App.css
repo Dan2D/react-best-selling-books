@@ -163,6 +163,7 @@ div.search {
 
 .date-picker input {
   width:25vw;
+  cursor: default;
 }
 
 .date-picker__go-btn {

@@ -2,6 +2,7 @@
   "name": "react-best-selling-books",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://dan2d.github.io/react-best-selling-books/",
   "dependencies": {
     "react": "^16.8.6",
     "react-content-loader": "^4.2.1",
@@ -15,6 +16,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -34,7 +37,9 @@
   },
   "description": "A Book Finder App that combines NYT Best Sellers API with GoodReads APInpm",
   "main": "index.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "gh-pages": "^2.0.1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Dan2D/react-best-selling-books.git"
@@ -48,6 +53,6 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Dan2D/react-best-selling-books/issues"
-  },
-  "homepage": "https://github.com/Dan2D/react-best-selling-books#readme"
+  }
 }
+
