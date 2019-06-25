@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/react-best-selling-books/static/css/main.e4eed0ba.chunk.css",
-    "main.js": "/react-best-selling-books/static/js/main.385ab84b.chunk.js",
-    "main.js.map": "/react-best-selling-books/static/js/main.385ab84b.chunk.js.map",
+    "main.css": "/react-best-selling-books/static/css/main.333b9859.chunk.css",
+    "main.js": "/react-best-selling-books/static/js/main.afa6d4c2.chunk.js",
+    "main.js.map": "/react-best-selling-books/static/js/main.afa6d4c2.chunk.js.map",
     "runtime~main.js": "/react-best-selling-books/static/js/runtime~main.422d7087.js",
     "runtime~main.js.map": "/react-best-selling-books/static/js/runtime~main.422d7087.js.map",
     "static/css/2.ba964ac7.chunk.css": "/react-best-selling-books/static/css/2.ba964ac7.chunk.css",
     "static/js/2.3a286381.chunk.js": "/react-best-selling-books/static/js/2.3a286381.chunk.js",
     "static/js/2.3a286381.chunk.js.map": "/react-best-selling-books/static/js/2.3a286381.chunk.js.map",
     "index.html": "/react-best-selling-books/index.html",
-    "precache-manifest.57a4114e80abbd09d44a8e8120ed7f83.js": "/react-best-selling-books/precache-manifest.57a4114e80abbd09d44a8e8120ed7f83.js",
+    "precache-manifest.f597b870c673acc7d2855e4d126b7554.js": "/react-best-selling-books/precache-manifest.f597b870c673acc7d2855e4d126b7554.js",
     "service-worker.js": "/react-best-selling-books/service-worker.js",
     "static/css/2.ba964ac7.chunk.css.map": "/react-best-selling-books/static/css/2.ba964ac7.chunk.css.map",
-    "static/css/main.e4eed0ba.chunk.css.map": "/react-best-selling-books/static/css/main.e4eed0ba.chunk.css.map"
+    "static/css/main.333b9859.chunk.css.map": "/react-best-selling-books/static/css/main.333b9859.chunk.css.map"
   }
 }
