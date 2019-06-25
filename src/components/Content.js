@@ -3,10 +3,13 @@ import Home from "./Content/Home";
 import GenreBks from "./Content/GenreBks";
 import SrchRslt from "./Content/SrchRslt";
 import Book from "./Content/Books/Book";
+import smoothscroll from "smoothscroll-polyfill";
 
 
 function Content (props) {
     console.log("CONTENT LOADED")
+    smoothscroll.polyfill();
+    window.scrollTo(0,0);
     function handleAuthClick(author, srchTyp){
         return props.onAuthClick(author, srchTyp);
     }

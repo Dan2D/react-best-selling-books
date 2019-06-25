@@ -8,7 +8,7 @@ function SrchBtns(props) {
         {//Set root var to no style curr page btn and disable click events (nth child)
         let pg = e.target.innerText;
         // document.documentElement.style(currPg);
-        let srchTxt = document.getElementById("search-bar").value;
+        let srchTxt = document.getElementsByClassName("search__input")[0].value;
         setPg(pg);
         return props.onPgClick(srchTxt, props.srchTyp, pg);
         }

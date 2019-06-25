@@ -20,9 +20,9 @@ function MinGenre(props) {
                 book={book}/>
          })
     return (
-        <div className="mini-genre-container">
-            <button onClick={handleGenreClick}>{props.genre.display_name}</button>
-            <div className="mini-genre-books-container">
+        <div className="overview-genre">
+            <button className="overview-genre__title" onClick={handleGenreClick}>{props.genre.display_name}</button>
+            <div className="overview-books">
                 {bookArr}
             </div>
         </div>

@@ -24,6 +24,7 @@ function Book(props) {
     }
 
     let bookPlaceholder = <ContentLoader
+                            className="book-placeholder"
                             height={550}
                             width={300}
                             speed={2}
@@ -38,7 +39,7 @@ function Book(props) {
 
 
     return (
-        <div className="book-container">
+        <div className="book-container" data-ref={props.type}>
             <div className="placeholder" style={{display: props.type === "overview" ? "none" : "block"}}>
             {bookPlaceholder}
             </div>
@@ -52,6 +53,7 @@ function Book(props) {
                         title={props.book.title}
                         author={props.book.author}
                         bkImg={props.book.book_image}
+                        dscrpt={props.book.description}
                         rank={props.book.rank} />
                 {props.type === 'overview' ?
                     <MinBookSubInfo 
@@ -64,8 +66,7 @@ function Book(props) {
                     title={props.book.title}
                     author={props.book.author}
                     type={props.type}
-                    isbn={isbn}
-                    dscrpt={props.book.description}/>
+                    isbn={isbn}/>
                 }
             </div>
         </div>

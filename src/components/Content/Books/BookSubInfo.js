@@ -52,7 +52,7 @@ class BookSubInfo extends Component{
         if (this.props.rating !== 0)
             {this.props.isBkRdy()}
         return (
-            <div className="book-review-info">
+            <div className="book-container__sub-info">
                 <a className="book-buy-link" 
                 href={this.props.buyLnk.url}
                 rel='noopener noreferrer'
@@ -63,7 +63,7 @@ class BookSubInfo extends Component{
                     {this.state.rating === 0 ? 
                     'No Rating Available' : 
                     <div>
-                    <StarRating
+                    <StarRating  className="book-container__ratings"
                     initialRating={this.state.rating}
                     emptySymbol="far fa-star fa-lg"
                     fullSymbol="fas fa-star fa-lg"
@@ -75,8 +75,6 @@ class BookSubInfo extends Component{
                     target="_blank">
                     Read Reviews
                 </a>
-                <p className='book-description'>Description...</p>
-                <div>{this.props.dscrpt === "" ? 'No Description Available...' : this.props.dscrpt}</div>
         </div>
         )
     }

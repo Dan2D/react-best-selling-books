@@ -17,14 +17,22 @@ function BookMainInfo(props) {
         return props.onTtlClick(props.book);
     }
 
+    let descriptionBlk = <div className="book-container__description">
+                            <h4>Description</h4>
+                            <p>{props.dscrpt}</p>
+                        </div>
+
     return (
-        <div className="book-general-info" >
+        <div className="book-container__gen-info" data-ref={props.type} >
             {props.type === 'book' ? null : <div><strong>#{props.rank}</strong></div>}
-            <img src={bookCover} alt={props.title}/>
+            <div className="book-container__cover" data-ref={props.type}>
+                <img src={bookCover} alt={props.title}/>
+                {props.type === 'genre' || props.type === 'book' ? descriptionBlk : <></>}
+            </div>
             <button onClick={handleTtlClick}>{props.title}</button>
-            <div className="author-info">
+            <div className="book-container__author-info">
                 <p>by</p>
-                <div className="author-btn-container">{authorArr}</div>
+                <div className="book-container__author-btns" data-ref={props.type}>{authorArr}</div>
             </div>
         </div>
     )

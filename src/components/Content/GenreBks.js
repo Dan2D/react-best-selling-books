@@ -28,9 +28,11 @@ let dateMax = dateFormat(props.dateMax);
         
 
     return (
-            <div className="genre-booklist-container">
-                <h2>{props.genre.display_name}</h2>
-                <p>{dateMin} to  {dateMax}</p>
+            <div className="genre-container">
+                <div className="genre-container__title-block">
+                    <h3>{props.genre.display_name}</h3>
+                    <p>{dateMin} to  {dateMax}</p>
+                </div>
                 <div className="booklist-container">
                     {bookArr}
                 </div>

@@ -3,13 +3,10 @@ import SrchHdr from "./SearchResults/SrchHdr";
 import SrchBk from "./Books/SrchBk";
 import SrchBtns from "./SearchResults/SrchBtns";
 import NotFound from "./NotFound";
-import smoothscroll from "smoothscroll-polyfill";
 
 function SrchRslt(props) {
-    smoothscroll.polyfill();
     if (props.books.querySelector('author name') == null)
         {return <NotFound />}
-    window.scrollTo(0,0)
     let bkDataArr = []
     let authorLnk, authorImg, pgTotal, bksPrPg;
     let author = props.books.querySelector('author name').textContent;
