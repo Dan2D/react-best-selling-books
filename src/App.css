@@ -1,5 +1,4 @@
 .App {
-
 }
 
 button {
@@ -9,15 +8,22 @@ button {
   cursor: pointer;
 }
 
-button:hover {
-  text-decoration: underline;
+.nav__site-title, 
+.search input, 
+.search__type, 
+.search__btn, 
+.genre-menu__sub-genre h5,
+.genre-menu__sub-genre button,
+.date-picker button,
+.date-picker input {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
 }
-
-
-
 .nav {
   position:fixed;
   top: 0;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   background: #FFFEF8;
@@ -35,9 +41,15 @@ button:hover {
   position: absolute;
   right: 5px;
   bottom: 0;
-  line-height: 19px;
+  font-size: 17px;
+  line-height: 13px;
   margin:0;
   color: #77756B;
+}
+
+.nav__home-btn {
+  margin-left:2px;
+  padding: 0;
 }
 
 div.search {
@@ -49,13 +61,19 @@ div.search {
   border: none;
 }
 
-.search {
+.search, .date-picker input {
+  font-size: 10px;
   border-radius: 4px;
   border: 2px solid #D9D5C4;
   margin: 0 0.5vh;
 }
 
+.search input {
+  width: 30vw;
+}
+
 .search__type {
+  width: 50px;
   background-image: url("https://image.flaticon.com/icons/png/512/60/60995.png");
   background-repeat: no-repeat;
   background-size: 8px;
@@ -69,7 +87,7 @@ div.search {
   appearance:none;
 }
 
-.search__btn {
+.search__btn, .date-picker__go-btn {
   color: white;
   background: #AAA58E;
   border: none;
@@ -80,7 +98,6 @@ div.search {
   justify-content: space-around;
   border-top: 2px solid #E5E0C9;
   border-bottom: 2px solid #E5E0C9;
-  font-size: 13px;
 }
 
 .genre-menu__sub-genre {
@@ -96,6 +113,11 @@ div.search {
 .sub-genre--left .genre-menu__btns button {
   align-self: flex-end;
   text-align: right;
+  white-space: nowrap;
+}
+
+.genre-menu__btns button:hover {
+  text-decoration: underline;
 }
 
 .genre-menu__sub-genre h5 {
@@ -105,8 +127,9 @@ div.search {
 .genre-menu__btns {
   position:absolute;
   display: none;
-  width: 50vw;
-  margin-top: -1px;
+  min-width: 60vw;
+  margin-top: -2px;
+  padding: 3px;
   align-self: flex-start;
   background: #AAA58E;
   
@@ -127,6 +150,24 @@ div.search {
 .genre-menu__btns button {
   align-self: flex-start;
   text-align: left;
+}
+
+.date-picker input, .date-picker button {
+  font-size: 10px;
+  padding:2px;
+}
+
+.date-picker {
+  margin: auto;
+}
+
+.date-picker input {
+  width:25vw;
+}
+
+.date-picker__go-btn {
+  margin-left: 5px;
+  border-radius: 100%;
 }
 
 .content-container {
