@@ -53,6 +53,7 @@ export default class App extends Component {
     })
     .then(str => (new window.DOMParser()).parseFromString(str, "text/xml"))
     .then(data => {
+      console.log(input)
         if (state === undefined) 
           {return data}
         else

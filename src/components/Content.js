@@ -10,7 +10,6 @@ function Content (props) {
     console.log("CONTENT LOADED")
     smoothscroll.polyfill();
     window.scrollTo(0,0);
-    window.focus();
     function handleAuthClick(author, srchTyp){
         return props.onAuthClick(author, srchTyp);
     }
@@ -25,6 +24,7 @@ function Content (props) {
           }
           else if (props.content === 'genre')
             {content = <GenreBks
+                        onTtlClick={(book) => props.onTtlClick(book)}
                         onAuthClick={handleAuthClick}
                         dateMin={props.dateMin}
                         dateMax={props.dateMax}  
@@ -38,6 +38,7 @@ function Content (props) {
                         books={props.books}/>}
         else
             {content =  <div className='book-single-container'>
+                            <h4>{props.books.title}</h4>
                             <Book
                             type='book' 
                             onAuthClick={(author, srchTyp) => props.onAuthClick(author, srchTyp)}

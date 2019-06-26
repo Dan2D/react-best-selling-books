@@ -2,8 +2,8 @@ import React from 'react'
 
 function SrchHdr(props) {
     return (
-        <div>
-            <h2>{props.author}</h2>
+        <div className="srch-author-container">
+            <h2 className="srch-author-container__auth-name">{props.author}</h2>
             <img src={props.authImg} alt={props.author}/>
             <a href={props.authLnk} 
             rel='noopener noreferrer' 

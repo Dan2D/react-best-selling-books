@@ -80,7 +80,7 @@ div.search {
 }
 
 .search__type {
-  width: 50px;
+  min-width: 70px;
   background-image: url("https://image.flaticon.com/icons/png/512/60/60995.png");
   background-repeat: no-repeat;
   background-size: 8px;
@@ -144,7 +144,7 @@ div.search {
   position:absolute;
   display: none;
   min-width: 60vw;
-  max-height: 60vh;
+  max-height: 70vh;
   margin-top: -2px;
   padding: 3px;
   align-self: flex-start;
@@ -247,14 +247,16 @@ margin: 0;
   width:100%;
 }
 
-.book-container__gen-info button {
+.book-container__gen-info button,
+.srch-bk-container__author-info button {
   font-size: 12px;
   width: 110%;
   padding: 0;
   text-align: left;
 }
 
-.book-container__author-info {
+.book-container__author-info,
+.srch-bk-container__author-info {
   display: flex;
   align-items: baseline;
   width: 110%;
@@ -265,7 +267,8 @@ margin: 0;
   width: 90%;
 }
 
-.book-container__author-info p {
+.book-container__author-info p,
+.srch-bk-container p{
   margin: 0 3px 0 0;
   font-size: 13px;
   line-height: 1.5;
@@ -326,6 +329,10 @@ margin: 0;
   width: 32vw;
 }
 
+.book-container[data-ref="book"]  button.book-title {
+  pointer-events: none;
+}
+
 .genre-container__title-block {
   display: flex;
   flex-direction: column;
@@ -345,50 +352,47 @@ margin: 0;
 .book-single-container {
   padding-top: 10px;
 }
-/* ----------------------------------------- */
-/* div.book-container {
-  width: 150px;
-}
 
-div.book-general-info {
+.srch-container {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
 }
 
-div.book-general-info img {
-  max-width: 150px;
+.srch-author-container {
+  margin-bottom: 15px;
 }
 
-div.book-general-info h5{
-  margin: 0;
+.srch-author-container__auth-name,
+.srch-author-container a {
+  margin:0;
+  display:block;
 }
 
-div.author-info {
+.srch-bk-list {
   display: flex;
-  align-items: baseline;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }
 
-div.author-info p {
-  margin: 0 3px 0 0;
-  font-size: 13px;
-  line-height: 1.5;
+.srch-bk-container {
+  width: 25vw;
+  margin: 0 3vw 5vw 3vw;
 }
 
-div.author-info button {
-  font-size: 13px;
-  white-space: pre;
-  overflow:hidden;
-  text-overflow: ellipsis;
-  max-width: 140px;
-  cursor: pointer;
-  padding-left: 0;
-}
-
-p.book-list-duration {
+.srch-bk-container__title {
   margin: 0;
-  font-style: italic;
-  font-size: 13px;
-  color: lightslategray;
-} */
+}
+
+.srch-bk-container__cover {
+  max-width:25vw;
+}
+
+.srch-pagination {
+  display: inline-block;
+  align-self: center;
+}
+
+.srch-pagination button.current-pg {
+  color: blue;
+  pointer-events: none;
+}

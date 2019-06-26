@@ -29,7 +29,7 @@ function BookMainInfo(props) {
                 <img src={bookCover} alt={props.title}/>
                 {props.type === 'genre' || props.type === 'book' ? descriptionBlk : <></>}
             </div>
-            <button onClick={handleTtlClick}>{props.title}</button>
+            <button className="book-title" onClick={handleTtlClick}>{props.title}</button>
             <div className="book-container__author-info">
                 <p>by</p>
                 <div className="book-container__author-btns" data-ref={props.type}>{authorArr}</div>
