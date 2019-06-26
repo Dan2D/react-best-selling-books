@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "3be4e1683c802863c4577cc327b93dea",
+    "revision": "de290bd121d9a5b51c41adfa629f3af5",
     "url": "/react-best-selling-books/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/react-best-selling-books/static/css/2.ba964ac7.chunk.css"
   },
   {
-    "revision": "7438b5b4a76f45637ada",
+    "revision": "64eeb29025378fe1ef7b",
     "url": "/react-best-selling-books/static/css/main.dbba52ba.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/react-best-selling-books/static/js/2.af894353.chunk.js"
   },
   {
-    "revision": "7438b5b4a76f45637ada",
-    "url": "/react-best-selling-books/static/js/main.e5da4863.chunk.js"
+    "revision": "64eeb29025378fe1ef7b",
+    "url": "/react-best-selling-books/static/js/main.d9cda3cd.chunk.js"
   },
   {
     "revision": "7cf1bc6300122f6133c1",
