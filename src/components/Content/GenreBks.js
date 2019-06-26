@@ -3,7 +3,7 @@ import Book from "./Books/Book";
 
 
 function GenreBks(props){ 
-    console.log("GENRE BOOKS LOADED")
+    console.log(props.genre, "GENRE BOOKS LOADED")
     let bookArr = props.genre.books.map((book, indx) => {
         return <Book 
                 key={book.title+'-'+indx}

@@ -123,6 +123,15 @@ div.search {
   white-space: nowrap;
 }
 
+.genre-menu__btns[data-ref="Misc."] button {
+  max-width: 50vw;
+  white-space: normal;
+}
+
+.genre-menu__btns[data-ref="Misc."] {
+  min-width: 100vw;
+}
+
 .genre-menu__btns button:hover {
   text-decoration: underline;
 }
@@ -135,6 +144,7 @@ div.search {
   position:absolute;
   display: none;
   min-width: 60vw;
+  max-height: 60vh;
   margin-top: -2px;
   padding: 3px;
   align-self: flex-start;
@@ -152,6 +162,7 @@ div.search {
 .genre-menu__btns:hover {
  display: flex;
  flex-direction: column;
+ flex-wrap: wrap;
 }
 
 .genre-menu__btns button {
@@ -210,13 +221,13 @@ div.react-datepicker-popper {
 }
 
 .book-container {
-  width: 95px;
+  width: 26vw;
   margin-bottom: 5px;
 }
 
-.book-container[data-ref="genre"],
-.book-container[data-ref="book"] {
-  width:100vw;
+
+.book-placeholder {
+  width: 50vw;
 }
 
 .book-container__gen-info {
@@ -234,27 +245,6 @@ margin: 0;
 .book-container__cover {
   display:flex;
   width:100%;
-}
-
-.book-container__cover[data-ref="genre"] img,
-.book-container__cover[data-ref="book"] img{
-  max-width: 250px;
-  min-width: 120px;
-}
-
-.book-container__description {
-  margin: 0 10px;
-  padding-right: 5px;
-}
-
-.book-container__description h4,
-.book-container__description p {
-  margin:0 0 5px 0;
-}
-
-.book-container__author-btns[data-ref="genre"],
-.book-container__author-btns[data-ref="book"]{
-  width: 100px;
 }
 
 .book-container__gen-info button {
@@ -302,6 +292,38 @@ margin: 0;
 .book-container__ratings {
   display: flex;
   font-size: 12px;
+}
+
+.book-container[data-ref="genre"],
+.book-container[data-ref="book"] {
+  width:100vw;
+  margin-bottom: 15px;
+}
+
+.book-container__cover[data-ref="genre"] img,
+.book-container__cover[data-ref="book"] img{
+  min-width: 30vw;
+}
+
+.book-container__description {
+  margin: 0 10px;
+  padding-right: 5px;
+  min-width: 60vw;
+}
+
+.book-container__description h4,
+.book-container__description p {
+  margin:0 0 5px 0;
+}
+
+.book-container__author-btns[data-ref="genre"],
+.book-container__author-btns[data-ref="book"]{
+  width: 100px;
+}
+
+.book-container[data-ref="genre"] button,
+.book-container[data-ref="book"]  button {
+  width: 32vw;
 }
 
 .genre-container__title-block {

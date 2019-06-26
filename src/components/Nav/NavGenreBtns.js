@@ -20,7 +20,7 @@ function NavGenreBtns(props) {
         })
     }
     return (
-        <div className='genre-menu__btns'>
+        <div className='genre-menu__btns' data-ref={props.title}>
             {genGenreBtns(props.subGenres)}
         </div>
     )

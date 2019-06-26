@@ -7,14 +7,16 @@ import "./Book.css";
 
 //TODO(FIX ISSUE WITH ISBN[0] NOT BEING FOUND OCCASIONALLY)
 function Book(props) {
+    console.log(props.book)
     let isbn = props.book.primary_isbn13;
     if (props.type === 'genre')
         {let isbns = props.book.isbns.filter((isbn, indx )=> indx === props.book.isbns.length-1);
-        if (isbns !== null) 
-            {isbn = isbns[0].isbn13}}
+        if (isbns[0] !== undefined && isbns !== null )
+            {console.log(isbns[0], "ISBNS");
+                isbn = isbns[0].isbn13}}
 
 
-    let placeholders = document.getElementsByClassName("placeholder");
+    let placeholders = document.getElementsByClassName("book-placeholder");
     let books = document.getElementsByClassName("book-hide");
     function handleBkLd(bool=false){
         for (let i = 0; i < placeholders.length; i++){
@@ -25,6 +27,7 @@ function Book(props) {
 
     let bookPlaceholder = <ContentLoader
                             className="book-placeholder"
+                            style={{display: props.type === "overview" ? "none" : "block"}}
                             height={550}
                             width={300}
                             speed={2}
@@ -40,9 +43,7 @@ function Book(props) {
 
     return (
         <div className="book-container" data-ref={props.type}>
-            <div className="placeholder" style={{display: props.type === "overview" ? "none" : "block"}}>
             {bookPlaceholder}
-            </div>
             <div className="book-hide" style={{display: props.type === "overview" ? "block" : "none"}}>
                 <BookMainInfo
                         key={props.book.title+'main-info'}

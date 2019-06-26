@@ -19,7 +19,7 @@ function BookMainInfo(props) {
 
     let descriptionBlk = <div className="book-container__description">
                             <h4>Description</h4>
-                            <p>{props.dscrpt}</p>
+                            <p>{props.dscrpt ? props.dscrpt : "No Description Available..."}</p>
                         </div>
 
     return (
