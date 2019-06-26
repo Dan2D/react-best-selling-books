@@ -7,13 +7,11 @@ import "./Book.css";
 
 //TODO(FIX ISSUE WITH ISBN[0] NOT BEING FOUND OCCASIONALLY)
 function Book(props) {
-    console.log(props.book)
     let isbn = props.book.primary_isbn13;
     if (props.type === 'genre')
         {let isbns = props.book.isbns.filter((isbn, indx )=> indx === props.book.isbns.length-1);
         if (isbns[0] !== undefined && isbns !== null )
-            {console.log(isbns[0], "ISBNS");
-                isbn = isbns[0].isbn13}}
+            {isbn = isbns[0].isbn13}}
 
 
     let placeholders = document.getElementsByClassName("book-placeholder");
