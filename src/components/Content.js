@@ -10,48 +10,47 @@ function Content (props) {
     console.log("CONTENT LOADED")
     smoothscroll.polyfill();
     window.scrollTo(0,0);
+    let content;
     function handleAuthClick(author, srchTyp){
         return props.onAuthClick(author, srchTyp);
-    }
-    let content;
+        }
+    if (props.content === 'home')
+        {content = <Home
+                    onTtlClick={(book) => props.onTtlClick(book)}
+                    onAuthClick={handleAuthClick}
+                    onGenreClick={(genreName, minDate, maxDate) => props.onGenreClick(genreName, minDate, maxDate)}
+                    genreLst={props.genres} />
+        }
+    else if (props.content === 'genre')
+        {content = <GenreBks
+                    onTtlClick={(book) => props.onTtlClick(book)}
+                    onAuthClick={handleAuthClick}
+                    dateMin={props.dateMin}
+                    dateMax={props.dateMax}  
+                    genre={props.genres}/>
+        }
+    else if(props.content === 'search') 
+        {content = <SrchRslt
+                    onPgClick={(srchTxt, srchTyp, pg) => props.onPgClick(srchTxt, srchTyp, pg)}
+                    onAuthClick={handleAuthClick}
+                    pg={props.pg}
+                    srchTyp={props.srchTyp}
+                    books={props.books}/>}
+    else
+        {content =  <div className='book-single-container'>
+                        <h4>{props.books.title}</h4>
+                        <Book
+                        type='book' 
+                        onAuthClick={(author, srchTyp) => props.onAuthClick(author, srchTyp)}
+                        book={props.books}/>
+                    </div>}
+    
+    return (
         
-        if (props.content === 'home')
-            {content = <Home
-                      onTtlClick={(book) => props.onTtlClick(book)}
-                      onAuthClick={handleAuthClick}
-                      onGenreClick={(genreName, minDate, maxDate) => props.onGenreClick(genreName, minDate, maxDate)}
-                      genreLst={props.genres} />
-          }
-          else if (props.content === 'genre')
-            {content = <GenreBks
-                        onTtlClick={(book) => props.onTtlClick(book)}
-                        onAuthClick={handleAuthClick}
-                        dateMin={props.dateMin}
-                        dateMax={props.dateMax}  
-                        genre={props.genres}/>
-          }
-          else if(props.content === 'search') 
-            {content = <SrchRslt
-                        onPgClick={(srchTxt, srchTyp, pg) => props.onPgClick(srchTxt, srchTyp, pg)}
-                        onAuthClick={handleAuthClick}
-                        pg={props.pg}
-                        srchTyp={props.srchTyp}
-                        books={props.books}/>}
-        else
-            {content =  <div className='book-single-container'>
-                            <h4>{props.books.title}</h4>
-                            <Book
-                            type='book' 
-                            onAuthClick={(author, srchTyp) => props.onAuthClick(author, srchTyp)}
-                            book={props.books}/>
-                        </div>}
-        
-        return (
-            
-            <div className='content-container'>
-                {content }
-            </div>
-        )
+        <div className='content-container'>
+            {content }
+        </div>
+    )
 
 }
 

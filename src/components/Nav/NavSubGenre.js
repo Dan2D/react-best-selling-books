@@ -2,10 +2,13 @@ import React from 'react'
 import NavGenreBtns from "./NavGenreBtns";
 
 function NavSubGenre(props) {
-    function handleGenreClick(e, status){
-        document.querySelectorAll(".genre-menu__btns").forEach(item => item.style.visibility = "hidden");
+    function handleGenreClick(e){
+        e.currentTarget.querySelector("h5").style.color = "white";
+        e.currentTarget.style.background = "#AAA58E";
+        // document.querySelectorAll(".genre-menu__btns").forEach(item => item.style.visibility = "hidden");
         let subGenre = document.querySelector('[data-ref="'+e.target.innerText+'"]');
         subGenre.style.visibility = "visible";
+        subGenre.focus();
     }
 
     function genGenreLst (genreArr) 
@@ -16,7 +19,7 @@ function NavSubGenre(props) {
         return <div 
                 key={genre.title}
                 className={'genre-menu__sub-genre'+modifier}>
-                    <button onClick={(e) => handleGenreClick(e, "active")} >
+                    <button onClick={(e) => handleGenreClick(e)} >
                         <h5>{genre.title}</h5>
                     </button>
                     <NavGenreBtns

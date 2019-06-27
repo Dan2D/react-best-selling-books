@@ -3,7 +3,7 @@ import React from 'react'
 function Footer() {
     return (
         <div className="footer-container">
-            <div className="footer-container footer-container__left">
+            <div className="footer-container__left">
                 <h5>About The App</h5>
                 <p className="footer-container__description">I created this app to help find more books to read and expand my horizons. 
                     It gives a complete history of the NYT Best Sellers list and shows ratings 
@@ -21,7 +21,7 @@ function Footer() {
                         https://www.goodreads.com
                     </a>
             </div>
-            <div className=" footer-container footer-container__right">
+            <div className="footer-container__right">
                 <h4>Best Seller Books</h4>
                 <p>(202) 555-0114</p>
                 <p>Pacific Place, 600 Pine St Suite 107,</p>

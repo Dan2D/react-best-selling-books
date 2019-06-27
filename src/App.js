@@ -14,7 +14,6 @@ const {GR_KEY,
        GR_API,
        GR_GNRL_QRY, 
        GR_QRY } = API_CALLS['GR'];
-
 const CORS = 'https://cors-anywhere.herokuapp.com/';
 
 export default class App extends Component {

@@ -7,8 +7,8 @@ function SrchBk(props) {
     function qryAssign(input)
         {return props.book.querySelector(input).textContent;}
 
-    function handleAuthClick()
-        {return props.onAuthClick(props.author, 'author');}
+    function handleAuthClick(e)
+        {return props.onAuthClick(e.target.innerText, 'author');}
 
         useEffect(() => {
             console.log("TRUE")
@@ -62,7 +62,7 @@ function SrchBk(props) {
                 <div className="srch-bk-container__author-info">
                     <p>by: </p>
                     <button className="srch-bk-container__author-btns" 
-                            onClick={handleAuthClick}>
+                            onClick={(e) => handleAuthClick(e)}>
                             {author}
                     </button>
                 </div> 

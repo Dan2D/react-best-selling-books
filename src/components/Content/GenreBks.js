@@ -3,7 +3,7 @@ import Book from "./Books/Book";
 
 
 function GenreBks(props){ 
-    console.log("GENRE BOOKS LOADED")
+    console.log(new Date() - 7, "GENRE BOOKS LOADED")
     document.querySelectorAll("genre-menu__btns").forEach(item => item.style.visibility = "hidden");
     let bookArr = props.genre.books.map((book, indx) => {
         return <Book 
@@ -14,26 +14,31 @@ function GenreBks(props){
                 book={book}/>
         });
     
-function dateFormat(date){
-    if (date >= new Date())
-        {return 'Current'}
-    let dateStr = date.toISOString().substr(0,10);
-    dateStr = dateStr.split("-");            
-    dateStr.push(dateStr.shift());
-    dateStr = dateStr.join("/");
-    return dateStr;
-}
+    function dateFormat(date){
+        if (date  >= new Date() - 7)
+            {return 'Current'}
+        let dateStr = date.toISOString().substr(0,10);
+        dateStr = dateStr.split("-");            
+        dateStr.push(dateStr.shift());
+        dateStr = dateStr.join("/");
+        return dateStr;
+    }
 
-let dateMin = dateFormat(props.dateMin);
-let dateMax = dateFormat(props.dateMax);
-
-        
+    let dateMin = dateFormat(props.dateMin);
+    let dateMax = dateFormat(props.dateMax);
+    let monthly;
+    if (props.genre.display_name.includes("Audio") || 
+        props.genre.display_name === "Business" || 
+        props.genre.display_name === "Science" || 
+        props.genre.display_name === "Sports and Fitness")
+        {monthly = "(List is updated monthly)"}
 
     return (
             <div className="genre-container">
                 <div className="genre-container__title-block">
                     <h3>{props.genre.display_name}</h3>
-                    <p>{dateMin} to  {dateMax}</p>
+                    <p>Active from: {dateMin} to {dateMax}</p>
+                    <p>{monthly}</p>
                 </div>
                 <div className="booklist-container">
                     {bookArr}
