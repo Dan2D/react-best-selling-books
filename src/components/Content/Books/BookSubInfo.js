@@ -59,7 +59,7 @@ class BookSubInfo extends Component{
                 target="_blank">
                 Buy this Book
                 </a>
-                <div>
+                <div className="sub-info__rating">
                     {this.state.rating === 0 ? 
                     'No Rating Available' : 
                     <div>
