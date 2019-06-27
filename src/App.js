@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Nav from "./components/Nav";
 import Content from "./components/Content";
+import Footer from "./components/Footer";
 import API_CALLS from "./components/Utils/APICalls";
 import "./App.css";
 
@@ -27,6 +28,7 @@ export default class App extends Component {
       books: [],
       genres: [],
       content: 'home',
+      pg: 1,
       searchTxt: '',
       searchTyp: '',
       genreTxt: '',
@@ -98,7 +100,7 @@ export default class App extends Component {
   }
 
   handleSearch = (searchTxt, searchTyp, pg=1) => {
-    this.setState({searchTxt: searchTxt, content: 'search', searchTyp: searchTyp});
+    this.setState({searchTxt: searchTxt, content: 'search', searchTyp: searchTyp, pg: pg});
     searchTxt = searchTxt.replace(/\s/g, "+").toLowerCase();
     searchTxt = searchTxt.replace(/'/g, "%27s");
     if (searchTyp === 'title')
@@ -142,6 +144,7 @@ export default class App extends Component {
   };
 
   render() {
+    console.log(this.state.pg, "APP")
     const {date, 
            dateMin,
            dateMax,
@@ -150,6 +153,7 @@ export default class App extends Component {
            genres,
            genreTxt,
            content,
+           pg,
            searchTxt,
            searchTyp, 
            isLoading, 
@@ -180,11 +184,13 @@ export default class App extends Component {
         onPgClick={this.handleSearch}
         content={content}
         srchTyp={searchTyp}
+        pg={pg}
         books={books}
         isLoading={isLoading}
         dateMin={dateMin}
         dateMax={dateMax}
         genres={genres}/>
+        <Footer />
       </div>
     )
   }

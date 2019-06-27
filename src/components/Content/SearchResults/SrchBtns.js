@@ -4,29 +4,33 @@ import smoothscroll from "smoothscroll-polyfill";
 
 function SrchBtns(props) {
     const [currPg, setPg] = useState(1);
+    let placeholders = document.getElementsByClassName("srch-book-placeholder");
+    let books = document.getElementsByClassName("book-hide");
     let pgArr = [];
     smoothscroll.polyfill();
+    if (currPg !== parseInt(props.pg))
+        {setPg(parseInt(props.pg))}
 
     function handlePgBtnClick(pg){
+            for (let i = 0; i < placeholders.length; i++){
+                placeholders[i].style.display = "block";
+                books[i].style.display = "none";
+                }
         window.scrollTo(0,0);
-        console.log(pg)
         let srchTxt = document.getElementsByClassName("search__input")[0].value;
-        setPg(parseInt(pg));
         return props.onPgClick(srchTxt, props.srchTyp, pg);
         }
 
         function genPgBtns (pgTotal) {
-            let total = pgTotal;
-                let end = currPg + 5;
-                if (end > total)
-                    {end = total+1;}
-                let i = currPg - 4;
-                if (i <= 2)
-                    {i = 1;
-                    end = 10}
-                else if (i + 6 >= total)
-                    {i = total - 8;}
-            for (i; i < end; i ++)
+            let end = currPg + 4;
+            let i = currPg - 4;
+            if ( i < 0 && end < 10)
+                {i = 1
+                end = 9;}
+            if (end > pgTotal)
+                {end = pgTotal;
+                i = pgTotal - 8;}
+            for (i; i <= end; i ++)
                 {pgArr.push(<button key={i}
                             className={i === currPg ? "current-pg" : null}
                             onClick={(e) => handlePgBtnClick(e.target.innerText)}>

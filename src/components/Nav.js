@@ -36,14 +36,6 @@ function Nav(props) {
     )
 }
 
-// const MemoDate = React.memo(Date, (prevProps, nextProps) => {
-//   return (prevProps.genreTxt === nextProps.genreTxt && prevProps.date === nextProps.date)
-// });
-
-// const MemoNavGenres = React.memo(NavGenres, (prevProps, nextProps) => {
-//   return (prevProps.genreLst === nextProps.genreLst)
-// });
-
 const MemoNav = React.memo(Nav, (prevProps, nextProps) => {
   return (prevProps.genreTxt === nextProps.genreTxt &&
           prevProps.date === nextProps.date &&

@@ -2,6 +2,12 @@ import React from 'react'
 import NavGenreBtns from "./NavGenreBtns";
 
 function NavSubGenre(props) {
+    function handleGenreClick(e, status){
+        document.querySelectorAll(".genre-menu__btns").forEach(item => item.style.visibility = "hidden");
+        let subGenre = document.querySelector('[data-ref="'+e.target.innerText+'"]');
+        subGenre.style.visibility = "visible";
+    }
+
     function genGenreLst (genreArr) 
         {let subGenreArr =  genreArr.map(genre => {
             let modifier = "";
@@ -10,7 +16,7 @@ function NavSubGenre(props) {
         return <div 
                 key={genre.title}
                 className={'genre-menu__sub-genre'+modifier}>
-                    <button>
+                    <button onClick={(e) => handleGenreClick(e, "active")} >
                         <h5>{genre.title}</h5>
                     </button>
                     <NavGenreBtns

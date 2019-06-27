@@ -8,7 +8,9 @@ function Search(props) {
         return props.onSearchUpdate(e.target.value);
     }
     const handleEnter = (e) => {
-        if(e.keyCode === 13){return handleSearchSubmit(e.target.value)}
+        if(e.keyCode === 13){
+            e.target.blur();
+            return handleSearchSubmit(e.target.value)}
         return
     }
     const handleSearchSubmit = () => {

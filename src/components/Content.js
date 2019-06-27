@@ -10,7 +10,6 @@ function Content (props) {
     console.log("CONTENT LOADED")
     smoothscroll.polyfill();
     window.scrollTo(0,0);
-    document.activeElement.blur();
     function handleAuthClick(author, srchTyp){
         return props.onAuthClick(author, srchTyp);
     }
@@ -35,6 +34,7 @@ function Content (props) {
             {content = <SrchRslt
                         onPgClick={(srchTxt, srchTyp, pg) => props.onPgClick(srchTxt, srchTyp, pg)}
                         onAuthClick={handleAuthClick}
+                        pg={props.pg}
                         srchTyp={props.srchTyp}
                         books={props.books}/>}
         else

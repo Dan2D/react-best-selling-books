@@ -2,9 +2,11 @@ import React from 'react'
 
 function NavGenreBtns(props) {
     function handleGenreClick(e){
+        console.log("CLICK")
         let genre = e.target.dataset.name;
         let minDate = e.target.dataset.minDate;
         let maxDate = e.target.dataset.maxDate;
+        e.target.parentElement.style.visibility = 'hidden';
         return props.onGenreClick(genre, minDate, maxDate );
     }
 
@@ -20,7 +22,7 @@ function NavGenreBtns(props) {
         })
     }
     return (
-        <div className='genre-menu__btns' data-ref={props.title}>
+        <div className='genre-menu__btns' data-ref={props.title} >
             {genGenreBtns(props.subGenres)}
         </div>
     )
