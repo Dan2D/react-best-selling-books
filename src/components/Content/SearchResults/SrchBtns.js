@@ -24,9 +24,11 @@ function SrchBtns(props) {
         function genPgBtns (pgTotal) {
             let end = currPg + 4;
             let i = currPg - 4;
-            if ( i < 0 && end < 10)
-                {i = 1
+            if ( i < 0)
+                {i = 1;
                 end = 9;}
+            if (pgTotal < 10)
+                {end = pgTotal;}
             if (end > pgTotal)
                 {end = pgTotal;
                 i = pgTotal - 8;}

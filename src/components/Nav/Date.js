@@ -6,7 +6,7 @@ function NavDate(props) {
     const [startDate, setDate] = useState(props.date);
     useEffect(() => setDate(props.date), [props.dateMax, props.date])
 
-    if (props.content === 'search')
+    if (props.content === 'search' || props.content === 'book')
         {return <></>}
 
    function plusMinusDays(date, days, type){

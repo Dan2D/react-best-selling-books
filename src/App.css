@@ -222,10 +222,9 @@ div.react-datepicker-popper {
 }
 
 .book-container {
-  
+  width: 25vw;
   margin-bottom: 5px;
 }
-
 
 .book-placeholder {
   width: 50vw;
@@ -255,7 +254,7 @@ margin: 0;
 .book-container__gen-info button,
 .srch-bk-container__author-info button {
   font-size: 12px;
-  width: 120%;
+  width: 110%;
   padding: 0;
   text-align: left;
 }
@@ -263,7 +262,7 @@ margin: 0;
 .book-container__author-info,
 .srch-bk-container__author-info {
   display: flex;
-  align-items: inherit;
+  align-items: baseline;
   width: 110%;
   overflow:hidden;
 }
