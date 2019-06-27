@@ -1,7 +1,6 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
-function Footer(props) {
+function Footer() {
     return (
         <div className="footer-container">
             <div className="footer-container footer-container__left">
@@ -32,10 +31,6 @@ function Footer(props) {
 
         </div>
     )
-}
-
-Footer.propTypes = {
-
 }
 
 export default Footer

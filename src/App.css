@@ -222,7 +222,7 @@ div.react-datepicker-popper {
 }
 
 .book-container {
-  width: 26vw;
+  
   margin-bottom: 5px;
 }
 
@@ -248,10 +248,14 @@ margin: 0;
   width:100%;
 }
 
+.book-container__cover img {
+  width: 26vw;
+  height: 39vw;
+}
 .book-container__gen-info button,
 .srch-bk-container__author-info button {
   font-size: 12px;
-  width: 110%;
+  width: 120%;
   padding: 0;
   text-align: left;
 }
@@ -259,7 +263,7 @@ margin: 0;
 .book-container__author-info,
 .srch-bk-container__author-info {
   display: flex;
-  align-items: baseline;
+  align-items: inherit;
   width: 110%;
   overflow:hidden;
 }
@@ -272,7 +276,7 @@ margin: 0;
 .srch-bk-container p{
   margin: 0 3px 0 0;
   font-size: 13px;
-  line-height: 1.5;
+  line-height: 1;
 }
 
 .book-container__author-info button {
@@ -306,8 +310,8 @@ margin: 0;
 
 .book-container__cover[data-ref="genre"] img,
 .book-container__cover[data-ref="book"] img{
-  min-width: 30vw;
-  max-height: 45vw;
+  width: 30vw;
+  height: 45vw;
 }
 
 .book-container__description {
@@ -387,12 +391,16 @@ margin: 0;
 
 .srch-bk-container__cover {
   max-width:25vw;
+  max-height: 37.5vw;
 }
 
 .srch-pagination {
   display: inline-block;
-  font-size: 14px;
   align-self: center;
+}
+
+.srch-pagination button {
+  font-size: 14px;
 }
 
 .srch-pagination button.current-pg {
@@ -424,6 +432,7 @@ margin: 0;
 .footer-container__left {
   width: 55vw;
   text-align: left;
+  z-index: 1;
 }
 
 .footer-container__description {

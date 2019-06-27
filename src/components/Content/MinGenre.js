@@ -2,7 +2,7 @@ import React from 'react'
 import Book from "./Books/Book";
 
 function MinGenre(props) {
-
+    
     function handleGenreClick(){
         let genre = document.querySelector('button[data-name='+props.genre.list_name_encoded+']');
         let genreName = genre.dataset.name;

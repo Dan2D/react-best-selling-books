@@ -5,7 +5,6 @@ import Book from "./Books/Book";
 function GenreBks(props){ 
     console.log("GENRE BOOKS LOADED")
     document.querySelectorAll("genre-menu__btns").forEach(item => item.style.visibility = "hidden");
-    document.activeElement.blur();
     let bookArr = props.genre.books.map((book, indx) => {
         return <Book 
                 key={book.title+'-'+indx}

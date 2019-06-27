@@ -5,7 +5,7 @@ import SrchRslt from "./Content/SrchRslt";
 import Book from "./Content/Books/Book";
 import smoothscroll from "smoothscroll-polyfill";
 
-
+//TODO(ADD CONDITION FOR CHECKING IF DATE MAX IS IN FUTURE< NYT SOMETIMES HAS DATES IN FUTUREnpm )
 function Content (props) {
     console.log("CONTENT LOADED")
     smoothscroll.polyfill();

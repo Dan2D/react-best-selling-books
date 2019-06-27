@@ -2,7 +2,8 @@ import React, {useEffect} from 'react'
 import ContentLoader from "react-content-loader";
 
 function SrchBk(props) {
-    let title, coverImg, bookId, rvwLnk, pubDt;
+    
+    let title, author, coverImg, bookId, rvwLnk, pubDt;
     function qryAssign(input)
         {return props.book.querySelector(input).textContent;}
 
@@ -11,6 +12,7 @@ function SrchBk(props) {
 
         useEffect(() => {
             console.log("TRUE")
+            console.log(props.book)
             let placeholders = document.getElementsByClassName("srch-book-placeholder");
             let books = document.getElementsByClassName("book-hide");
                 for (let i = 0; i < placeholders.length; i++){
@@ -21,6 +23,7 @@ function SrchBk(props) {
         
     if (props.srchTyp === 'title')
         {title = qryAssign('best_book title');
+        author = qryAssign('author name')
         coverImg = qryAssign('best_book image_url')
         bookId = qryAssign('best_book id');
         rvwLnk = 'https://www.goodreads.com/book/show/'+bookId
@@ -60,7 +63,7 @@ function SrchBk(props) {
                     <p>by: </p>
                     <button className="srch-bk-container__author-btns" 
                             onClick={handleAuthClick}>
-                            {props.author}
+                            {author}
                     </button>
                 </div> 
                 : null}
