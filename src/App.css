@@ -26,10 +26,11 @@ button:focus, div:focus {
   font-weight: 400;
   font-size: 14px;
 }
+
 .nav {
   position:fixed;
   top: 0;
-  height: var(--nav-height);
+  min-height: var(--nav-height);
   width: 100vw;
   display: flex;
   flex-direction: column;
@@ -41,7 +42,7 @@ button:focus, div:focus {
   position: relative;
   height: calc(var(--nav-height) - 18vw);
   width: calc(var(--nav-height) - 18vw);
-  background: linear-gradient(135deg, #787257 50%, #F1EDDA 50%)
+  background: linear-gradient(135deg, #787257 50%, #F1EDDA 50%);
 }
 
 .nav__site-title {
@@ -90,8 +91,8 @@ div.search {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  -moz-appearance:none; /* Firefox */
-  -webkit-appearance:none; /* Safari and Chrome */
+  -moz-appearance:none; 
+  -webkit-appearance:none; 
   appearance:none;
 }
 
@@ -167,13 +168,13 @@ div.search {
 }
 
 .genre-menu__sub-genre>button:focus,
-.genre-menu__sub-genre:hover > button{
+.genre-menu__sub-genre:hover > button {
   background: #AAA58E;
   color: white;
 }
 
 .genre-menu__sub-genre>button:focus + .genre-menu__btns,
-.genre-menu__btns:hover{
+.genre-menu__btns:hover {
   visibility: visible;
 }
 
@@ -209,11 +210,10 @@ div.react-datepicker-popper {
   transform: none !important;
   left: auto !important;
   top: auto !important;
-
 }
 
 .content-container {
-  margin: var(--nav-height) 5px 0 5px;
+  margin: var(--nav-height)5px 0 5px;
   min-height: 100vh;
   font-family: Quicksand, sans-serif;
   background: #FFFEF8;
@@ -225,8 +225,7 @@ div.react-datepicker-popper {
 
 .overview-genre__title{
   font-size: 17px;
-  margin: 5px 0;
-
+  margin: 15px 0;
 }
 
 .overview-books {
@@ -263,8 +262,9 @@ margin: 0;
 
 .book-container__cover img {
   width: calc(var(--book-size) + 1vw);
-  height: calc((var(--book-size) + 1vw)*1.3);
+  height: calc((var(--book-size) + 1vw) * 1.5);
 }
+
 .book-container__gen-info button,
 .srch-bk-container__author-info button {
   font-size: 12px;
@@ -321,9 +321,9 @@ margin: 0;
 }
 
 .book-container__cover[data-ref="genre"] img,
-.book-container__cover[data-ref="book"] img{
+.book-container__cover[data-ref="book"] img {
   width: calc(var(--book-size) + 5vw);
-  height: calc((var(--book-size) + 5vw)*1.3);
+  height: calc((var(--book-size) + 5vw) * 1.5);
 }
 
 .book-container__description {
@@ -338,7 +338,7 @@ margin: 0;
 }
 
 .book-container__author-btns[data-ref="genre"],
-.book-container__author-btns[data-ref="book"]{
+.book-container__author-btns[data-ref="book"] {
   width: 100px;
 }
 
@@ -405,18 +405,23 @@ margin: 0;
   margin: 0 3vw 5vw 3vw;
 }
 
+.srch-bk-container__cover {
+  max-width: var(--book-size);
+  max-height: calc(var(--book-size) * 1.5);
+}
+
 .srch-bk-container__title {
   margin: 0;
 }
 
-.srch-bk-container__cover {
-  max-width: var(--book-size);
-  max-height: calc(var(--book-size)*1.3);
+.book-hide>p {
+  width: 110%;
 }
 
 .srch-pagination {
   display: inline-block;
   align-self: center;
+  margin: 10px;
 }
 
 .srch-pagination button {
@@ -439,7 +444,7 @@ margin: 0;
 
 .footer-container p, 
 .footer-container h5,
-.footer-container h4{
+.footer-container h4 {
   margin: 0;
 }
 
@@ -470,21 +475,14 @@ margin: 0;
   font-size: 10px;
 }
 
-@media (min-width:320px)  {
 
-   /* smartphones, iPhone, portrait 480x320 phones */ 
-  }
-@media (min-width:481px)  {
-
-   /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
-   }
 @media (min-width:641px)  { 
   :root{
     --nav-height: 20vw;
   }
 
   div.search {
-    top: calc(var(--nav-height)/3);
+    top: calc(var(--nav-height) / 3);
     margin-left: 0;
   }
 
@@ -513,6 +511,10 @@ margin: 0;
     max-height: 50vh;
   }
 
+  .div.react-datepicker-popper {
+    right: 30vw;
+  }
+
   .overview-genre__title {
     font-size: 18px;
     padding: 10px 0;
@@ -525,7 +527,7 @@ margin: 0;
   .book-container__gen-info button, 
   .srch-bk-container__author-info button,
   .book-container__gen-info p,
-  .book-container__sub-info{
+  .book-container__sub-info {
     font-size: 14px;
     padding-top: 5px;
   }
@@ -536,7 +538,23 @@ margin: 0;
   }
 
   .booklist-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
     margin: 0 5%;
+  }
+
+  .book-container[data-ref="genre"] {
+    width: 44vw;
+  }
+
+  .book-container[data-ref="genre"] img {
+    width: calc(var(--book-size) - 10vw);
+    height: calc((var(--book-size) - 10vw) * 1.5);
+  }
+
+  .book-container__description {
+    min-width: auto;
   }
 
   .srch-bk-list  {
@@ -569,12 +587,30 @@ margin: 0;
     font-size: 12px;
   }
 
-  /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */ 
+  .no-results {
+    display: flex;
+    flex-direction: column;
+    font-size: calc(12px + 1vw);
+  }
+
+  .no-results img,
+  .no-results p {
+    align-self: center;
+  }
+
+  .no-results img {
+    width: 30vw;
+  }
+
 }
 @media (min-width:961px)  { 
-  :root{
-    --nav-height: 18vw;
+  :root {
+    --nav-height: 15vw;
     --book-size: 10vw;
+  }
+
+  div.search {
+    top: calc(var(--nav-height) / 4);
   }
 
   .book-container__week-list p {
@@ -586,7 +622,7 @@ margin: 0;
     flex-wrap: wrap;
     justify-content: flex-start;
     margin: 0;
-    padding-left: 2vw
+    padding-left: 2vw;  
   }
 
   .book-container[data-ref="genre"]{
@@ -596,8 +632,8 @@ margin: 0;
   }
 
   .book-container[data-ref="genre"] img {
-    min-width: calc((var(--book-size)+5vw));
-    min-height: calc((var(--book-size)+5vw)*1.5);
+    min-width: calc((var(--book-size) + 5vw));
+    min-height: calc((var(--book-size) + 5vw)*1.5);
   }
 
   .book-container__description{
@@ -610,25 +646,86 @@ margin: 0;
   }
 
   .book-container[data-ref="book"] {
-    width: calc(var(--book-size)+5vw);
-  }
-    .srch-bk-list  {
-
+    width: calc(var(--book-size) + 5vw);
   }
 
   .srch-bk-container {
     width: var(--book-size);
   }
 
-  /* tablet, landscape iPad, lo-res laptops ands desktops */
  }
-@media (min-width:1025px) {
-  :root {
-    /* --nav-height: 14vw; */
-  }
-  /* big landscape tablets, laptops, and desktops */ 
-}
+
 @media (min-width:1281px) {
+  :root {
+    --book-size: 8vw;
+    --nav-height: 12vw;
+  }
+
+  .nav__title-corner {
+    width: calc(var(--nav-height) - 3vw);
+    height: calc(var(--nav-height) - 3vw);
+  }
+
+  .genre-container {
+    padding-top: 3vw;
+  }
+
+  .book-container__week-list p {
+
+  }
+
+  .booklist-container {
+ 
+  }
+
+  .book-container[data-ref="genre"]{
+    width: calc(var(--book-size) + 10vw);
+    padding-right: 4vw;
+  }
+
+  .book-container[data-ref="genre"] img {
+    min-width: calc(var(--book-size));
+    min-height: calc(var(--book-size) * 1.5);
+  }
+
+  .book-container__description{
+
+  }
+
+
+  .book-container[data-ref="genre"] .book-title {
+
+  }
+  .book-single-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .book-single-container h5 {
+    align-self: center;
+  }
+
+  .book-container[data-ref="book"] {
+    align-self: center;
+  }
+
+  .book-single-container .book-container__description {
+    min-width: 100%;
+  }
   
-  /* hi-res laptops and desktops */
+  .srch-author-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .srch-bk-container {
+
+  }
+
+  .footer-container__description {
+    width: 70%;
+  }
+
  }

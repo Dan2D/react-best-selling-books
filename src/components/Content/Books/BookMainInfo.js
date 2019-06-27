@@ -16,16 +16,8 @@ function BookMainInfo(props) {
     function handleTtlClick() {
         return props.onTtlClick(props.book);
     }
-    let scrWdth = document.documentElement.clientWidth;
+ 
     let descriptionBlk = <div className="book-container__description">
-                            {/* {scrWdth > 961 ? 
-                             <div className="book-container__title-author">
-                                <button className="book-title" onClick={handleTtlClick}>{props.title}</button>
-                                <div className="book-container__author-info">
-                                    <p>by</p>
-                                    <div className="book-container__author-btns" data-ref={props.type}>{authorArr}</div>
-                                </div>
-                            </div> : null} */}
                             <h4>Description</h4>
                             <p>{props.dscrpt ? props.dscrpt : "No Description Available..."}</p>
                         </div>
