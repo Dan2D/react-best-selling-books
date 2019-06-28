@@ -3,6 +3,10 @@
   --book-size: 25vw;
 }
 
+p, a, div, button {
+  font-size: 12px;
+}
+
 button {
   background: none;
   outline: none;
@@ -214,6 +218,7 @@ div.react-datepicker-popper {
 
 .content-container {
   margin: var(--nav-height)5px 0 5px;
+  padding-top: 2vh;
   min-height: 100vh;
   font-family: Quicksand, sans-serif;
   background: #FFFEF8;
@@ -243,6 +248,13 @@ div.react-datepicker-popper {
   width: var(--book-size);
 }
 
+.book-hide {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
 .book-container__gen-info {
 display: flex;
 flex-direction: column;
@@ -267,7 +279,6 @@ margin: 0;
 
 .book-container__gen-info button,
 .srch-bk-container__author-info button {
-  font-size: 12px;
   width: 110%;
   padding: 0;
   text-align: left;
@@ -276,18 +287,18 @@ margin: 0;
 .book-container__author-info,
 .srch-bk-container__author-info {
   display: flex;
-  align-items: baseline;
+  align-items: flex-start;
   width: 110%;
   overflow:hidden;
 }
 
 .book-container__author-btns {
-  width: 90%;
+  width: 70%;
 }
 
 .book-container__author-info p,
 .srch-bk-container p{
-  margin: 0 3px 0 0;
+  margin: 3px 3px 0 0;
   font-size: 13px;
   line-height: 1;
 }
@@ -295,7 +306,6 @@ margin: 0;
 .book-container__author-info button {
   font-size: 13px;
   width: 99%;
-  white-space: pre;
   overflow:hidden;
   text-overflow: ellipsis;
   max-width: 140px;
@@ -305,14 +315,13 @@ margin: 0;
 
 .book-container__week-list p {
   margin: 0;
+  white-space: pre;
   font-style: italic;
-  font-size: 12px;
   color: lightslategray;
 }
 
 .book-container__ratings {
   display: flex;
-  font-size: 12px;
 }
 
 .book-container[data-ref="genre"],
@@ -334,6 +343,7 @@ margin: 0;
 
 .book-container__description h4,
 .book-container__description p {
+  font-size: 13px;
   margin:0 0 5px 0;
 }
 
@@ -371,12 +381,7 @@ margin: 0;
 
 .genre-container__title-block p {
   margin: 0 0 5px 0;
-  font-size: 12px;
   font-style: italic;
-}
-
-.book-single-container {
-  padding-top: 10px;
 }
 
 .srch-container {
@@ -385,11 +390,25 @@ margin: 0;
 }
 
 .srch-author-container {
-  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 3vw 0;
+}
+
+#authorInfo {
+  width: 90vw;
+  margin: 2vw 0 0 2vw;
+}
+
+#authorInfo a {
+  display: inline;
 }
 
 .srch-author-container__auth-name,
-.srch-author-container a {
+.srch-author-container a,
+.srch-author-container p {
   margin:0;
   display:block;
 }
@@ -397,7 +416,7 @@ margin: 0;
 .srch-bk-list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: space-around;
 }
 
 .srch-bk-container {
@@ -431,6 +450,16 @@ margin: 0;
 .srch-pagination button.current-pg {
   color: blue;
   pointer-events: none;
+}
+
+.no-results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.no-results img {
+  max-width: 80vw;
 }
 
 .footer-container {
@@ -481,6 +510,10 @@ margin: 0;
     --nav-height: 20vw;
   }
 
+  p, a, div {
+    font-size: 14px;
+  }
+
   div.search {
     top: calc(var(--nav-height) / 3);
     margin-left: 0;
@@ -490,7 +523,6 @@ margin: 0;
   .search__type, 
   .search__btn, 
   .genre-menu__sub-genre h5,
-  .srch-bk-container h5,
   .genre-menu__sub-genre button,
   .date-picker button,
   .date-picker input {
@@ -557,18 +589,35 @@ margin: 0;
     min-width: auto;
   }
 
+  .srch-author-container {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .author-main {
+    width: 30vw;
+  }
+  #authorInfo {
+    width: 60vw;
+    margin: 0 0 0 2vw;
+  }
+
   .srch-bk-list  {
     width: 85vw;
     align-self: center;
   }
 
   .srch-bk-container {
-    width: calc(var(--book-size) - 11vw);
-    margin: 0 3.5vw 5vw 3.5vw;
+    /* width: calc(var(--book-size) - 11vw); */
+    margin: 0 0 2vh 0;
+  }
+
+  .srch-bk-container h5 {
+    font-size: 13px;
   }
 
   .srch-bk-container__author-info>p {
-    font-size: 14px;
+    font-size: 13px;
     margin-top: 5px;
     align-self: flex-start;
   }
@@ -607,6 +656,10 @@ margin: 0;
   :root {
     --nav-height: 15vw;
     --book-size: 10vw;
+  }
+
+  p, a, div {
+    font-size: 14px;
   }
 
   div.search {
@@ -649,8 +702,12 @@ margin: 0;
     width: calc(var(--book-size) + 5vw);
   }
 
+  #authorInfo {
+    font-size: 15px;
+  }
+
   .srch-bk-container {
-    width: var(--book-size);
+    width: calc(var(--book-size) + 5vw);
   }
 
  }
@@ -712,12 +769,6 @@ margin: 0;
 
   .book-single-container .book-container__description {
     min-width: 100%;
-  }
-  
-  .srch-author-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   }
 
   .srch-bk-container {

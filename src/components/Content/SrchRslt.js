@@ -8,7 +8,7 @@ function SrchRslt(props) {
     if (props.books.querySelector('author name') == null)
         {return <NotFound />}
     let bkDataArr = []
-    let authorLnk, authorImg, indxStrt, pgTotal, bksPrPg;
+    let authorInfo, authorHome, authorLnk, authorImg, indxStrt, pgTotal, bksPrPg;
     let author = props.books.querySelector('author name').textContent;
 
     if (props.srchTyp === 'title')
@@ -20,12 +20,14 @@ function SrchRslt(props) {
         }
 
     if (props.srchTyp === 'author')
-        {authorImg = props.books.querySelector('authors author image_url').textContent;
+        {authorImg = props.books.querySelector('author image_url').textContent;
         authorLnk = props.books.querySelector('author link').textContent;
-        indxStrt = props.books.querySelector('books').getAttribute('start');
-        indxStrt = parseInt(indxStrt);
-        pgTotal = props.books.querySelector('books').getAttribute('total');
-        bksPrPg= 30;
+        authorInfo = props.books.querySelector('author about').textContent;
+        authorHome = props.books.querySelector('author hometown').textContent;
+        // indxStrt = props.books.querySelector('books').getAttribute('start');
+        // indxStrt = parseInt(indxStrt);
+        // pgTotal = props.books.querySelector('books').getAttribute('total');
+        // bksPrPg= 30;
         props.books.querySelectorAll('author books book').forEach(book => bkDataArr.push(book));
         }
 
@@ -44,6 +46,8 @@ function SrchRslt(props) {
             {props.srchTyp === 'author' ? 
                 <SrchHdr
                 author={author}
+                authorDscrpt={authorInfo}
+                homeTown={authorHome}
                 authLnk={authorLnk}
                 authImg={authorImg} /> 
                 :  <h2>TITLE SEARCH RESULTS</h2>
@@ -51,11 +55,12 @@ function SrchRslt(props) {
             <div className="srch-bk-list">
             {bookCode}
             </div>
+            {props.srchTyp === "author" ? null :
             <SrchBtns
                 onPgClick={(srchTxt, srchTyp, pg) => props.onPgClick(srchTxt, srchTyp, pg)}
                 srchTyp={props.srchTyp}
                 pg={props.pg}
-                pgTotal={pgTotal}/>
+                pgTotal={pgTotal}/>}
         </div>
     )
 }

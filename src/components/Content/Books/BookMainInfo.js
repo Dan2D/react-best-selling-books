@@ -7,8 +7,20 @@ function BookMainInfo(props) {
         let authorTxt = props.author.split(/,|\sand\s|\swith\s/);
         var authorArr = authorTxt.map((author, indx) => {
             if (indx < authorTxt.length-1){
-                return <span key={author}><button className="author-btn" onClick={() => props.onAuthClick(author, 'author')}>{author},</button></span>}
-            else {return <button key={author} className="author-btn" onClick={() => props.onAuthClick(author, 'author')}>{author}</button>}
+                return <span key={author}>
+                            <button 
+                            className="author-btn" 
+                            onClick={() => props.onAuthClick(author, 'author')}>
+                                {author},
+                            </button>
+                        </span>}
+            else 
+                {return <button 
+                        key={author} 
+                        className="author-btn" 
+                        onClick={() => props.onAuthClick(author, 'author')}>
+                            {author}
+                        </button>}
         });
     }
     let bookCover = props.bkImg !== null ? props.bkImg : noCover;
@@ -24,16 +36,29 @@ function BookMainInfo(props) {
 
     return (
         <div className="book-container__gen-info" data-ref={props.type} >
-            {props.type === 'book' ? null : <div><strong>#{props.rank}</strong></div>}
-            <div className="book-container__cover" data-ref={props.type}>
-                <img src={bookCover} alt={props.title}/>
+                {props.type === 'book' ? null : 
+                <div>
+                    <strong>#{props.rank}</strong>
+                </div>}
+            <div className="book-container__cover" 
+                 data-ref={props.type}>
+                    <img 
+                    src={bookCover} 
+                    alt={props.title}/>
                 {props.type === 'genre' || props.type === 'book' ? descriptionBlk : <></>}
             </div>
             <div className="book-container__title-author">
-                <button className="book-title" onClick={handleTtlClick}>{props.title}</button>
+                <button 
+                className="book-title" 
+                onClick={handleTtlClick}>
+                    {props.title}
+                </button>
                 <div className="book-container__author-info">
                     <p>by</p>
-                    <div className="book-container__author-btns" data-ref={props.type}>{authorArr}</div>
+                    <div className="book-container__author-btns" 
+                         data-ref={props.type}>
+                        {authorArr}
+                    </div>
                 </div>
             </div>
         </div>

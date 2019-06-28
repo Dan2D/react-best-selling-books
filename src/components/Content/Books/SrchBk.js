@@ -5,28 +5,32 @@ function SrchBk(props) {
     
     let title, author, coverImg, bookId, rvwLnk, pubDt;
     function qryAssign(input)
-        {return props.book.querySelector(input).textContent;}
+        {
+            if (props.book.querySelector(input) == null)
+                {return "No Info Found"}
+            return props.book.querySelector(input).textContent;
+        }
 
     function handleAuthClick(e)
         {return props.onAuthClick(e.target.innerText, 'author');}
 
         useEffect(() => {
-            console.log("TRUE")
-            console.log(props.book)
             let placeholders = document.getElementsByClassName("srch-book-placeholder");
             let books = document.getElementsByClassName("book-hide");
                 for (let i = 0; i < placeholders.length; i++){
                     placeholders[i].style.display = "none";
-                    books[i].style.display = "block";
+                    books[i].style.display = "flex";
                 }
         });
         
     if (props.srchTyp === 'title')
         {title = qryAssign('best_book title');
-        author = qryAssign('author name')
-        coverImg = qryAssign('best_book image_url')
+        if (title.length > 100)
+            {title = title.substr(0, 60) + "...";}
+        author = qryAssign('author name');
+        coverImg = qryAssign('best_book image_url');
         bookId = qryAssign('best_book id');
-        rvwLnk = 'https://www.goodreads.com/book/show/'+bookId
+        rvwLnk = 'https://www.goodreads.com/book/show/' + bookId;
         pubDt = qryAssign('original_publication_year');
         }
     else 
@@ -55,19 +59,22 @@ function SrchBk(props) {
         <div className="srch-bk-container" data-ref={props.srchTyp}>
             {bookPlaceholder}
             <div className="book-hide" style={{display:"none"}}>
-                <div>{props.indx+"."}</div>
-                <img className="srch-bk-container__cover" src={coverImg} alt={title}/>
-                <h5 className="srch-bk-container__title">{title}</h5>
-                {props.srchTyp === 'title' ? 
-                <div className="srch-bk-container__author-info">
-                    <p>by: </p>
-                    <button className="srch-bk-container__author-btns" 
-                            onClick={(e) => handleAuthClick(e)}>
-                            {author}
-                    </button>
-                </div> 
-                : null}
-                <p>Published: {pubDt}</p>
+                <div>
+                    <div>{props.indx ? props.indx+"." : null}</div>
+                    <img className="srch-bk-container__cover" src={coverImg} alt={title}/>
+                    
+                    <h5 className="srch-bk-container__title">{title}</h5>
+                    {props.srchTyp === 'title' ? 
+                    <div className="srch-bk-container__author-info">
+                        <p>by: </p>
+                        <button className="srch-bk-container__author-btns" 
+                                onClick={(e) => handleAuthClick(e)}>
+                                {author}
+                        </button>
+                    </div> 
+                    : null}
+                    <p>Published: {pubDt}</p>
+                </div>
                 <a href={rvwLnk} rel='noopener noreferrer'  target="_blank">...more info</a>
             </div>
         </div>

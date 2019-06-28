@@ -5,7 +5,6 @@ import BookSubInfo from "./BookSubInfo";
 import ContentLoader from "react-content-loader";
 import "./Book.css";
 
-//TODO(FIX ISSUE WITH ISBN[0] NOT BEING FOUND OCCASIONALLY)
 function Book(props) {
     let isbn = props.book.primary_isbn13;
     if (props.type === 'genre')
@@ -16,10 +15,11 @@ function Book(props) {
 
     let placeholders = document.getElementsByClassName("book-placeholder");
     let books = document.getElementsByClassName("book-hide");
+    
     function handleBkLd(bool=false){
         for (let i = 0; i < placeholders.length; i++){
             placeholders[i].style.display = "none";
-            books[i].style.display = "block";
+            books[i].style.display = "flex";
         }
     }
 
@@ -42,7 +42,7 @@ function Book(props) {
     return (
         <div className="book-container" data-ref={props.type}>
             {bookPlaceholder}
-            <div className="book-hide" style={{display: props.type === "overview" ? "block" : "none"}}>
+            <div className="book-hide" style={{display: props.type === "overview" ? "flex" : "none"}}>
                 <BookMainInfo
                         key={props.book.title+'main-info'}
                         onTtlClick={(book) =>  props.onTtlClick(book)}

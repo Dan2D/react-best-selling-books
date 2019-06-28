@@ -16,7 +16,7 @@ const API_CALLS = {
         GR_ISBN_QRY: 'book/isbn/',
         GR_GNRL_QRY: 'search/index.xml?key=',
         GR_RTNG_QRY: 'book/show/',
-        GR_QRY: 'author/list/'
+        GR_QRY: 'author/show/',
     }
 }
 

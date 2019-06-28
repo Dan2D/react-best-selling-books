@@ -24,7 +24,7 @@ function SrchBtns(props) {
         function genPgBtns (pgTotal) {
             let end = currPg + 4;
             let i = currPg - 4;
-            if ( i < 0)
+            if ( i <= 0)
                 {i = 1;
                 end = 9;}
             if (pgTotal < 10)
@@ -36,8 +36,8 @@ function SrchBtns(props) {
                 {pgArr.push(<button key={i}
                             className={i === currPg ? "current-pg" : null}
                             onClick={(e) => handlePgBtnClick(e.target.innerText)}>
-                            {i}
-                </button>)}
+                                {i}
+                            </button>)}
             }
     genPgBtns(props.pgTotal);
 

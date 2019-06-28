@@ -105,14 +105,15 @@ export default class App extends Component {
     if (searchTyp === 'title')
       {this.fetchXML(CORS+GR_API+GR_GNRL_QRY+GR_KEY+'&search[field]=title&q='+searchTxt+'&page='+pg, 'books')}
     else 
-      {this.fetchXML(CORS+GR_API+'api/author_url/'+searchTxt+'?key='+GR_KEY)
+      {console.log(GR_API+'api/author_url/'+searchTxt+'?key='+GR_KEY)
+        this.fetchXML(CORS+GR_API+'api/author_url/'+searchTxt+'?key='+GR_KEY)
        .then(data => {
             if (data.querySelector('author') === null) 
               {return this.setState({books: data})}
             else 
               {return data.querySelector('author').getAttribute('id')}}
             )
-        .then(id => {return this.fetchXML(CORS+GR_API+GR_QRY+id+'?format=xml&key='+GR_KEY+'&page='+pg, 'books')})
+        .then(id => {console.log(GR_API+GR_QRY+id+'?format=xml&key='+GR_KEY+'&page='+pg);return this.fetchXML(CORS+GR_API+GR_QRY+id+'?format=xml&key='+GR_KEY+'&page='+pg, 'books')})
       }
   }
 

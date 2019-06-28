@@ -60,15 +60,16 @@ class BookSubInfo extends Component{
                 Buy this Book
                 </a>
                 <div className="sub-info__rating">
-                    {this.state.rating === 0 ? 
-                    'No Rating Available' : 
+                    {this.state.rating === 0 ? 'No Rating Available' : 
                     <div>
-                    <StarRating  className="book-container__ratings"
-                    initialRating={this.state.rating}
-                    emptySymbol="far fa-star fa-lg"
-                    fullSymbol="fas fa-star fa-lg"
-                    fractions={2}
-                    readonly /> {this.state.rating}</div>}
+                        <StarRating  className="book-container__ratings"
+                        initialRating={this.state.rating}
+                        emptySymbol="far fa-star fa-lg"
+                        fullSymbol="fas fa-star fa-lg"
+                        fractions={2}
+                        readonly />
+                        {this.state.rating}
+                    </div>}
                 </div>
                 <a  href={'https://www.goodreads.com/book/show/'+this.state.id} 
                     rel='noopener noreferrer'  
