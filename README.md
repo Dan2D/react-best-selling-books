@@ -1,68 +1,24 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Best-Selling-Books React App
+I made this app to expand my reading horizons. By combining the New York Times Best Sellers API and GoodReads API, the app allows the user to see current and past best sellers lists from a range of genres hosted by the NYT. The GoodReads API allows for book ratings, search results on titles and authors and links to buy books or access further information on a title or author.
 
-## Available Scripts
+## Usability
+-The site offers the most up to date New York Times Best Sellers Lists in a variety of genres.
+### Date Driven
+-The user can go backwards in time to access any week of the New York Time's best sellers lists.
+### Searchable
+-Thanks to the GoodReads API the user can search for titles and authors not limited to those who have only been on the NYT Best Sellers List.
+### Ratings
+-The GoodReads Api also allows users to get an idea of how readers rate the books on the NYT Best Sellers Lists.
+### Further Information
+-Users can also follow links to buy or read further reviews on books they are interested in.
 
-In the project directory, you can run:
+## Notes
+-The NYT API may restrict access for a short amount of time (~15 - 20 sec) if you make a number of immediate consecutive requests.
+So don't be alarmed if you get an error screen after clicking a bunch, just wait 30 seconds and refresh the page.
 
-### `npm start`
+-Another somewhat odd behavior you might run into with the NYT API, is during their list updates. They update some lists weekly and during that time the books may not appear on the site for the latest week. As soon as NYT updates with the books (which takes about a half hour in my experience) the books will be updated on this site as well.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+-Also when NYT updates their lists they also show for a week in the future for some reason, so don't be alarmed if you see the datepicker show a date in the future, it's based of the current date of the NYT's lists.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Feel free to message me if you run into any problems
+-Dan
