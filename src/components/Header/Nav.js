@@ -2,6 +2,7 @@ import React from "react";
 import Search from "./Search/Search";
 import Date from "./Date/Date";
 import NavGenres from "./Genre-Menu/NavGenres";
+import "./Nav.css";
 
 function Nav(props) {
   console.log("NAV LOADED");

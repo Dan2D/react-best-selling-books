@@ -3,6 +3,7 @@ import BookMainInfo from "./BookMainInfo";
 import MinBookSubInfo from "./Overview/MinBookSubInfo";
 import BookSubInfo from "./BookSubInfo";
 import ContentLoader from "react-content-loader";
+import "./Books.css";
 
 function Book(props) {
   let isbn = props.book.primary_isbn13;

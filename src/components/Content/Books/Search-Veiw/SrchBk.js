@@ -63,7 +63,9 @@ function SrchBk(props) {
       {bookPlaceholder}
       <div className="book-hide" style={{ display: "none" }}>
         <div>
-          <div>{props.indx ? props.indx + "." : null}</div>
+          <div className="srch-bk-container__indx">
+            {props.indx ? props.indx + "." : null}
+          </div>
           <img
             className="srch-bk-container__cover"
             src={coverImg}

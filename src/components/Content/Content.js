@@ -4,6 +4,7 @@ import GenreBks from "./Genre-View/GenreBks";
 import SrchRslt from "./SearchResults/SrchRslt";
 import SnglBk from "./Books/Single-View/SingleBk";
 import smoothscroll from "smoothscroll-polyfill";
+import "./Content.css";
 
 function Content(props) {
   console.log("CONTENT LOADED");

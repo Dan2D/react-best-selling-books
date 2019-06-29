@@ -42,7 +42,7 @@ function BookMainInfo(props) {
   }
   return (
     <div className="book-container__gen-info" data-ref={props.type}>
-      <div>
+      <div className="book-container__rank">
         <strong>#{props.rank}</strong>
       </div>
       <div className="book-container__cover" data-ref={props.type}>

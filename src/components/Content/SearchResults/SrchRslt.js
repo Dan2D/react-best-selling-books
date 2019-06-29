@@ -3,6 +3,7 @@ import SrchHdr from "./SrchHdr";
 import SrchBk from "../Books/Search-Veiw/SrchBk";
 import SrchBtns from "./SrchBtns";
 import NotFound from "./NotFound";
+import "./Search.css";
 
 function SrchRslt(props) {
   if (props.books.querySelector("author name") == null) {

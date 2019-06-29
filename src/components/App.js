@@ -3,7 +3,6 @@ import Nav from "./Header/Nav";
 import Content from "./Content/Content";
 import Footer from "./Footer/Footer";
 import API_CALLS from "./Utils/APICalls";
-import "./App.css";
 
 const { NYT_API_KEY, NYT_API, OVRVW_QRY, GNRE_QRY, GNRE_LST_QRY } = API_CALLS[
   "NYT"
