@@ -7,27 +7,30 @@ import NotFound from "./NotFound";
 function SrchRslt(props) {
     if (props.books.querySelector('author name') == null)
         {return <NotFound />}
-    let bkDataArr = []
+
+    function qryAssign(input) {
+        if (props.books.querySelector(input) == null)
+            {return "No Info Found";}
+        return props.books.querySelector(input).textContent;
+    }
+
+    let bkDataArr = [];
     let authorInfo, authorHome, authorLnk, authorImg, indxStrt, pgTotal, bksPrPg;
-    let author = props.books.querySelector('author name').textContent;
+    let author = qryAssign('author name');
 
     if (props.srchTyp === 'title')
-        {indxStrt = props.books.querySelector('results-start').textContent;
+        {indxStrt = qryAssign('results-start');
         indxStrt = parseInt(indxStrt);
-        pgTotal = props.books.querySelector('search total-results').textContent;
+        pgTotal = qryAssign('search total-results');
         bksPrPg = 20;
         props.books.querySelectorAll('search results work').forEach(book => bkDataArr.push(book));
         }
 
     if (props.srchTyp === 'author')
-        {authorImg = props.books.querySelector('author image_url').textContent;
-        authorLnk = props.books.querySelector('author link').textContent;
-        authorInfo = props.books.querySelector('author about').textContent;
-        authorHome = props.books.querySelector('author hometown').textContent;
-        // indxStrt = props.books.querySelector('books').getAttribute('start');
-        // indxStrt = parseInt(indxStrt);
-        // pgTotal = props.books.querySelector('books').getAttribute('total');
-        // bksPrPg= 30;
+        {authorImg = qryAssign('author image_url');
+        authorLnk = qryAssign('author link');
+        authorInfo = qryAssign('author about');
+        authorHome = qryAssign('author hometown');
         props.books.querySelectorAll('author books book').forEach(book => bkDataArr.push(book));
         }
 
@@ -42,25 +45,29 @@ function SrchRslt(props) {
                 indx={indxStrt+indx} 
                 book={book} />});
     return (
-        <div className="srch-container">
+        <div 
+        className="srch-container">
             {props.srchTyp === 'author' ? 
                 <SrchHdr
                 author={author}
                 authorDscrpt={authorInfo}
                 homeTown={authorHome}
                 authLnk={authorLnk}
-                authImg={authorImg} /> 
-                :  <h2>TITLE SEARCH RESULTS</h2>
+                authImg={authorImg} /> :  
+                <h2>TITLE SEARCH RESULTS</h2>
             }
-            <div className="srch-bk-list">
-            {bookCode}
+            <div 
+            className="srch-bk-list">
+                {bookCode}
             </div>
-            {props.srchTyp === "author" ? null :
+            {props.srchTyp === "author" ? 
+            null :
             <SrchBtns
                 onPgClick={(srchTxt, srchTyp, pg) => props.onPgClick(srchTxt, srchTyp, pg)}
                 srchTyp={props.srchTyp}
                 pg={props.pg}
-                pgTotal={pgTotal}/>}
+                pgTotal={pgTotal}/>
+            }
         </div>
     )
 }

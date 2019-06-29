@@ -15,7 +15,7 @@ const API_CALLS = {
         GR_RVW_QRY: 'book/review_counts.json?isbns=',
         GR_ISBN_QRY: 'book/isbn/',
         GR_GNRL_QRY: 'search/index.xml?key=',
-        GR_RTNG_QRY: 'book/show/',
+        GR_BK_QRY: 'book/show/',
         GR_QRY: 'author/show/',
     }
 }

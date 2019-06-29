@@ -46,7 +46,7 @@ class BookSubInfo extends Component{
                     this.setState({rating: avgRating, id: id})
                     }
                 )
-            }    
+            }
     }
     render(){
         if (this.props.rating !== 0)
@@ -75,7 +75,7 @@ class BookSubInfo extends Component{
                     rel='noopener noreferrer'  
                     target="_blank">
                     Read Reviews
-                </a>
+                </a>  
         </div>
         )
     }

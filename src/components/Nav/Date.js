@@ -14,7 +14,7 @@ function NavDate(props) {
                 {return new Date(date.getTime()+(days*1000*60*60*24));}
             else    
                 {return new Date(date.getTime()-(days*1000*60*60*24));}
-        }
+    }
     
     function handleDtChng(date){
         setDate(date);
@@ -47,9 +47,13 @@ function NavDate(props) {
     }
 
     return (
-        <div className="date-picker">
-            <button onClick={handleWkJmpClk} data-name="prev">
-                <div className="fas fa-caret-left fa-reg"/>
+        <div 
+        className="date-picker">
+            <button 
+            onClick={handleWkJmpClk} 
+            data-name="prev">
+                <div 
+                className="fas fa-caret-left fa-reg"/>
                  {" Prev Week"}
             </button> 
             <DatePicker
@@ -61,13 +65,19 @@ function NavDate(props) {
                 onFocus={(e) => e.target.readOnly = true}
                 showMonthDropdown
                 showYearDropdown
-                dropdownMode="select"
-            />
-            <button onClick={handleWkJmpClk} data-name="next">
+                dropdownMode="select"/>
+            <button 
+            onClick={handleWkJmpClk} 
+            data-name="next">
                 {"Next Week "}
-                <div className="fas fa-caret-right fa-reg"/>
+                <div 
+                className="fas fa-caret-right fa-reg"/>
             </button>
-            <button className="date-picker__go-btn" onClick={handleDateSelect}>GO</button>
+            <button 
+            className="date-picker__go-btn" 
+            onClick={handleDateSelect}>
+                GO
+            </button>
         </div>
     )
 }

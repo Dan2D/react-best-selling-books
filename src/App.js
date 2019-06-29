@@ -12,7 +12,9 @@ const {NYT_API_KEY,
         GNRE_LST_QRY} = API_CALLS['NYT'];
 const {GR_KEY, 
        GR_API,
+       GR_ISBN_QRY,
        GR_GNRL_QRY, 
+       GR_BK_QRY,
        GR_QRY } = API_CALLS['GR'];
 const CORS = 'https://cors-anywhere.herokuapp.com/';
 
@@ -25,6 +27,7 @@ export default class App extends Component {
       dateMax: new Date(),
       navGenres: [],
       books: [],
+      bkCover: "",
       genres: [],
       content: 'home',
       pg: 1,
@@ -54,15 +57,14 @@ export default class App extends Component {
     })
     .then(str => (new window.DOMParser()).parseFromString(str, "text/xml"))
     .then(data => {
-      console.log(input)
         if (state === undefined) 
-          {return data}
+          {return data;}
         else
           {stateObj[state] = data;
             stateObj['isLoading'] = false;
             this.setState(stateObj);}
-      })
-    }
+    })
+  }
 
   fetchJSON = (input, state, property, results='results') => {
       let stateObj = {};
@@ -75,14 +77,17 @@ export default class App extends Component {
           {throw new Error('Something went wrong...')}
         })
       .then(data => {
+        if (state === undefined)
+          {console.log(data);return data}
+        else {
         stateObj[state] = property != null ? 
-          data[results][property] :
-          stateObj[state] = data[results];
+        data[results][property] :
+        stateObj[state] = data[results];
         stateObj['isLoading'] = false;
-        this.setState(stateObj)
+        this.setState(stateObj)}
         })
-          .catch(error => this.setState({error, isLoading: false}))
-    }
+      .catch(error => this.setState({error, isLoading: false}))
+  }
 
   goHome = () => {
     this.setState({content: 'home',
@@ -92,28 +97,28 @@ export default class App extends Component {
                    dateMin: new Date('2008-06-08'), 
                    dateMax: new Date()});
     this.fetchJSON(NYT_API+OVRVW_QRY+'current/&api-key='+NYT_API_KEY, 'genres', 'lists')
-    }
+  }
   
   handleSelectUpdate = (srchTyp) => {
-      this.setState({searchTyp: srchTyp})
+      this.setState({searchTyp: srchTyp});
   }
 
   handleSearch = (searchTxt, searchTyp, pg=1) => {
+    searchTxt = searchTxt.replace(/,/g, "");
     this.setState({searchTxt: searchTxt, content: 'search', searchTyp: searchTyp, pg: pg});
     searchTxt = searchTxt.replace(/\s/g, "+").toLowerCase();
     searchTxt = searchTxt.replace(/'/g, "%27s");
     if (searchTyp === 'title')
       {this.fetchXML(CORS+GR_API+GR_GNRL_QRY+GR_KEY+'&search[field]=title&q='+searchTxt+'&page='+pg, 'books')}
     else 
-      {console.log(GR_API+'api/author_url/'+searchTxt+'?key='+GR_KEY)
-        this.fetchXML(CORS+GR_API+'api/author_url/'+searchTxt+'?key='+GR_KEY)
-       .then(data => {
+      {this.fetchXML(CORS+GR_API+'api/author_url/'+searchTxt+'?key='+GR_KEY)
+      .then(data => {
             if (data.querySelector('author') === null) 
               {return this.setState({books: data})}
             else 
               {return data.querySelector('author').getAttribute('id')}}
             )
-        .then(id => {console.log(GR_API+GR_QRY+id+'?format=xml&key='+GR_KEY+'&page='+pg);return this.fetchXML(CORS+GR_API+GR_QRY+id+'?format=xml&key='+GR_KEY+'&page='+pg, 'books')})
+      .then(id => {return this.fetchXML(CORS+GR_API+GR_QRY+id+'?format=xml&key='+GR_KEY+'&page='+pg, 'books')})
       }
   }
 
@@ -143,13 +148,24 @@ export default class App extends Component {
     this.fetchJSON(NYT_API+GNRE_QRY+'current/'+genreTxt+'.json?api-key='+NYT_API_KEY, 'genres')
   };
 
+  handleBkClick = (cover, isbn) => {
+    console.log(cover);
+    this.setState({content: 'book', bkCover: cover});
+    this.fetchXML(CORS+GR_API+GR_ISBN_QRY+isbn+'?key='+GR_KEY)
+    .then(data => {console.log(data);
+      return data.querySelector('book id').textContent})
+    .then(id => {console.log(GR_API+GR_BK_QRY+id+'?key='+GR_KEY); this.fetchXML(CORS+GR_API+GR_BK_QRY+id+'?key='+GR_KEY, 'books')})
+    
+  }
+  
+
   render() {
-    console.log(this.state.pg, "APP")
     const {date, 
            dateMin,
            dateMax,
            navGenres,
            books,
+           bkCover,
            genres,
            genreTxt,
            content,
@@ -159,10 +175,13 @@ export default class App extends Component {
            isLoading, 
            error} = this.state;
     if (error) 
-      {return <p>{error.message}</p>}
+      {return <p>
+                {error.message}
+              </p>}
     return (
-      <div className="App">
-      <Nav
+      <div 
+      className="App">
+        <Nav
         onHomeClick={this.goHome}
         onSelectUpdate={this.handleSelectUpdate}
         onSearchUpdate={(text) => {this.setState({searchTxt: text})}}
@@ -177,8 +196,8 @@ export default class App extends Component {
         date={date}
         dateMin={dateMin}
         dateMax={dateMax}/>
-      <Content
-        onTtlClick={(book) => {this.setState({books: book, content: 'book'})}}
+        <Content
+        onBkClick={this.handleBkClick}
         onAuthClick={this.handleSearch}
         onGenreClick={this.handleGenreUpdate}
         onPgClick={this.handleSearch}
@@ -186,6 +205,7 @@ export default class App extends Component {
         srchTyp={searchTyp}
         pg={pg}
         books={books}
+        bkCover={bkCover}
         isLoading={isLoading}
         dateMin={dateMin}
         dateMax={dateMax}
@@ -195,3 +215,4 @@ export default class App extends Component {
     )
   }
 }
+// (isbn) => {this.setState({books: book, content: 'book'})}
