@@ -38,7 +38,9 @@
   "description": "A Book Finder App that combines NYT Best Sellers API with GoodReads APInpm",
   "main": "index.js",
   "devDependencies": {
-    "gh-pages": "^2.0.1"
+    "eslint": "^6.0.1",
+    "gh-pages": "^2.0.1",
+    "prettier": "^1.18.2"
   },
   "repository": {
     "type": "git",
