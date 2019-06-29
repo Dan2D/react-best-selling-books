@@ -1,6 +1,6 @@
 import React from "react";
 import BookMainInfo from "./BookMainInfo";
-import MinBookSubInfo from "./MinBookSubInfo";
+import MinBookSubInfo from "./Overview/MinBookSubInfo";
 import BookSubInfo from "./BookSubInfo";
 import ContentLoader from "react-content-loader";
 

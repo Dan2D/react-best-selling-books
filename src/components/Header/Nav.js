@@ -1,7 +1,7 @@
 import React from "react";
-import Search from "./Nav/Search";
-import Date from "./Nav/Date";
-import NavGenres from "./Nav/NavGenres";
+import Search from "./Search/Search";
+import Date from "./Date/Date";
+import NavGenres from "./Genre-Menu/NavGenres";
 
 function Nav(props) {
   console.log("NAV LOADED");

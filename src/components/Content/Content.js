@@ -1,8 +1,8 @@
 import React from "react";
-import Home from "./Content/Home";
-import GenreBks from "./Content/GenreBks";
-import SrchRslt from "./Content/SrchRslt";
-import SnglBk from "./Content/Books/SingleBk";
+import Home from "./Home/Home";
+import GenreBks from "./Genre-View/GenreBks";
+import SrchRslt from "./SearchResults/SrchRslt";
+import SnglBk from "./Books/Single-View/SingleBk";
 import smoothscroll from "smoothscroll-polyfill";
 
 function Content(props) {

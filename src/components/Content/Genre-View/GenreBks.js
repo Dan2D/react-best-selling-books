@@ -1,5 +1,5 @@
 import React from "react";
-import Book from "./Books/Book";
+import Book from "../Books/Book";
 
 function GenreBks(props) {
   console.log("GENRE BOOKS LOADED");

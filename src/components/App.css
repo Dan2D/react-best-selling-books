@@ -574,7 +574,7 @@ div.react-datepicker-popper {
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
     ),
-    url("./Images/footer-bg.png");
+    url("../Images/footer-bg.png");
   background-repeat: no-repeat;
   background-size: cover;
 }

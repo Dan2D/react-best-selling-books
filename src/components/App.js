@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import Nav from "./components/Nav";
-import Content from "./components/Content";
-import Footer from "./components/Footer";
-import API_CALLS from "./components/Utils/APICalls";
+import Nav from "./Header/Nav";
+import Content from "./Content/Content";
+import Footer from "./Footer/Footer";
+import API_CALLS from "./Utils/APICalls";
 import "./App.css";
 
 const { NYT_API_KEY, NYT_API, OVRVW_QRY, GNRE_QRY, GNRE_LST_QRY } = API_CALLS[

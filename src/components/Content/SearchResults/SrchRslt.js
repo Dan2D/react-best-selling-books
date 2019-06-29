@@ -1,7 +1,7 @@
 import React from "react";
-import SrchHdr from "./SearchResults/SrchHdr";
-import SrchBk from "./Books/SrchBk";
-import SrchBtns from "./SearchResults/SrchBtns";
+import SrchHdr from "./SrchHdr";
+import SrchBk from "../Books/Search-Veiw/SrchBk";
+import SrchBtns from "./SrchBtns";
 import NotFound from "./NotFound";
 
 function SrchRslt(props) {

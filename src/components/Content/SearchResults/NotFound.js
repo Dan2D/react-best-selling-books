@@ -1,5 +1,5 @@
 import React from "react";
-import unfound from "../../Images/404.png";
+import unfound from "../../../Images/404.png";
 
 function NotFound() {
   return (
