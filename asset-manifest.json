@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/react-best-selling-books/static/css/main.e2e09a02.chunk.css",
-    "main.js": "/react-best-selling-books/static/js/main.93a1d2b3.chunk.js",
-    "main.js.map": "/react-best-selling-books/static/js/main.93a1d2b3.chunk.js.map",
+    "main.css": "/react-best-selling-books/static/css/main.dadace85.chunk.css",
+    "main.js": "/react-best-selling-books/static/js/main.72d2afde.chunk.js",
+    "main.js.map": "/react-best-selling-books/static/js/main.72d2afde.chunk.js.map",
     "runtime~main.js": "/react-best-selling-books/static/js/runtime~main.422d7087.js",
     "runtime~main.js.map": "/react-best-selling-books/static/js/runtime~main.422d7087.js.map",
     "static/css/2.c7bb94bc.chunk.css": "/react-best-selling-books/static/css/2.c7bb94bc.chunk.css",
     "static/js/2.bbafa56c.chunk.js": "/react-best-selling-books/static/js/2.bbafa56c.chunk.js",
     "static/js/2.bbafa56c.chunk.js.map": "/react-best-selling-books/static/js/2.bbafa56c.chunk.js.map",
     "index.html": "/react-best-selling-books/index.html",
-    "precache-manifest.197c02274ffee865d2255dc907021dee.js": "/react-best-selling-books/precache-manifest.197c02274ffee865d2255dc907021dee.js",
+    "precache-manifest.d84aeb72fd2bb0f2a67b57741a11e5cf.js": "/react-best-selling-books/precache-manifest.d84aeb72fd2bb0f2a67b57741a11e5cf.js",
     "service-worker.js": "/react-best-selling-books/service-worker.js",
     "static/css/2.c7bb94bc.chunk.css.map": "/react-best-selling-books/static/css/2.c7bb94bc.chunk.css.map",
-    "static/css/main.e2e09a02.chunk.css.map": "/react-best-selling-books/static/css/main.e2e09a02.chunk.css.map",
+    "static/css/main.dadace85.chunk.css.map": "/react-best-selling-books/static/css/main.dadace85.chunk.css.map",
     "static/media/404.png": "/react-best-selling-books/static/media/404.ab11e70c.png",
-    "static/media/Footer.css": "/react-best-selling-books/static/media/footer-bg.488567cf.png"
+    "static/media/Footer.css": "/react-best-selling-books/static/media/footer-bg.2dffaf29.png"
   }
 }
