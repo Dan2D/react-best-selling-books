@@ -216,7 +216,7 @@
   
   @media (min-width: 641px) {
     :root {
-      --nav-height: 20vw;
+      --book-size: 20vw;
     }
 
     

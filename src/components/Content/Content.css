@@ -26,20 +26,21 @@ div:focus {
   margin: 15px 0;
 }
 
-.overview-books {
-  display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6, BB7 */
-  display: -ms-flexbox; /* TWEENER - IE 10 */
-  display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
-  display: flex; /* NEW, Spec - Firefox, Chrome, Opera */
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-}
 
+.overview-books,
 .genre-container__title-block {
   display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6, BB7 */
   display: -ms-flexbox; /* TWEENER - IE 10 */
   display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
   display: flex; /* NEW, Spec - Firefox, Chrome, Opera */
+}
+
+.overview-books {
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.genre-container__title-block {
   flex-direction: column;
   justify-content: flex-start;
 }

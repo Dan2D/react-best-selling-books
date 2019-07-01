@@ -2,24 +2,38 @@ import React, { Component } from "react";
 import Nav from "./Header/Nav";
 import Content from "./Content/Content";
 import Footer from "./Footer/Footer";
-import API_CALLS from "./Utils/APICalls";
-
-const { NYT_API_KEY, NYT_API, OVRVW_QRY, GNRE_QRY, GNRE_LST_QRY } = API_CALLS[
-  "NYT"
-];
-const {
-  GR_KEY,
-  GR_API,
-  GR_ISBN_QRY,
-  GR_GNRL_QRY,
-  GR_BK_QRY,
-  GR_QRY
-} = API_CALLS["GR"];
-const CORS = "https://cors-anywhere.herokuapp.com/";
+import {
+  goHome,
+  getGenres,
+  genreView,
+  bookDetailView,
+  searchTitle,
+  searchAuthor,
+  setDateHome,
+  setDateGenre,
+  fetchXML,
+  fetchJSON,
+  setStateDataXML,
+  setStateDataJSON,
+  isLoadingToggle
+} from "./Utils/fetch";
 
 export default class App extends Component {
   constructor(props) {
     super(props);
+    this.goHome = goHome.bind(this);
+    this.getGenres = getGenres.bind(this);
+    this.bookDetailView = bookDetailView.bind(this);
+    this.genreView = genreView.bind(this);
+    this.searchTitle = searchTitle.bind(this);
+    this.searchAuthor = searchAuthor.bind(this);
+    this.setDateHome = setDateHome.bind(this);
+    this.setDateGenre = setDateGenre.bind(this);
+    this.fetchXML = fetchXML.bind(this);
+    this.fetchJSON = fetchJSON.bind(this);
+    this.isLoadingToggle = isLoadingToggle.bind(this);
+    this.setStateDataXML = setStateDataXML.bind(this);
+    this.setStateDataJSON = setStateDataJSON.bind(this);
     this.state = {
       date: new Date(),
       dateMin: new Date("2008-06-08"),
@@ -38,70 +52,12 @@ export default class App extends Component {
     };
   }
   componentDidMount() {
-    let navGenres = this.fetchJSON(
-      NYT_API + GNRE_LST_QRY + "&api-key=" + NYT_API_KEY,
-      "navGenres"
-    );
-    let homeContent = this.fetchJSON(
-      NYT_API + OVRVW_QRY + "api-key=" + NYT_API_KEY,
-      "genres",
-      "lists"
-    );
     this.setState({ content: "home" });
-    Promise.all([navGenres, homeContent]);
+    Promise.all([this.getGenres(), this.goHome()]);
   }
 
-  fetchXML = (input, state) => {
-    let stateObj = {};
-    this.setState({ isLoading: true });
-    return fetch(input)
-      .then(response => {
-        if (response.ok) {
-          return response.text();
-        } else {
-          throw new Error("Bad Response");
-        }
-      })
-      .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
-      .then(data => {
-        if (state === undefined) {
-          return data;
-        } else {
-          stateObj[state] = data;
-          stateObj["isLoading"] = false;
-          this.setState(stateObj);
-        }
-      });
-  };
-
-  fetchJSON = (input, state, property, results = "results") => {
-    let stateObj = {};
-    this.setState({ isLoading: true });
-    return fetch(input)
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error("Something went wrong...");
-        }
-      })
-      .then(data => {
-        if (state === undefined) {
-          console.log(data);
-          return data;
-        } else {
-          stateObj[state] =
-            property != null
-              ? data[results][property]
-              : (stateObj[state] = data[results]);
-          stateObj["isLoading"] = false;
-          this.setState(stateObj);
-        }
-      })
-      .catch(error => this.setState({ error, isLoading: false }));
-  };
-
-  goHome = () => {
+  goHomeNow = () => {
+    console.log(this.state.content);
     this.setState({
       content: "home",
       searchTxt: "",
@@ -110,11 +66,7 @@ export default class App extends Component {
       dateMin: new Date("2008-06-08"),
       dateMax: new Date()
     });
-    this.fetchJSON(
-      NYT_API + OVRVW_QRY + "current/&api-key=" + NYT_API_KEY,
-      "genres",
-      "lists"
-    );
+    this.goHome();
   };
 
   handleSelectUpdate = srchTyp => {
@@ -129,44 +81,13 @@ export default class App extends Component {
       searchTyp: searchTyp,
       pg: pg
     });
+    // Add function to format search text outside of this
     searchTxt = searchTxt.replace(/\s/g, "+").toLowerCase();
     searchTxt = searchTxt.replace(/'/g, "%27s");
     if (searchTyp === "title") {
-      this.fetchXML(
-        CORS +
-          GR_API +
-          GR_GNRL_QRY +
-          GR_KEY +
-          "&search[field]=title&q=" +
-          searchTxt +
-          "&page=" +
-          pg,
-        "books"
-      );
+      this.searchTitle(searchTxt, pg);
     } else {
-      this.fetchXML(
-        CORS + GR_API + "api/author_url/" + searchTxt + "?key=" + GR_KEY
-      )
-        .then(data => {
-          if (data.querySelector("author") === null) {
-            return this.setState({ books: data });
-          } else {
-            return data.querySelector("author").getAttribute("id");
-          }
-        })
-        .then(id => {
-          return this.fetchXML(
-            CORS +
-              GR_API +
-              GR_QRY +
-              id +
-              "?format=xml&key=" +
-              GR_KEY +
-              "&page=" +
-              pg,
-            "books"
-          );
-        });
+      this.searchAuthor(searchTxt);
     }
   };
 
@@ -177,32 +98,14 @@ export default class App extends Component {
   handleDateUpdate = date => {
     if (this.state.content === "home") {
       this.setState({ searchTxt: "", date: new Date(date) });
-      this.fetchJSON(
-        NYT_API +
-          OVRVW_QRY +
-          "published_date=" +
-          date +
-          "&api-key=" +
-          NYT_API_KEY,
-        "genres",
-        "lists"
-      );
+      this.setDateHome(date);
     } else {
       this.setState({
         genreTxt: this.state.genreTxt,
         searchTxt: "",
         date: new Date(date)
       });
-      this.fetchJSON(
-        NYT_API +
-          GNRE_QRY +
-          date +
-          "/" +
-          this.state.genreTxt +
-          ".json?api-key=" +
-          NYT_API_KEY,
-        "genres"
-      );
+      this.setDateGenre(date, this.state.genreTxt);
     }
   };
 
@@ -215,58 +118,23 @@ export default class App extends Component {
       dateMax: new Date(dateMax),
       date: new Date(dateMax)
     });
-    this.fetchJSON(
-      NYT_API +
-        GNRE_QRY +
-        "current/" +
-        genreTxt +
-        ".json?api-key=" +
-        NYT_API_KEY,
-      "genres"
-    );
+    this.genreView(genreTxt);
   };
 
   handleBkClick = (cover, isbn) => {
     console.log(cover);
     this.setState({ content: "book", bkCover: cover });
-    this.fetchXML(CORS + GR_API + GR_ISBN_QRY + isbn + "?key=" + GR_KEY)
-      .then(data => {
-        console.log(data);
-        return data.querySelector("book id").textContent;
-      })
-      .then(id => {
-        console.log(GR_API + GR_BK_QRY + id + "?key=" + GR_KEY);
-        this.fetchXML(
-          CORS + GR_API + GR_BK_QRY + id + "?key=" + GR_KEY,
-          "books"
-        );
-      });
+    this.bookDetailView(isbn);
   };
 
   render() {
-    const {
-      date,
-      dateMin,
-      dateMax,
-      navGenres,
-      books,
-      bkCover,
-      genres,
-      genreTxt,
-      content,
-      pg,
-      searchTxt,
-      searchTyp,
-      isLoading,
-      error
-    } = this.state;
-    if (error) {
-      return <p>{error.message}</p>;
+    if (this.state.error) {
+      return <p>{this.state.error.message}</p>;
     }
     return (
       <div className="App">
         <Nav
-          onHomeClick={this.goHome}
+          onHomeClick={this.goHomeNow}
           onSelectUpdate={this.handleSelectUpdate}
           onSearchUpdate={text => {
             this.setState({ searchTxt: text });
@@ -274,33 +142,32 @@ export default class App extends Component {
           onSearchSubmit={this.handleSearch}
           onGenreClick={this.handleGenreUpdate}
           onDateChange={this.handleDateUpdate}
-          content={content}
-          searchTyp={searchTyp}
-          searchTxt={searchTxt}
-          genreTxt={genreTxt}
-          navGenres={navGenres}
-          date={date}
-          dateMin={dateMin}
-          dateMax={dateMax}
+          content={this.state.content}
+          searchTyp={this.state.searchTyp}
+          searchTxt={this.state.searchTxt}
+          genreTxt={this.state.genreTxt}
+          navGenres={this.state.navGenres}
+          date={this.state.date}
+          dateMin={this.state.dateMin}
+          dateMax={this.state.dateMax}
         />
         <Content
           onBkClick={this.handleBkClick}
           onAuthClick={this.handleSearch}
           onGenreClick={this.handleGenreUpdate}
           onPgClick={this.handleSearch}
-          content={content}
-          srchTyp={searchTyp}
-          pg={pg}
-          books={books}
-          bkCover={bkCover}
-          isLoading={isLoading}
-          dateMin={dateMin}
-          dateMax={dateMax}
-          genres={genres}
+          content={this.state.content}
+          srchTyp={this.state.searchTyp}
+          pg={this.state.pg}
+          books={this.state.books}
+          bkCover={this.state.bkCover}
+          isLoading={this.state.isLoading}
+          dateMin={this.state.dateMin}
+          dateMax={this.state.dateMax}
+          genres={this.state.genres}
         />
         <Footer />
       </div>
     );
   }
 }
-// (isbn) => {this.setState({books: book, content: 'book'})}
