@@ -1,80 +1,67 @@
-import React from "react";
+import React, { Component } from "react";
 import Home from "./Home/Home";
+import { connect } from "react-redux";
+import { getHomeContent } from "../../store/actions/pageActions";
 import GenreBks from "./Genre-View/GenreBks";
 import SrchRslt from "./SearchResults/SrchRslt";
 import SnglBk from "./Books/Single-View/SingleBk";
 import smoothscroll from "smoothscroll-polyfill";
 import "./Content.css";
 
-function Content(props) {
-  console.log("CONTENT LOADED");
-  smoothscroll.polyfill();
-  window.scrollTo(0, 0);
-
-  let content;
-
-  function handleAuthClick(author, srchTyp) {
-    return props.onAuthClick(author, srchTyp);
+class Content extends Component {
+  componentDidMount() {
+    this.props.getHomeContent();
   }
+  render() {
+    smoothscroll.polyfill();
+    window.scrollTo(0, 0);
 
-  if (props.content === "home") {
-    content = (
-      <Home
-        onBkClick={(cover, isbn) => props.onBkClick(cover, isbn)}
-        onAuthClick={handleAuthClick}
-        onGenreClick={(genreName, minDate, maxDate) =>
-          props.onGenreClick(genreName, minDate, maxDate)
-        }
-        genreLst={props.genres}
-      />
-    );
-  } else if (props.content === "genre") {
-    content = (
-      <GenreBks
-        onBkClick={(cover, isbn) => props.onBkClick(cover, isbn)}
-        onAuthClick={handleAuthClick}
-        dateMin={props.dateMin}
-        dateMax={props.dateMax}
-        genre={props.genres}
-      />
-    );
-  } else if (props.content === "search") {
-    content = (
-      <SrchRslt
-        onPgClick={(srchTxt, srchTyp, pg) =>
-          props.onPgClick(srchTxt, srchTyp, pg)
-        }
-        onAuthClick={handleAuthClick}
-        pg={props.pg}
-        srchTyp={props.srchTyp}
-        books={props.books}
-      />
-    );
-  } else {
-    content = (
-      <div className="book-single-container">
-        <h4>{props.books.title}</h4>
-        <SnglBk
-          type="book"
-          onAuthClick={(author, srchTyp) => props.onAuthClick(author, srchTyp)}
-          bkCover={props.bkCover}
-          book={props.books}
+    let content;
+
+    if (this.props.content === "home") {
+      content = <Home genreLst={this.props.genreLst} />;
+    } else if (this.props.content === "genre") {
+      content = (
+        <GenreBks
+          dateMin={this.props.dateMin}
+          dateMax={this.props.dateMax}
+          content={this.props.content}
+          genre={this.props.genreLst}
         />
-      </div>
-    );
-  }
+      );
+    } else if (this.props.content === "search") {
+      content = <SrchRslt />;
+    } else {
+      content = (
+        <div className="book-single-container">
+          <SnglBk />
+        </div>
+      );
+    }
 
-  return <div className="content-container">{content}</div>;
+    return <div className="content-container">{content}</div>;
+  }
 }
+const mapStateToProps = (state, ownProps) => {
+  return {
+    genreLst: state.page.genres,
+    content: state.page.content,
+    genreTxt: state.page.genreTxt,
+    dateMin: state.date.dateMin,
+    dateMax: state.date.dateMax,
+    dateCurr: state.date.dateCurr
+  };
+};
 
-const MemoContent = React.memo(Content, (prevProps, nextProps) => {
-  if (
-    prevProps.genres === nextProps.genres &&
-    prevProps.books === nextProps.books
-  ) {
-    return true;
-  }
-  return false;
-});
+const mapDispatchToProps = dispatch => {
+  return {
+    getHomeContent: () => {
+      dispatch(getHomeContent);
+    }
+  };
+};
 
-export default MemoContent;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Content);

@@ -1,12 +1,15 @@
 import React from "react";
+import {updateSearchTxt, updateSearchTyp, } from "../../../store/actions/searchActions";
+import {getSearchTitle, getSearchAuth} from "../../../store/actions/pageActions";
+import {connect} from "react-redux";
 
 function Search(props) {
   function handleSelectUpdate(e) {
-    return props.onSelectUpdate(e.target.value);
+    return props.dispatch(updateSearchTyp(e.target.value));
   }
 
   function handleSearchText(e) {
-    return props.onSearchUpdate(e.target.value);
+    return props.dispatch(updateSearchTxt(e.target.value));
   }
 
   function handleEnter(e) {
@@ -18,8 +21,10 @@ function Search(props) {
   }
 
   function handleSearchSubmit() {
-    let searchTyp = document.getElementsByClassName("search__type")[0].value;
-    return props.onSearchSubmit(props.searchTxt, searchTyp);
+    if (props.searchType === 'title'){
+      return props.dispatch(getSearchTitle(props.searchTxt));
+    }
+    return props.dispatch(getSearchAuth(props.searchTxt));
   }
 
   return (
@@ -34,7 +39,7 @@ function Search(props) {
       />
       <select
         className="search search__type"
-        value={props.searchTyp}
+        value={props.searchType}
         onChange={handleSelectUpdate}
         name="search-options"
       >
@@ -55,4 +60,11 @@ const MemoSearch = React.memo(Search, (prevProps, nextProps) => {
   return false;
 });
 
-export default MemoSearch;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    searchTxt: state.search.searchTxt,
+    searchType: state.search.searchType,
+  }
+}
+
+export default connect(mapStateToProps)(MemoSearch)

@@ -11,15 +11,8 @@ function Home(props) {
         minGenreLst.push(
           <MinGenre
             key={genreLst[i].display_name}
-            onBkClick={(cover, isbn) => props.onBkClick(cover, isbn)}
-            onAuthClick={(author, srchTyp) =>
-              props.onAuthClick(author, srchTyp)
-            }
             books={genreLst[i].books}
             genre={genreLst[i]}
-            onGenreClick={(genreName, minDate, maxDate) =>
-              props.onGenreClick(genreName, minDate, maxDate)
-            }
           />
         );
       }

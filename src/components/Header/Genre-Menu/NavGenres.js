@@ -1,17 +1,25 @@
-import React from "react";
+import React, {useEffect} from "react";
 import NavSubGenre from "./NavSubGenre";
+import {connect} from "react-redux";
+import {getGenres} from "../../../store/actions/menuActions";
 
 function NavGenres(props) {
+
+  useEffect(() => {
+    if (parseInt(props.menu.length) === 0){
+     return props.getGenres()
+    }
+  })
   let genreObj = { navSubGenres: [] };
 
   function genGenreArr(filterTxt, flags, searchType) {
     let regxStr = new RegExp(filterTxt, flags);
     if (searchType) {
-      return props.genreLst.filter(genre =>
+      return props.menu.filter(genre =>
         regxStr.test(genre["display_name"])
       );
     } else {
-      return props.genreLst.filter(
+      return props.menu.filter(
         genre => !regxStr.test(genre["display_name"])
       );
     }
@@ -49,4 +57,19 @@ function NavGenres(props) {
   );
 }
 
-export default NavGenres;
+const mapStateToProps = state => {
+  return {
+    menu: state.menu
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getGenres: () => {
+      dispatch(getGenres);
+    }
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavGenres)

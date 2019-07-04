@@ -6,15 +6,15 @@ import ContentLoader from "react-content-loader";
 import "./Books.css";
 
 function Book(props) {
-  let isbn = props.book.primary_isbn13;
-  if (props.type === "genre") {
-    let isbns = props.book.isbns.filter(
-      (isbn, indx) => indx === props.book.isbns.length - 1
-    );
-    if (isbns[0] !== undefined && isbns !== null) {
-      isbn = isbns[0].isbn13;
-    }
-  }
+  // let isbn = props.book.primary_isbn13;
+  // if (props.type === "genre") {
+  //   let isbns = props.book.isbns.filter(
+  //     (isbn, indx) => indx === props.book.isbns.length - 1
+  //   );
+  //   if (isbns[0] !== undefined && isbns !== null) {
+  //     isbn = isbns[0].isbn13;
+  //   }
+  // }
 
   let placeholders = document.getElementsByClassName("book-placeholder");
   let books = document.getElementsByClassName("book-hide");
@@ -43,10 +43,6 @@ function Book(props) {
     </ContentLoader>
   );
 
-  function handleBkClick(cover) {
-    return props.onBkClick(cover, isbn);
-  }
-
   return (
     <div className="book-container" data-ref={props.type}>
       {placeholder}
@@ -56,10 +52,8 @@ function Book(props) {
       >
         <BookMainInfo
           key={props.book.title + "main-info"}
-          onBkClick={cover => handleBkClick(cover)}
-          onAuthClick={(author, srchTyp) => props.onAuthClick(author, srchTyp)}
           type={props.type}
-          book={props.book}
+          isbn={props.isbn}
           title={props.book.title}
           author={props.book.author}
           bkImg={props.book.book_image}
@@ -78,8 +72,7 @@ function Book(props) {
             buyLnk={props.book.buy_links[1]}
             title={props.book.title}
             author={props.book.author}
-            type={props.type}
-            isbn={isbn}
+            indx={props.indx}
           />
         )}
       </div>

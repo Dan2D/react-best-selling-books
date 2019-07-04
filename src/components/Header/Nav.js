@@ -1,4 +1,6 @@
 import React from "react";
+import {connect} from "react-redux";
+import {getHomeContent} from "../../store/actions/pageActions";
 import Search from "./Search/Search";
 import Date from "./Date/Date";
 import NavGenres from "./Genre-Menu/NavGenres";
@@ -9,7 +11,7 @@ function Nav(props) {
   return (
     <nav className="nav">
       <div className="nav__title-corner">
-        <button className="nav__home-btn" onClick={() => props.onHomeClick()}>
+        <button className="nav__home-btn" onClick={() => props.dispatch(getHomeContent)}>
           <div className="fas fa-home fa-lg" />
         </button>
         <h1 className="nav__site-title">BSB</h1>
@@ -53,4 +55,4 @@ const MemoNav = React.memo(Nav, (prevProps, nextProps) => {
   );
 });
 
-export default MemoNav;
+export default connect(null)(MemoNav)

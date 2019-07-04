@@ -1,11 +1,14 @@
 import React from "react";
+import {connect} from "react-redux";
+import {genreView} from "../../../store/actions/pageActions";
 
 function NavGenreBtns(props) {
+
   function handleGenreClick(e) {
     let genre = e.target.dataset.name;
     let minDate = e.target.dataset.minDate;
     let maxDate = e.target.dataset.maxDate;
-    props.onGenreClick(genre, minDate, maxDate);
+    props.dispatch(genreView(genre, minDate, maxDate));
     e.target.parentElement.style.visibility = "hidden";
   }
 
@@ -43,4 +46,4 @@ function NavGenreBtns(props) {
   );
 }
 
-export default NavGenreBtns;
+export default connect(null)(NavGenreBtns)

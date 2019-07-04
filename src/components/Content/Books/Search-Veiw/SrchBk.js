@@ -2,15 +2,10 @@ import React, { useEffect } from "react";
 import ContentLoader from "react-content-loader";
 
 function SrchBk(props) {
-  let title, author, coverImg, bookId, rvwLnk, pubDt;
-  function qryAssign(input) {
-    if (props.book.querySelector(input) == null) {
-      return "No Info Found";
-    }
-    return props.book.querySelector(input).textContent;
-  }
-
-  function handleAuthClick(e) {
+  let title = props.title;
+   let rvwLnk;
+ 
+   function handleAuthClick(e) {
     return props.onAuthClick(e.target.innerText, "author");
   }
 
@@ -23,22 +18,10 @@ function SrchBk(props) {
     }
   });
 
-  if (props.srchTyp === "title") {
-    title = qryAssign("best_book title");
-    if (title.length > 60) {
-      title = title.substr(0, 60) + "...";
+    if (props.title.length > 60) {
+       title = title.substr(0, 60) + "...";
     }
-    author = qryAssign("author name");
-    coverImg = qryAssign("best_book image_url");
-    bookId = qryAssign("best_book id");
-    rvwLnk = "https://www.goodreads.com/book/show/" + bookId;
-    pubDt = qryAssign("original_publication_year");
-  } else {
-    title = qryAssign("title_without_series");
-    coverImg = qryAssign("image_url");
-    rvwLnk = qryAssign("link");
-    pubDt = qryAssign("publication_year");
-  }
+    rvwLnk = `https://www.goodreads.com/book/show/${props.id}`;
 
   let bookPlaceholder = (
     <ContentLoader
@@ -59,7 +42,7 @@ function SrchBk(props) {
   );
 
   return (
-    <div className="srch-bk-container" data-ref={props.srchTyp}>
+    <div className="srch-bk-container" data-ref={props.srchType}>
       {bookPlaceholder}
       <div className="book-hide" style={{ display: "none" }}>
         <div>
@@ -68,22 +51,22 @@ function SrchBk(props) {
           </div>
           <img
             className="srch-bk-container__cover"
-            src={coverImg}
-            alt={title}
+            src={props.cover}
+            alt={props.title}
           />
           <h5 className="srch-bk-container__title">{title}</h5>
-          {props.srchTyp === "title" ? (
+          {props.srchType === "title" ? (
             <div className="srch-bk-container__author-info">
               <p>by: </p>
               <button
                 className="srch-bk-container__author-btns"
                 onClick={e => handleAuthClick(e)}
               >
-                {author}
+                {props.author}
               </button>
             </div>
           ) : null}
-          <p>Published: {pubDt}</p>
+          <p>Published: {props.pubDt}</p>
         </div>
         <a href={rvwLnk} rel="noopener noreferrer" target="_blank">
           ...more info

@@ -1,34 +1,30 @@
 import React from "react";
+import { connect } from "react-redux";
+import { getBkDtl, getSearchAuth } from "../../../store/actions/pageActions";
 import noCover from "../../../Images/Book-Placeholder.png";
 
 function BookMainInfo(props) {
+console.log(props.isbn, "ISBN MAIN")
   if (props.author) {
     let authorTxt = props.author.split(/,|\sand\s|\swith\s/);
     var authorArr = authorTxt.map((author, indx) => {
+      let comma = "";
       if (indx < authorTxt.length - 1) {
-        return (
-          <span key={author}>
-            <button
-              className="author-btn"
-              onClick={() => props.onAuthClick(author, "author")}
-            >
-              {author},
-            </button>
-          </span>
-        );
-      } else {
-        return (
-          <button
-            key={author}
-            className="author-btn"
-            onClick={() => props.onAuthClick(author, "author")}
-          >
-            {author}
-          </button>
-        );
+        comma = ",";
       }
+      return (
+        <span key={author}>
+          <button
+            className="author-btn"
+            onClick={() => props.dispatch(getSearchAuth(author))}
+          >
+            {author + comma}
+          </button>
+        </span>
+      );
     });
   }
+
   let bookCover = props.bkImg !== null ? props.bkImg : noCover;
 
   let descriptionBlk = (
@@ -37,9 +33,11 @@ function BookMainInfo(props) {
       <p>{props.dscrpt ? props.dscrpt : "No Description Available..."}</p>
     </div>
   );
+
   function handleBkClick() {
-    return props.onBkClick(bookCover);
+    return props.dispatch(getBkDtl(bookCover, props.isbn));
   }
+
   return (
     <div className="book-container__gen-info" data-ref={props.type}>
       <div className="book-container__rank">
@@ -64,4 +62,4 @@ function BookMainInfo(props) {
   );
 }
 
-export default BookMainInfo;
+export default connect(null)(BookMainInfo);

@@ -1,16 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
+import {connect} from "react-redux";
+import {getSearchTitle} from "../../../store/actions/pageActions"
 import smoothscroll from "smoothscroll-polyfill";
 
 function SrchBtns(props) {
-  const [currPg, setPg] = useState(1);
+  console.log(props, "PAGE BTN")
+
   smoothscroll.polyfill();
   let placeholders = document.getElementsByClassName("srch-book-placeholder");
   let books = document.getElementsByClassName("book-hide");
   let pgArr = [];
-
-  if (currPg !== parseInt(props.pg)) {
-    setPg(parseInt(props.pg));
-  }
 
   function handlePgBtnClick(pg) {
     for (let i = 0; i < placeholders.length; i++) {
@@ -18,13 +17,13 @@ function SrchBtns(props) {
       books[i].style.display = "none";
     }
     window.scrollTo(0, 0);
-    let srchTxt = document.getElementsByClassName("search__input")[0].value;
-    return props.onPgClick(srchTxt, props.srchTyp, pg);
+    console.log(props.srchTxt)
+    return props.dispatch(getSearchTitle(props.srchTxt, pg));
   }
 
   function genPgBtns(pgTotal) {
-    let end = currPg + 4;
-    let i = currPg - 4;
+    let end = props.pg + 4;
+    let i = props.pg - 4;
     if (i <= 0) {
       i = 1;
       end = 9;
@@ -40,7 +39,7 @@ function SrchBtns(props) {
       pgArr.push(
         <button
           key={i}
-          className={i === currPg ? "current-pg" : null}
+          className={i === props.pg ? "current-pg" : null}
           onClick={e => handlePgBtnClick(e.target.innerText)}
         >
           {i}
@@ -53,15 +52,15 @@ function SrchBtns(props) {
 
   return (
     <div className="srch-pagination">
-      {currPg > 4 ? (
+      {props.pg > 4 ? (
         <button onClick={() => handlePgBtnClick(1)}>{"<"}</button>
       ) : null}
       {pgArr}
-      {currPg + 4 < props.pgTotal ? (
+      {props.pg + 4 < props.pgTotal ? (
         <button onClick={() => handlePgBtnClick(props.pgTotal)}>{">"}</button>
       ) : null}
     </div>
   );
 }
 
-export default SrchBtns;
+export default connect(null)(SrchBtns);

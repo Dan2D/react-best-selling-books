@@ -1,4 +1,5 @@
 import React from "react";
+import {connect} from "react-redux";
 import SrchHdr from "./SrchHdr";
 import SrchBk from "../Books/Search-Veiw/SrchBk";
 import SrchBtns from "./SrchBtns";
@@ -6,75 +7,56 @@ import NotFound from "./NotFound";
 import "./Search.css";
 
 function SrchRslt(props) {
-  if (props.books.querySelector("author name") == null) {
+  if (parseInt(props.results) === 0) {
     return <NotFound />;
   }
 
-  function qryAssign(input) {
-    if (props.books.querySelector(input) == null) {
-      return "No Info Found";
-    }
-    return props.books.querySelector(input).textContent;
-  }
+  let pgTotal, bksPrPg;
 
-  let bkDataArr = [];
-  let authorInfo, authorHome, authorLnk, authorImg, indxStrt, pgTotal, bksPrPg;
-  let author = qryAssign("author name");
-
-  if (props.srchTyp === "title") {
-    indxStrt = qryAssign("results-start");
-    indxStrt = parseInt(indxStrt);
-    pgTotal = qryAssign("search total-results");
+  if (props.srchType === "title") {
     bksPrPg = 20;
-    props.books
-      .querySelectorAll("search results work")
-      .forEach(book => bkDataArr.push(book));
   }
 
-  if (props.srchTyp === "author") {
-    authorImg = qryAssign("author image_url");
-    authorLnk = qryAssign("author link");
-    authorInfo = qryAssign("author about");
-    authorHome = qryAssign("author hometown");
-    props.books
-      .querySelectorAll("author books book")
-      .forEach(book => bkDataArr.push(book));
-  }
+  pgTotal = props.results > 2000 ? 100 : Math.ceil(props.results / bksPrPg);
 
-  pgTotal = Math.ceil(pgTotal / bksPrPg);
-
-  let bookCode = bkDataArr.map((book, indx) => {
+  let bookCode = props.bookArr.map((book, indx) => {
     return (
       <SrchBk
-        key={author + indx}
+        key={book.title + indx}
         onAuthClick={(author, srchTyp) => props.onAuthClick(author, srchTyp)}
-        srchTyp={props.srchTyp}
-        author={author}
-        indx={indxStrt + indx}
-        book={book}
+        srchType={props.srchType}
+        author={book.author}
+        indx={book.indx}
+        id={book.id}
+        title={book.title}
+        cover={book.coverImg}
+        pubDt={book.pubYr}
+        
       />
     );
   });
+
   return (
     <div className="srch-container">
-      {props.srchTyp === "author" ? (
+      {props.srchType === "author" ? (
         <SrchHdr
-          author={author}
-          authorDscrpt={authorInfo}
-          homeTown={authorHome}
-          authLnk={authorLnk}
-          authImg={authorImg}
+          author={props.author.name}
+          authorDscrpt={props.author.dscrpt}
+          homeTown={props.author.home}
+          authLnk={props.author.link}
+          authImg={props.author.avatar}
         />
       ) : (
         <h2>TITLE SEARCH RESULTS</h2>
       )}
       <div className="srch-bk-list">{bookCode}</div>
-      {props.srchTyp === "author" ? null : (
+      {props.srchType === "author" ? null : (
         <SrchBtns
           onPgClick={(srchTxt, srchTyp, pg) =>
             props.onPgClick(srchTxt, srchTyp, pg)
           }
-          srchTyp={props.srchTyp}
+          srchTxt={props.srchTxt}
+          srchType={props.srchType}
           pg={props.pg}
           pgTotal={pgTotal}
         />
@@ -83,4 +65,26 @@ function SrchRslt(props) {
   );
 }
 
-export default SrchRslt;
+const MemoSrchRslt = React.memo(SrchRslt, (prevProps, nextProps) => {
+  if (
+      prevProps.bookArr === nextProps.bookArr){
+    return true
+  }
+  return false
+})
+
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    bookArr: state.page.books.bookArr,
+    results: state.page.books.results,
+    srchType: state.search.searchType,
+    srchTxt: state.search.searchTxt,
+    pg: parseInt(state.page.books.pg),
+    author: state.page.books.author
+  }
+}
+
+export default connect(mapStateToProps)(MemoSrchRslt);
+
+

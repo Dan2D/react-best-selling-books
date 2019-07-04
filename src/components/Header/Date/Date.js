@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import {connect} from "react-redux";
+import { changeWeek } from "../../../store/actions/dateActions";
+import * as pageAction from "../../../store/actions/pageActions";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 function NavDate(props) {
-  const [startDate, setDate] = useState(props.date);
-  useEffect(() => setDate(props.date), [props.dateMax, props.date]);
-
-  if (props.content === "search" || props.content === "book") {
+  if (props.content === "search" || props.content === "detail") {
     return <></>;
   }
 
@@ -19,15 +19,15 @@ function NavDate(props) {
   }
 
   function handleDtChng(date) {
-    setDate(date);
+    props.changeWeek(date);
   }
 
   function handleDateSelect() {
-    let srchDt = startDate.toISOString().substr(0, 10);
+    let srchDt = props.date.toISOString().substr(0, 10);
     if (props.content === "home") {
-      return props.onDateChange(srchDt, props.content);
+      return props.updateHomeDate(srchDt);
     }
-    return props.onDateChange(srchDt, props.content, props.genreTxt);
+    return props.updateGenreDate(srchDt, props.genreTxt);
   }
 
   function handleWkJmpClk(e) {
@@ -47,7 +47,13 @@ function NavDate(props) {
         newDate = plusMinusDays(props.date, 7, "add");
       }
     }
-    return props.onDateChange(newDate.toISOString().substr(0, 10));
+    props.changeWeek(newDate);
+    newDate = newDate.toISOString().substr(0, 10);
+    if (props.content === "home") {
+      props.updateHomeDate(newDate);
+    } else {
+      props.updateGenreDate(newDate, props.genreTxt);
+    }
   }
 
   return (
@@ -57,7 +63,7 @@ function NavDate(props) {
         {" Prev Week"}
       </button>
       <DatePicker
-        selected={startDate}
+        selected={props.date}
         onChange={handleDtChng}
         minDate={props.dateMin}
         maxDate={props.dateMax}
@@ -78,4 +84,32 @@ function NavDate(props) {
   );
 }
 
-export default NavDate;
+const mapStateToProps = state => {
+  return {
+    date: state.date.dateCurr,
+    dateMin: state.date.dateMin,
+    dateMax: state.date.dateMax,
+    genreTxt: state.page.genreTxt,
+    content: state.page.content
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    changeWeek: date => {
+      dispatch(changeWeek(date));
+    },
+    updateHomeDate: date => {
+      dispatch(pageAction.updateHomeDate(date));
+    },
+    updateGenreDate: (date, genreTxt) => {
+      dispatch(pageAction.updateGenreDate(date, genreTxt));
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NavDate);
+

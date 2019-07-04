@@ -1,7 +1,11 @@
 import React from "react";
 import Book from "../Books/Book";
+import {connect} from "react-redux";
+import {genreView} from "../../../store/actions/pageActions";
+import {getRating} from "../../../store/actions/rateActions";
 
 function MinGenre(props) {
+  let isbn;
   function handleGenreClick() {
     let genre = document.querySelector(
       "button[data-name=" + props.genre.list_name_encoded + "]"
@@ -9,16 +13,31 @@ function MinGenre(props) {
     let genreName = genre.dataset.name;
     let minDate = genre.dataset.minDate;
     let maxDate = genre.dataset.maxDate;
-    return props.onGenreClick(genreName, minDate, maxDate);
+    return props.dispatch(genreView(genreName, minDate, maxDate));
+  }
+
+  function isbnAssign(book){
+    isbn = book.primary_isbn13;
+    if (props.content === "genre") {
+      let isbns = book.isbns.filter(
+        (isbn, indx) => indx === book.isbns.length - 1
+      );
+      if (isbns[0] !== undefined && isbns !== null) {
+        return isbn = isbns[0].isbn13;
+      }
+    }
+    return isbn
   }
 
   let bookArr = props.books.map(book => {
+    isbn = isbnAssign(book);
+    console.log(isbn)
+    props.dispatch(getRating(isbn, book.author, book.title));
     return (
       <Book
         key={props.genre.display_name + "-" + book.title}
-        onBkClick={(cover, isbn) => props.onBkClick(cover, isbn)}
-        onAuthClick={(author, srchTyp) => props.onAuthClick(author, srchTyp)}
         type="overview"
+        isbn={isbn}
         book={book}
       />
     );
@@ -34,4 +53,4 @@ function MinGenre(props) {
   );
 }
 
-export default MinGenre;
+export default connect(null)(MinGenre);

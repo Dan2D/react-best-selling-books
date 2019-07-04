@@ -130,7 +130,7 @@ div.search {
   flex-wrap: wrap;
   align-self: flex-start;
   min-width: 60vw;
-  max-height: 85vh;
+  /* max-height: 50vh; */
   margin-top: 0px;
   padding: 3px;
   border-radius: 0 4px 4px 4px;
@@ -156,13 +156,12 @@ div.search {
 
 .genre-menu__btns[data-ref="Misc."] button {
   max-width: 50vw;
-  padding-right: 15px;
   white-space: normal;
 }
 
 .genre-menu__btns[data-ref="Misc."] {
   min-width: 100vw;
-  max-height: 60vh;
+  max-height: 70vh;
 }
 
 .genre-menu__btns button:hover {
@@ -255,6 +254,7 @@ div.react-datepicker-popper {
   .genre-menu__btns[data-ref="Misc."] {
     min-width: 65vw;
     max-height: 50vh;
+    padding-right: 15px;
   }
 
   .div.react-datepicker-popper {
