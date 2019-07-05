@@ -14,13 +14,11 @@ export const initialState = {
       results: 0,
        pg: 1,
        author: {},
-       cover: ''
-    }
+       cover: '',
+    },
+    isLoading: false
   },
-  rate: {
-    rating: [],
-    id: []
-  },
+  rating: 0,
   search: {
     toggle: false,
     searchTxt: "",

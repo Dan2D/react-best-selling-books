@@ -5,6 +5,6 @@ import pageReducers from "./pageReducers";
 import rateReducer from "./rateReducer";
 import searchReducers from "./searchReducers";
 // COMBINE DATE REDUCERS WITH PAGE REDUCERS
-const rootReducer = combineReducers({menu: menuReducers, search: searchReducers, date: dateReducers, page: pageReducers, rate: rateReducer})
+const rootReducer = combineReducers({menu: menuReducers, search: searchReducers, date: dateReducers, page: pageReducers, rating: rateReducer})
 
 export default rootReducer;

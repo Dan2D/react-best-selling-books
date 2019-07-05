@@ -27,3 +27,5 @@ export const GET_NEW_GENRE = 'GET_NEW_GENRE';
 export const DETAIL_BK_VIEW = 'DETAIL_BK_VIEW';
 
 export const NO_DATA = 'NO_DATA';
+
+export const IS_LOAD = 'IS_LOAD';

@@ -4,7 +4,7 @@ import { getBkDtl, getSearchAuth } from "../../../store/actions/pageActions";
 import noCover from "../../../Images/Book-Placeholder.png";
 
 function BookMainInfo(props) {
-console.log(props.isbn, "ISBN MAIN")
+// console.log(props.isbn, "ISBN MAIN")
   if (props.author) {
     let authorTxt = props.author.split(/,|\sand\s|\swith\s/);
     var authorArr = authorTxt.map((author, indx) => {
@@ -24,10 +24,8 @@ console.log(props.isbn, "ISBN MAIN")
       );
     });
   }
-
   let bookCover = props.bkImg !== null ? props.bkImg : noCover;
-
-  let descriptionBlk = (
+  let descriptionBlock = (
     <div className="book-container__description">
       <h4>Description</h4>
       <p>{props.dscrpt ? props.dscrpt : "No Description Available..."}</p>
@@ -45,7 +43,7 @@ console.log(props.isbn, "ISBN MAIN")
       </div>
       <div className="book-container__cover" data-ref={props.type}>
         <img onClick={handleBkClick} src={bookCover} alt={props.title} />
-        {props.type === "genre" ? descriptionBlk : <></>}
+        {props.type === "genre" ? descriptionBlock : <></>}
       </div>
       <div className="book-container__title-author">
         <button className="book-title" onClick={handleBkClick}>

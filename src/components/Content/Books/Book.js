@@ -3,22 +3,14 @@ import BookMainInfo from "./BookMainInfo";
 import MinBookSubInfo from "./Overview/MinBookSubInfo";
 import BookSubInfo from "./BookSubInfo";
 import ContentLoader from "react-content-loader";
-import "./Books.css";
+import "./Books.css"
+
 
 function Book(props) {
-  // let isbn = props.book.primary_isbn13;
-  // if (props.type === "genre") {
-  //   let isbns = props.book.isbns.filter(
-  //     (isbn, indx) => indx === props.book.isbns.length - 1
-  //   );
-  //   if (isbns[0] !== undefined && isbns !== null) {
-  //     isbn = isbns[0].isbn13;
-  //   }
-  // }
 
   let placeholders = document.getElementsByClassName("book-placeholder");
   let books = document.getElementsByClassName("book-hide");
-  function handleBkLd() {
+  function handleBkLd(){
     for (let i = 0; i < placeholders.length; i++) {
       placeholders[i].style.display = "none";
       books[i].style.display = "flex";
@@ -72,12 +64,14 @@ function Book(props) {
             buyLnk={props.book.buy_links[1]}
             title={props.book.title}
             author={props.book.author}
-            indx={props.indx}
+            isbn={props.isbn}
           />
         )}
       </div>
     </div>
   );
 }
+
+
 
 export default Book;

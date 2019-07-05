@@ -10,12 +10,11 @@ import "./Content.css";
 
 class Content extends Component {
   componentDidMount() {
-    this.props.getHomeContent();
+    this.props.dispatch(getHomeContent);
   }
   render() {
     smoothscroll.polyfill();
     window.scrollTo(0, 0);
-
     let content;
 
     if (this.props.content === "home") {
@@ -53,15 +52,4 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    getHomeContent: () => {
-      dispatch(getHomeContent);
-    }
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Content);
+export default connect(mapStateToProps)(Content);

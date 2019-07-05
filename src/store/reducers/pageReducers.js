@@ -5,7 +5,8 @@ import {
   SEARCH_TITLE,
   SEARCH_AUTH,
   DETAIL_BK_VIEW,
-  NO_DATA
+  NO_DATA,
+  IS_LOAD
 } from "../actions/types";
 // import {initialState} from "../initialState";
 
@@ -80,6 +81,11 @@ const pageReducer = (state = initialState, action) => {
             results: 0
           }
         }
+    case IS_LOAD:
+      return {
+        ...state,
+        isLoading: action.bool
+      }
     default:
       return state;
   }

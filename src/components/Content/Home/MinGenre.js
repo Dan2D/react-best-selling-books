@@ -2,7 +2,6 @@ import React from "react";
 import Book from "../Books/Book";
 import {connect} from "react-redux";
 import {genreView} from "../../../store/actions/pageActions";
-import {getRating} from "../../../store/actions/rateActions";
 
 function MinGenre(props) {
   let isbn;
@@ -31,8 +30,6 @@ function MinGenre(props) {
 
   let bookArr = props.books.map(book => {
     isbn = isbnAssign(book);
-    console.log(isbn)
-    props.dispatch(getRating(isbn, book.author, book.title));
     return (
       <Book
         key={props.genre.display_name + "-" + book.title}

@@ -1,13 +1,21 @@
 import {GET_RATING} from "../actions/types"
 
-const rateReducer = (state = {}, action) => {
+let initialState = {
+    rating: {}
+}
+
+const rateReducer = (state = initialState, action) => {
     switch(action.type){
         case GET_RATING:
             return {
-                ...state,
-                rating: [...state.rating, action.avgRating],
-                id: [...state.id, action.id]
+                rating: {
+                ...state.rating,
+                [action.title]: {
+                rating: action.avgRating,
+                 id: action.id
+                }
             }
+        }
         default:
             return state
     }

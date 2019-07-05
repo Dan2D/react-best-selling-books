@@ -1,10 +1,10 @@
 import React from "react";
 import Book from "../Books/Book";
-import { connect } from "react-redux";
-import { getRating } from "../../../store/actions/rateActions";
+
 
 function GenreBks(props) {
-  console.log(props.genre, "GENRE BOOKS LOADED");
+  console.log("GENRE BOOKS LOADED");
+
   document
     .querySelectorAll("genre-menu__btns")
     .forEach(item => (item.style.visibility = "hidden"));
@@ -12,15 +12,16 @@ function GenreBks(props) {
   let dateMax = dateFormat(props.dateMax);
   let monthly, isbn;
 
+ 
 
   let bookArr = props.genre.books.map((book, indx) => {
     isbn = isbnAssign(book);
-    props.dispatch(getRating(isbn, book.author, book.title));
     return (
       <Book
         key={book.title + "-" + indx}
         onBkClick={(cover, isbn) => props.onBkClick(cover, isbn)}
         onAuthClick={(author, srchTyp) => props.onAuthClick(author, srchTyp)}
+        isLoading={true}
         type="genre"
         indx={indx}
         isbn={isbn}
@@ -40,16 +41,7 @@ function GenreBks(props) {
     return dateStr;
   }
   function isbnAssign(book){
-    isbn = book.primary_isbn13;
-    if (props.content === "genre") {
-      let isbns = book.isbns.filter(
-        (isbn, indx) => indx === book.isbns.length - 1
-      );
-      if (isbns[0] !== undefined && isbns !== null) {
-        return isbn = isbns[0].isbn13;
-      }
-      return isbn;
-    }
+    return isbn = book.primary_isbn13;
   }
 
   if (
@@ -75,4 +67,4 @@ function GenreBks(props) {
   );
 }
 
-export default connect(null)(GenreBks);
+export default GenreBks;

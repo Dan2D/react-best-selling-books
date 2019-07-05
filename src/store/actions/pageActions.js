@@ -5,7 +5,8 @@ import {
   SEARCH_TITLE,
   SEARCH_AUTH,
   DETAIL_BK_VIEW,
-  NO_DATA
+  NO_DATA,
+  IS_LOAD
 } from "./types";
 import API_CALLS from "../../components/Utils/APICalls";
 
@@ -182,6 +183,13 @@ export const getBkDtl = (cover, isbn) => {
         cover
       })
     })
+  }
+}
+
+export const isLoading = (bool) => {
+  return {
+    type: IS_LOAD,
+    bool
   }
 }
 
