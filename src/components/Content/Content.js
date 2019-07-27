@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import Home from "./Home/Home";
 import { connect } from "react-redux";
 import { getHomeContent } from "../../store/actions/pageActions";
@@ -38,7 +39,11 @@ class Content extends Component {
       );
     }
 
-    return <div className="content-container">{content}</div>;
+    return (
+
+        <div className="content-container">{content}</div>
+
+    );
   }
 }
 const mapStateToProps = (state, ownProps) => {

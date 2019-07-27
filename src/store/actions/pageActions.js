@@ -42,7 +42,7 @@ export const updateGenreDate = (date, genreTxt) => {
 };
 
 export const getHomeContent = dispatch => {
-  fetchJSON(
+  return fetchJSON(
     `${CORS}https://api.nytimes.com/svc/books/v3/lists/overview.json?current/&api-key=${NYT_API_KEY}`
   ).then(genres => {
     dispatch({

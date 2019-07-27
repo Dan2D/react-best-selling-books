@@ -1,6 +1,7 @@
 import React from "react";
 import Book from "../Books/Book";
 import {connect} from "react-redux";
+import {Link} from 'react-router-dom';
 import {genreView} from "../../../store/actions/pageActions";
 
 function MinGenre(props) {
@@ -42,9 +43,11 @@ function MinGenre(props) {
 
   return (
     <div className="overview-genre">
-      <button className="overview-genre__title" onClick={handleGenreClick}>
-        {props.genre.display_name}
-      </button>
+      <Link to={`/genre/${props.genre.list_name_encoded}`}
+       className="overview-genre__title" 
+       onClick={handleGenreClick}>
+          {props.genre.display_name}
+      </Link>
       <div className="overview-books">{bookArr}</div>
     </div>
   );

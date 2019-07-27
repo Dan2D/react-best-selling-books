@@ -1,5 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
+import {Link} from 'react-router-dom';
 import {genreView} from "../../../store/actions/pageActions";
 
 function NavGenreBtns(props) {
@@ -28,7 +29,9 @@ function NavGenreBtns(props) {
           data-max-date={btn.newest_published_date}
           onMouseDown={handleGenreClick}
         >
-          {btn.display_name}
+          <Link to={`/${btn.list_name_encoded}`}>
+            {btn.display_name}
+          </Link>
         </button>
       );
     });

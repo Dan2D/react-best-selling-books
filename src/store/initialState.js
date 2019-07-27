@@ -18,7 +18,6 @@ export const initialState = {
     },
     isLoading: false
   },
-  rating: 0,
   search: {
     toggle: false,
     searchTxt: "",

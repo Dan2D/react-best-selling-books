@@ -395,7 +395,9 @@
       .book-container[data-ref="book"] {
         align-self: center;
       }
-    
+      .srch-bk-list {
+        justify-content: flex-start;
+      }
       .book-single-container .book-container__description {
         min-width: 100%;
       }
