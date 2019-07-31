@@ -6,9 +6,8 @@ import {
   SEARCH_AUTH,
   DETAIL_BK_VIEW,
   NO_DATA,
-  IS_LOAD
+  IS_LOADING
 } from "../actions/types";
-// import {initialState} from "../initialState";
 
 let initialState = {
   content: "home",
@@ -81,10 +80,10 @@ const pageReducer = (state = initialState, action) => {
             results: 0
           }
         }
-    case IS_LOAD:
+    case IS_LOADING:
       return {
         ...state,
-        isLoading: action.bool
+        isLoading: action.payload
       }
     default:
       return state;

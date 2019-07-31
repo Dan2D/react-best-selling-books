@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import ContentLoader from "react-content-loader";
 
 function SrchBk(props) {
+  console.log(props.title)
   let title = props.title;
    let rvwLnk;
  

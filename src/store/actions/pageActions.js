@@ -6,7 +6,7 @@ import {
   SEARCH_AUTH,
   DETAIL_BK_VIEW,
   NO_DATA,
-  IS_LOAD
+  IS_LOADING
 } from "./types";
 import API_CALLS from "../../components/Utils/APICalls";
 
@@ -54,6 +54,7 @@ export const getHomeContent = dispatch => {
 
 export const genreView = (genreTxt, dateMin, dateMax) => {
   return function(dispatch) {
+    dispatch({type: IS_LOADING, payload: true});
     fetchJSON(
       `${CORS}https://api.nytimes.com/svc/books/v3/lists/${genreTxt}.json?api-key=${NYT_API_KEY}`
     ).then(genres => {
@@ -64,6 +65,7 @@ export const genreView = (genreTxt, dateMin, dateMax) => {
         dateMin,
         dateMax
       });
+      dispatch({type: IS_LOADING, payload: false});
     });
   };
 };
@@ -73,6 +75,7 @@ export const getSearchTitle = (searchTxt, pg = 1) => {
     `https://www.goodreads.com/search/index.xml?key=${GR_KEY}&search[field]=title&q=${searchTxt}&page=${pg}`
   );
   return function(dispatch) {
+    dispatch({type: IS_LOADING, payload: true});
     fetchXML(
       `${CORS}https://www.goodreads.com/search/index.xml?key=${GR_KEY}&search[field]=title&q=${searchTxt}&page=${pg}`
     ).then(data => {
@@ -101,6 +104,7 @@ export const getSearchTitle = (searchTxt, pg = 1) => {
         totalResults,
         pg
       });
+      dispatch({type: IS_LOADING, payload: false});
     });
   };
 };
@@ -108,6 +112,7 @@ export const getSearchTitle = (searchTxt, pg = 1) => {
 export const getSearchAuth = searchTxt => {
   console.log(`https://www.goodreads.com/api/author_url/${searchTxt}?key=${GR_KEY}`)
   return function(dispatch) {
+    dispatch({type: IS_LOADING, payload: true});
     getAuthId(
       `${CORS}https://www.goodreads.com/api/author_url/${searchTxt}?key=${GR_KEY}`
     )
@@ -151,12 +156,14 @@ export const getSearchAuth = searchTxt => {
           authorInfo,
           searchTxt
         });
+        dispatch({type: IS_LOADING, payload: false});
       });
   };
 };
 
 export const getBkDtl = (cover, isbn) => {
   return function(dispatch){
+    dispatch({type: IS_LOADING, payload: true});
     return getBookId(`${CORS}https://www.goodreads.com/book/isbn/${isbn}?key=${GR_KEY}`)
     .then(id => {
       console.log(`https://www.goodreads.com/book/show/${id}?key=${GR_KEY}`)
@@ -181,14 +188,15 @@ export const getBkDtl = (cover, isbn) => {
         type: DETAIL_BK_VIEW,
         bookInfo,
         cover
-      })
-    })
+      });
+      dispatch({type: IS_LOADING, payload: true});
+    });
   }
 }
 
 export const isLoading = (bool) => {
   return {
-    type: IS_LOAD,
+    type: IS_LOADING,
     bool
   }
 }

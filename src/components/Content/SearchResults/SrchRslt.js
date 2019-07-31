@@ -7,6 +7,10 @@ import NotFound from "./NotFound";
 import "./Search.css";
 
 function SrchRslt(props) {
+  console.log(props.isLoading, "LOADING")
+  if (props.isLoading){
+    return <div>Loading...</div>
+  }
   if (parseInt(props.results) === 0) {
     return <NotFound />;
   }
@@ -74,8 +78,9 @@ const MemoSrchRslt = React.memo(SrchRslt, (prevProps, nextProps) => {
 })
 
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
+    isLoading: state.page.isLoading,
     bookArr: state.page.books.bookArr,
     results: state.page.books.results,
     srchType: state.search.searchType,
@@ -85,6 +90,6 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps)(MemoSrchRslt);
+export default connect(mapStateToProps)(SrchRslt);
 
 

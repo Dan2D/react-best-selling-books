@@ -8,7 +8,9 @@ class GenreBks extends Component {
   }
   render() {
     console.log(this.props.books, "GENRE BOOKS LOADED");
-
+    if (this.props.loading){
+      return <div>LOADING...</div>
+    }
     document
       .querySelectorAll("genre-menu__btns")
       .forEach(item => (item.style.visibility = "hidden"));
@@ -71,12 +73,15 @@ class GenreBks extends Component {
 }
 
 const mapStateToProps = state => {
+  
   return {
-    books: state.page.genreTxt,
+    genre: state.page.genres,
+    books: state.page.genres.books,
     content: state.page.content,
     date: state.date.dateCurr,
     dateMin: state.date.dateMin,
-    dateMax: state.date.dateMax
+    dateMax: state.date.dateMax,
+    loading: state.page.isLoading
   };
 };
 

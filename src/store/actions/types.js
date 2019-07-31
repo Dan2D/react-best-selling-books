@@ -28,4 +28,4 @@ export const DETAIL_BK_VIEW = 'DETAIL_BK_VIEW';
 
 export const NO_DATA = 'NO_DATA';
 
-export const IS_LOAD = 'IS_LOAD';
+export const IS_LOADING = 'IS_LOADING';

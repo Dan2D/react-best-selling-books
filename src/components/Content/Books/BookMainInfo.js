@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import { connect } from "react-redux";
 import { getBkDtl, getSearchAuth } from "../../../store/actions/pageActions";
 import noCover from "../../../Images/Book-Placeholder.png";
@@ -14,12 +15,12 @@ function BookMainInfo(props) {
       }
       return (
         <span key={author}>
-          <button
+          <Link to={`/search/${author.replace(" ", "+")}`}
             className="author-btn"
             onClick={() => props.dispatch(getSearchAuth(author))}
           >
             {author + comma}
-          </button>
+          </Link>
         </span>
       );
     });
