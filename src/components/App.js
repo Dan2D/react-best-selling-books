@@ -57,7 +57,6 @@ export default class App extends Component {
   }
 
   goHomeNow = () => {
-    console.log(this.state.content);
     this.setState({
       content: "home",
       searchTxt: "",
@@ -81,7 +80,6 @@ export default class App extends Component {
       searchTyp: searchTyp,
       pg: pg
     });
-    // Add function to format search text outside of this
     searchTxt = searchTxt.replace(/\s/g, "+").toLowerCase();
     searchTxt = searchTxt.replace(/'/g, "%27s");
     if (searchTyp === "title") {
@@ -122,7 +120,6 @@ export default class App extends Component {
   };
 
   handleBkClick = (cover, isbn) => {
-    console.log(cover);
     this.setState({ content: "book", bkCover: cover });
     this.bookDetailView(isbn);
   };

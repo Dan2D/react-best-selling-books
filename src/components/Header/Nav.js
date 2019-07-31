@@ -5,7 +5,6 @@ import NavGenres from "./Genre-Menu/NavGenres";
 import "./Nav.css";
 
 function Nav(props) {
-  console.log("NAV LOADED");
   return (
     <nav className="nav">
       <div className="nav__title-corner">

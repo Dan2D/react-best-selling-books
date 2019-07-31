@@ -7,7 +7,6 @@ import smoothscroll from "smoothscroll-polyfill";
 import "./Content.css";
 
 function Content(props) {
-  console.log("CONTENT LOADED");
   smoothscroll.polyfill();
   window.scrollTo(0, 0);
 

@@ -3,7 +3,6 @@ import MinGenre from "./MinGenre";
 
 function Home(props) {
   if (props.genreLst.length > 0) {
-    console.log("HOME LOADED");
     var mainGenres = props.genreLst.slice(0, 5);
     var minGenreLst = [];
     function genMinGenre(genreLst) {
