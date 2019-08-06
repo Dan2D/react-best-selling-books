@@ -10,36 +10,26 @@ function Nav(props) {
   console.log("NAV LOADED");
   return (
     <nav className="nav">
-      <div className="nav__title-corner">
-        <button className="nav__home-btn" onClick={() => props.dispatch(getHomeContent)}>
-          <div className="fas fa-home fa-lg" />
-        </button>
-        <h1 className="nav__site-title">BSB</h1>
+      <div className="nav-top">
+        <div className="nav__title-corner">
+          <button className="nav__home-btn" onClick={() => props.dispatch(getHomeContent)}>
+            <div className="fas fa-home fa-lg" />
+          </button>
+          <h1 className="nav__site-title">BSB</h1>
+        </div>
+        <div className="nav-menu">
+          <Search/>
+          <Date />
+        </div>
       </div>
-      <Search
-        onSelectUpdate={srchTyp => props.onSelectUpdate(srchTyp)}
-        onSearchUpdate={searchTxt => props.onSearchUpdate(searchTxt)}
-        onSearchSubmit={(srchTxt, srchTyp) =>
-          props.onSearchSubmit(srchTxt, srchTyp)
-        }
-        searchTyp={props.searchTyp}
-        searchTxt={props.searchTxt}
-      />
-
-      <NavGenres
-        onGenreClick={(genre, minDate, maxDate) =>
-          props.onGenreClick(genre, minDate, maxDate)
-        }
-        genreLst={props.navGenres}
-      />
-      <Date
-        onDateChange={date => props.onDateChange(date)}
-        date={props.date}
-        dateMin={props.dateMin}
-        dateMax={props.dateMax}
-        content={props.content}
-        genreTxt={props.genreTxt}
-      />
+      <div className="nav-bottom">
+        <NavGenres
+          onGenreClick={(genre, minDate, maxDate) =>
+            props.onGenreClick(genre, minDate, maxDate)
+          }
+          genreLst={props.navGenres}
+        />
+      </div>
     </nav>
   );
 }

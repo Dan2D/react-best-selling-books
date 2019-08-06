@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import {updateSearchTxt, updateSearchTyp, } from "../../../store/actions/searchActions";
 import {getSearchTitle, getSearchAuth} from "../../../store/actions/pageActions";
 import {connect} from "react-redux";
@@ -21,22 +22,18 @@ function Search(props) {
   }
 
   function handleSearchSubmit() {
+    let searchLnk = document.getElementById("search-link");
     if (props.searchType === 'title'){
-      return props.dispatch(getSearchTitle(props.searchTxt));
+      props.dispatch(getSearchTitle(props.searchTxt));
+      searchLnk.click()
+      return
     }
-    return props.dispatch(getSearchAuth(props.searchTxt));
+    props.dispatch(getSearchAuth(props.searchTxt));
+    searchLnk.click()
   }
 
   return (
     <div className="search">
-      <input
-        className="search search__input"
-        type="text"
-        placeholder="Search..."
-        onChange={handleSearchText}
-        onKeyDown={handleEnter}
-        value={props.searchTxt}
-      />
       <select
         className="search search__type"
         value={props.searchType}
@@ -46,9 +43,19 @@ function Search(props) {
         <option value="title">Title</option>
         <option value="author">Author</option>
       </select>
-      <button className="search search__btn" onClick={handleSearchSubmit}>
-        Search
-      </button>
+      <input
+        className="search search__input"
+        type="text"
+        placeholder="Search..."
+        onChange={handleSearchText}
+        onKeyDown={handleEnter}
+        value={props.searchTxt}
+      />
+      <Link id="search-link" to={`/search/${props.searchTxt}`}>
+        <button className="search search__btn" onClick={handleSearchSubmit}>
+          Search
+        </button>
+      </Link>
     </div>
   );
 }

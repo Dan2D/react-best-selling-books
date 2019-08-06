@@ -144,3 +144,44 @@ code {
   font-family: "Quicksand", source-code-pro, Menlo, Monaco, Consolas,
     "Courier New", monospace;
 }
+
+p,
+a,
+div,
+button {
+  font-size: 12px;
+}
+
+button {
+  background: none;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+button:focus,
+div:focus {
+  outline: none;
+}
+
+.loading {
+  height: calc(100vh - 135px);
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+  perspective: 50px;
+  animation: loading 3000ms linear infinite;
+}
+
+.loading img {
+  height: 100px;
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate3d(0, 1, 0, 0deg)
+  }
+  100% {
+    transform: rotate3d(0, 1, 0, 360deg)
+  }
+}

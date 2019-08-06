@@ -1,17 +1,21 @@
 import React, { useEffect } from "react";
+import Loading from "../../../Loading";
 import {connect} from "react-redux";
 import {getSearchAuth} from "../../../../store/actions/pageActions";
 import StarRating from "react-rating";
 
 function SingleBk(props) {
   useEffect(() => {
+    if (document.getElementById("bk-description")){
     document.getElementById("bk-description").innerHTML = props.book.dscrpt;
+  }
   });
-
+  if (props.isLoading){
+    return <Loading/>
+  }
   let authors = [];
   props.book.author.forEach((name, indx) => {
     let comma = "";
-    console.log(props.book.author.length, "LENGTH");
     if (indx < props.book.author.length - 1) {
       comma = ",";
     }
@@ -61,6 +65,7 @@ function SingleBk(props) {
 
 const mapStateToProps = (state, ownProps) => {
   return {
+    isLoading: state.page.isLoading,
     book: state.page.books.bookArr,
     cover: state.page.books.cover
   }

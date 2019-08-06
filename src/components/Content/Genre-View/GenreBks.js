@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Book from "../Books/Book";
+import Loading from '../../Loading';
 import { connect } from "react-redux";
 
 class GenreBks extends Component {
@@ -7,9 +8,9 @@ class GenreBks extends Component {
     let genreBks = this.props.books
   }
   render() {
-    console.log(this.props.books, "GENRE BOOKS LOADED");
+    // console.log(this.props.books, "GENRE BOOKS LOADED");
     if (this.props.loading){
-      return <div>LOADING...</div>
+      return <Loading/>
     }
     document
       .querySelectorAll("genre-menu__btns")

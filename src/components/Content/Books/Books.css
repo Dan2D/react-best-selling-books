@@ -1,5 +1,5 @@
 :root {
-    --book-size: 25vw;
+    --book-size: 30vw;
   }
 
 .book-container {
@@ -12,20 +12,20 @@
   }
   
   .book-hide {
-    display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6, BB7 */
-    display: -ms-flexbox; /* TWEENER - IE 10 */
-    display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
-    display: flex; /* NEW, Spec - Firefox, Chrome, Opera */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
   }
   
   .book-container__gen-info {
-    display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6, BB7 */
-    display: -ms-flexbox; /* TWEENER - IE 10 */
-    display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
-    display: flex; /* NEW, Spec - Firefox, Chrome, Opera */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
     flex-direction: column;
     align-items: flex-start;
     text-align: left;
@@ -37,7 +37,7 @@
   }
 
   .book-container__gen-info img {
-    max-width: 100%;
+    max-width: 30vw;
     cursor: pointer;
   }
   
@@ -60,10 +60,10 @@
   
   .book-container__author-info,
   .srch-bk-container__author-info {
-    display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6, BB7 */
-    display: -ms-flexbox; /* TWEENER - IE 10 */
-    display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
-    display: flex; /* NEW, Spec - Firefox, Chrome, Opera */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
     align-items: flex-start;
     width: 110%;
     overflow: hidden;
@@ -142,6 +142,7 @@
   }
   
   .book-container__sub-info {
+    margin-top: 10px;
     font-size: 13px;
   }
   

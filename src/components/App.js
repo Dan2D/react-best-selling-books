@@ -3,10 +3,11 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from './Content/Home/Home';
 import GenreBks from './Content/Genre-View/GenreBks';
 import SnglBk from './Content/Books/Single-View/SingleBk';
-import SrchBk from './Content/Books/Search-Veiw/SrchBk';
+import SrchRslt from './Content/SearchResults/SrchRslt';
 import Nav from "./Header/Nav";
 import Content from "./Content/Content";
 import Footer from "./Footer/Footer";
+import './Content/Content.css';
 
 
 class App extends Component {
@@ -20,7 +21,7 @@ class App extends Component {
             <Route path="/" exact component={Home} />
             <Route path="/genre/:genre"  component={GenreBks} />
             <Route path="/book/:id"  component={SnglBk} />
-            <Route path="/search/:text" component={SrchBk} />
+            <Route path="/search/:text" component={SrchRslt} />
           </Switch>
           {/* <Content /> */}
           <Footer />
@@ -29,6 +30,5 @@ class App extends Component {
     );
   }
 }
-
 
 export default App

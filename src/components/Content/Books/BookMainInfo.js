@@ -5,7 +5,6 @@ import { getBkDtl, getSearchAuth } from "../../../store/actions/pageActions";
 import noCover from "../../../Images/Book-Placeholder.png";
 
 function BookMainInfo(props) {
-// console.log(props.isbn, "ISBN MAIN")
   if (props.author) {
     let authorTxt = props.author.split(/,|\sand\s|\swith\s/);
     var authorArr = authorTxt.map((author, indx) => {
@@ -43,7 +42,9 @@ function BookMainInfo(props) {
         <strong>#{props.rank}</strong>
       </div>
       <div className="book-container__cover" data-ref={props.type}>
-        <img onClick={handleBkClick} src={bookCover} alt={props.title} />
+        <Link to={`/book/${props.title.replace(" ", "+")}`}>
+          <img onClick={handleBkClick} src={bookCover} alt={props.title} />
+        </Link>
         {props.type === "genre" ? descriptionBlock : <></>}
       </div>
       <div className="book-container__title-author">

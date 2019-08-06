@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import { changeWeek } from "../../../store/actions/dateActions";
-import * as pageAction from "../../../store/actions/pageActions";
+import {updateHomeDate, updateGenreDate} from "../../../store/actions/pageActions";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -100,10 +100,10 @@ const mapDispatchToProps = dispatch => {
       dispatch(changeWeek(date));
     },
     updateHomeDate: date => {
-      dispatch(pageAction.updateHomeDate(date));
+      dispatch(updateHomeDate(date));
     },
     updateGenreDate: (date, genreTxt) => {
-      dispatch(pageAction.updateGenreDate(date, genreTxt));
+      dispatch(updateGenreDate(date, genreTxt));
     }
   };
 };

@@ -28,6 +28,7 @@ const pageReducer = (state = initialState, action) => {
         genres: action.payload
       };
     case GET_NEW_GENRE:
+      console.log("TEST GENRE")
       return {
         ...state,
         genres: action.payload,

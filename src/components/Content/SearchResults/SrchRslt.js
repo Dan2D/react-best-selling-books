@@ -1,4 +1,5 @@
 import React from "react";
+import Loading from '../../Loading';
 import {connect} from "react-redux";
 import SrchHdr from "./SrchHdr";
 import SrchBk from "../Books/Search-Veiw/SrchBk";
@@ -9,7 +10,7 @@ import "./Search.css";
 function SrchRslt(props) {
   console.log(props.isLoading, "LOADING")
   if (props.isLoading){
-    return <div>Loading...</div>
+    return <Loading/>
   }
   if (parseInt(props.results) === 0) {
     return <NotFound />;
@@ -24,6 +25,7 @@ function SrchRslt(props) {
   pgTotal = props.results > 2000 ? 100 : Math.ceil(props.results / bksPrPg);
 
   let bookCode = props.bookArr.map((book, indx) => {
+    console.log(book)
     return (
       <SrchBk
         key={book.title + indx}

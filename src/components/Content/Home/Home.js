@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import Loading from '../../Loading';
 import MinGenre from "./MinGenre";
 import {getHomeContent} from "../../../store/actions/pageActions";
 import { connect } from "react-redux";
@@ -9,6 +10,9 @@ class Home extends Component{
   }
 
 render(){
+  if (this.props.isLoading){
+    return <Loading/>
+  }
   if (this.props.genreLst.length > 0) {
     console.log("HOME LOADED");
     var mainGenres = this.props.genreLst.slice(0, 5);
@@ -26,7 +30,7 @@ render(){
     }
     genMinGenre(mainGenres);
   }
-  return <div>{minGenreLst}</div>;
+  return <div className="overview-container">{minGenreLst}</div>;
 }
 
 
@@ -34,6 +38,7 @@ render(){
  
 const mapStateToProps = (state, ownProps) => {
   return {
+    isLoading: state.page.isLoading,
     genreLst: state.page.genres,
     content: state.page.content,
     genreTxt: state.page.genreTxt,

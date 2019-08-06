@@ -1,24 +1,11 @@
-p,
-a,
-div,
-button {
-  font-size: 12px;
-}
-
-button {
-  background: none;
-  outline: none;
-  border: none;
-  cursor: pointer;
-}
-
-button:focus,
-div:focus {
-  outline: none;
-}
-
 .content-container button:hover {
   text-decoration: underline;
+}
+
+.overview-container,
+.genre-container,
+.sngl-bk-container {
+  margin: 135px 10px 0 10px;
 }
 
 .overview-genre__title {
@@ -29,13 +16,14 @@ div:focus {
 
 .overview-books,
 .genre-container__title-block {
-  display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6, BB7 */
-  display: -ms-flexbox; /* TWEENER - IE 10 */
-  display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
-  display: flex; /* NEW, Spec - Firefox, Chrome, Opera */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
 }
 
 .overview-books {
+  margin: 10px 0;
   flex-wrap: wrap;
   justify-content: space-evenly;
 }

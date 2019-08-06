@@ -42,6 +42,7 @@ export const updateGenreDate = (date, genreTxt) => {
 };
 
 export const getHomeContent = dispatch => {
+  dispatch({type: IS_LOADING, payload: true});
   return fetchJSON(
     `${CORS}https://api.nytimes.com/svc/books/v3/lists/overview.json?current/&api-key=${NYT_API_KEY}`
   ).then(genres => {
@@ -49,6 +50,7 @@ export const getHomeContent = dispatch => {
       type: GET_HOME_CONTENT,
       payload: genres.results.lists
     });
+    dispatch({type: IS_LOADING, payload: false});
   });
 };
 
@@ -71,13 +73,10 @@ export const genreView = (genreTxt, dateMin, dateMax) => {
 };
 
 export const getSearchTitle = (searchTxt, pg = 1) => {
-  console.log(
-    `https://www.goodreads.com/search/index.xml?key=${GR_KEY}&search[field]=title&q=${searchTxt}&page=${pg}`
-  );
   return function(dispatch) {
     dispatch({type: IS_LOADING, payload: true});
     fetchXML(
-      `${CORS}https://www.goodreads.com/search/index.xml?key=${GR_KEY}&search[field]=title&q=${searchTxt}&page=${pg}`
+      `${CORS}https://www.goodreads.com/search/index.xml?key=${GR_KEY}&search=title&q=${searchTxt}&page=${pg}`
     ).then(data => {
       let work = Array.from(data.querySelectorAll("work"));
       let resultStart = parseInt(
@@ -86,7 +85,6 @@ export const getSearchTitle = (searchTxt, pg = 1) => {
       let totalResults = parseInt(
         data.querySelector("search total-results").textContent
       );
-      console.log(work);
       let bookArr = work.map((book, indx) => {
         return {
           indx: resultStart + indx,
@@ -97,7 +95,6 @@ export const getSearchTitle = (searchTxt, pg = 1) => {
           pubYr: book.querySelector("original_publication_year").textContent
         };
       });
-      console.log(bookArr, "WORK");
       dispatch({
         type: SEARCH_TITLE,
         bookArr,
@@ -110,7 +107,6 @@ export const getSearchTitle = (searchTxt, pg = 1) => {
 };
 
 export const getSearchAuth = searchTxt => {
-  console.log(`https://www.goodreads.com/api/author_url/${searchTxt}?key=${GR_KEY}`)
   return function(dispatch) {
     dispatch({type: IS_LOADING, payload: true});
     getAuthId(
@@ -124,9 +120,6 @@ export const getSearchAuth = searchTxt => {
           })
           return
         }
-        console.log(
-          `https://www.goodreads.com/author/show/${id}?format=xml&key=${GR_KEY}`
-        );
         return fetchXML(
           `${CORS}https://www.goodreads.com/author/show/${id}?format=xml&key=${GR_KEY}`
         );
@@ -140,7 +133,6 @@ export const getSearchAuth = searchTxt => {
           dscrpt: data.querySelector("author about").textContent,
           link: data.querySelector("author link").textContent
         };
-        console.log(work);
         let bookArr = work.map((book, indx) => {
           return {
             id: book.querySelector("id").textContent,
@@ -149,7 +141,6 @@ export const getSearchAuth = searchTxt => {
             pubYr: book.querySelector("publication_year").textContent
           };
         });
-        console.log(bookArr, "WORK");
         dispatch({
           type: SEARCH_AUTH,
           bookArr,
@@ -166,7 +157,6 @@ export const getBkDtl = (cover, isbn) => {
     dispatch({type: IS_LOADING, payload: true});
     return getBookId(`${CORS}https://www.goodreads.com/book/isbn/${isbn}?key=${GR_KEY}`)
     .then(id => {
-      console.log(`https://www.goodreads.com/book/show/${id}?key=${GR_KEY}`)
       return fetchXML(`${CORS}https://www.goodreads.com/book/show/${id}?key=${GR_KEY}`)
     })
     .then(data => {
@@ -189,7 +179,7 @@ export const getBkDtl = (cover, isbn) => {
         bookInfo,
         cover
       });
-      dispatch({type: IS_LOADING, payload: true});
+      dispatch({type: IS_LOADING, payload: false});
     });
   }
 }
