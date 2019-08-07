@@ -8,7 +8,7 @@
   }
 
 .footer-container {
-  z-index: 1;
+  z-index: 0;
     width: 98vw;
     font-size: 11px;
     padding: 5px;

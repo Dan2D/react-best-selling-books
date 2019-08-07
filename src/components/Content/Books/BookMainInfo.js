@@ -1,42 +1,21 @@
 import React from "react";
+import AuthorArray from "./AuthorArray";
 import {Link} from "react-router-dom";
 import { connect } from "react-redux";
-import { getBkDtl, getSearchAuth } from "../../../store/actions/pageActions";
+import {getBkDtl} from "../../../store/actions/pageActions";
 import noCover from "../../../Images/Book-Placeholder.png";
 
 function BookMainInfo(props) {
-  if (props.author) {
-    let authorTxt = props.author.split(/,|\sand\s|\swith\s/);
-    var authorArr = authorTxt.map((author, indx) => {
-      let comma = "";
-      if (indx < authorTxt.length - 1) {
-        comma = ",";
-      }
-      return (
-        <span key={author}>
-          <Link to={`/search/${author.replace(" ", "+")}`}
-            className="author-btn"
-            onClick={() => props.dispatch(getSearchAuth(author))}
-          >
-            {author + comma}
-          </Link>
-        </span>
-      );
-    });
-  }
   let bookCover = props.bkImg !== null ? props.bkImg : noCover;
-  let descriptionBlock = (
-    <div className="book-container__description">
-      <h4>Description</h4>
-      <p>{props.dscrpt ? props.dscrpt : "No Description Available..."}</p>
-    </div>
-  );
-
+  let descriptionBlock = <div className="book-container__description">
+                          <h4>Description</h4>
+                          <p>{props.dscrpt ? props.dscrpt : "No Description Available..."}</p>
+                        </div>;
   function handleBkClick() {
     return props.dispatch(getBkDtl(bookCover, props.isbn));
   }
 
-  return (
+  return ( 
     <div className="book-container__gen-info" data-ref={props.type}>
       <div className="book-container__rank">
         <strong>#{props.rank}</strong>
@@ -54,7 +33,7 @@ function BookMainInfo(props) {
         <div className="book-container__author-info">
           <p>by</p>
           <div className="book-container__author-btns" data-ref={props.type}>
-            {authorArr}
+            <AuthorArray authors={props.author}/>
           </div>
         </div>
       </div>

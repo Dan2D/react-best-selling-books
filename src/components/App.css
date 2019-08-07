@@ -15,17 +15,18 @@
   align-items:center;
   z-index: -5;
   opacity: 0;
-  top: 0;
+  top: 135px;
   width:100vw;
-  height: 100vh;
+  height: calc(100vh - 135px);
   background: white;
-  transition: all ease 500ms;
+  transition: all ease 500ms 500ms;
 }
 
 .loading img {
   height: 100px;
   perspective: 50px;
-  animation: loading 3000ms linear;
+  animation: loading 3000ms linear infinite forwards;
+  animation-iteration-count: 5;
 }
 
 .loading-active {
@@ -35,7 +36,8 @@
 }
 
 .loading-active img {
-  animation: loading 3000ms linear infinite;
+  opacity: 1;
+  animation-iteration-count: infinite;
 }
 
 .overview-genre__title {
@@ -74,28 +76,6 @@
   font-style: italic;
 }
 
-/* .fade-enter {
-  opacity: 0;
-  z-index: 5;
-}
-
-.fade-enter-active {
-  opacity: 1;
-  z-index: 5;
-  transition: all 1000ms ease;
-}
-
-.fade-exit {
-  opacity: 1;
-  z-index: 5;
-}
-
-.fade-exit-active {
-  opacity: 0;
-  z-index: 0;
-  transition: all 1000ms ease;
-} */
-
 @keyframes loading {
   0% {
     transform: rotate3d(0, 1, 0, 0deg)
@@ -104,6 +84,7 @@
     transform: rotate3d(0, 1, 0, 360deg)
   }
 }
+
 @media (min-width: 641px) {
   p,
   a,

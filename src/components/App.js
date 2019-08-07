@@ -14,19 +14,18 @@ import './App.css';
 class App extends Component {
 
   render() {
-    console.log(this.props.content)
     return (
       <Router>
         <div className="App">
           <Nav />
-          <Loading isLoading={this.props.isLoading}/>
+          {/* <Loading isLoading={this.props.isLoading}/> */}
                 <Switch>
                   <Route path="/" exact component={Home} />
                   <Route path="/genre/:genre"  component={GenreBks} />
                   <Route path="/book/:id"  component={SnglBk} />
                   <Route path="/search/:text" component={SrchRslt} />
                 </Switch>
-          <Footer />
+          {this.props.isLoading ? null : <Footer />}
         </div>
         </Router>
     );

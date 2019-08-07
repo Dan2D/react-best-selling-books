@@ -33,7 +33,7 @@ function MinGenre(props) {
     isbn = isbnAssign(book);
     return (
       <Book
-        key={props.genre.display_name + "-" + book.title}
+        key={`${props.genre.display_name}-${book.title}`}
         type="overview"
         isbn={isbn}
         book={book}
@@ -43,12 +43,16 @@ function MinGenre(props) {
 
   return (
     <div className="overview-genre">
-      <Link to={`/genre/${props.genre.list_name_encoded}`}
+      <Link 
+       to={`/genre/${props.genre.list_name_encoded}`}
        className="overview-genre__title" 
-       onClick={handleGenreClick}>
-          {props.genre.display_name}
+       onClick={handleGenreClick}
+      >
+        {props.genre.display_name}
       </Link>
-      <div className="overview-books">{bookArr}</div>
+      <div className="overview-books">
+        {bookArr}
+      </div>
     </div>
   );
 }

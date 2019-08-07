@@ -48,9 +48,6 @@ class BookSubInfo extends Component {
   }
 }
   render() {
-    if (this.props.rating !== 0) {
-      this.props.isBkRdy();
-    }
     return (
       <div className="book-container__sub-info">
         <a
