@@ -14,7 +14,7 @@ class BookSubInfo extends Component {
     };
   }
   componentDidMount() {
-    console.log(`https://www.goodreads.com/search/index.xml?key=${GR_KEY}&q=${this.props.isbn}`)
+    let _this = this;
     fetch(
       `${CORS}https://www.goodreads.com/search/index.xml?key=${GR_KEY}&q=${this.props.isbn}`
     )
@@ -27,14 +27,13 @@ class BookSubInfo extends Component {
         let id = data.querySelector("results work id").textContent;
         let avgRating = data.querySelector("results work average_rating")
           .textContent;
-        this.setState({rating: avgRating, id: id})
+        _this.setState({rating: avgRating, id: id})
         return;
       });
       titleSearch(this.props.title, this.props.author);
     function titleSearch(title, author) {
       let authorEdit = author.replace(/\s/g, "+");
       let titleEdit = title.replace(/\s/g, "+");
-      console.log(`https://www.goodreads.com/book/title.xml?author=${authorEdit}&key=${GR_KEY}&title=${titleEdit}`)
       fetch(
         `${CORS}https://www.goodreads.com/book/title.xml?author=${authorEdit}&key=${GR_KEY}&title=${titleEdit}`
       )
@@ -43,7 +42,7 @@ class BookSubInfo extends Component {
         .then(data => {
           let id = data.querySelector("book id").textContent;
           let avgRating = data.querySelector("book average_rating").textContent;
-          this.setState({rating: avgRating, id: id})
+          _this.setState({rating: avgRating, id: id});
       return;
     });
   }

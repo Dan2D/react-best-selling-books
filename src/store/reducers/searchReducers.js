@@ -17,14 +17,12 @@ const searchReducers = (state = initialState, action) => {
                     searchType: 'title'
                 }
         case GET_NEW_GENRE:
-            console.log("SEARCH CHANGE")
             return{
                 ...state,
                 searchTxt: '',
                 searchType: 'title'
             }
         case GET_SEARCH_TXT:
-            console.log(action.payload, "REDUCERS")
             return {
                 ...state,
                 searchTxt: action.payload}

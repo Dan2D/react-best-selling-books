@@ -28,7 +28,6 @@ const pageReducer = (state = initialState, action) => {
         genres: action.payload
       };
     case GET_NEW_GENRE:
-      console.log("TEST GENRE")
       return {
         ...state,
         genres: action.payload,
@@ -46,7 +45,6 @@ const pageReducer = (state = initialState, action) => {
               }
           }
     case UPDATE_CONTENT_DATE:
-      console.log(action.payload, "REDUCERS");
       return { ...state, genres: action.payload };
     case SEARCH_TITLE:
       return {

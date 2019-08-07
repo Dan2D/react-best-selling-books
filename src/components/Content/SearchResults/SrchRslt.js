@@ -8,7 +8,6 @@ import NotFound from "./NotFound";
 import "./Search.css";
 
 function SrchRslt(props) {
-  console.log(props.isLoading, "LOADING")
   if (props.isLoading){
     return <Loading/>
   }
@@ -25,7 +24,6 @@ function SrchRslt(props) {
   pgTotal = props.results > 2000 ? 100 : Math.ceil(props.results / bksPrPg);
 
   let bookCode = props.bookArr.map((book, indx) => {
-    console.log(book)
     return (
       <SrchBk
         key={book.title + indx}
@@ -73,7 +71,7 @@ function SrchRslt(props) {
 
 const MemoSrchRslt = React.memo(SrchRslt, (prevProps, nextProps) => {
   if (
-      prevProps.bookArr === nextProps.bookArr){
+      prevProps.bookArr === nextProps.bookArr && prevProps.isLoading === nextProps.isLoading){
     return true
   }
   return false
@@ -92,6 +90,6 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(SrchRslt);
+export default connect(mapStateToProps)(MemoSrchRslt);
 
 

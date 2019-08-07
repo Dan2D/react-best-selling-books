@@ -16,12 +16,16 @@ function Search(props) {
   function handleEnter(e) {
     if (e.keyCode === 13) {
       e.target.blur();
-      return handleSearchSubmit(e.target.value);
+      return handleSearchSubmit(e);
     }
     return;
   }
 
-  function handleSearchSubmit() {
+  function handleSearchSubmit(e) {
+    e.preventDefault();
+    if (props.searchTxt === ""){
+      return;
+    }
     let searchLnk = document.getElementById("search-link");
     if (props.searchType === 'title'){
       props.dispatch(getSearchTitle(props.searchTxt));

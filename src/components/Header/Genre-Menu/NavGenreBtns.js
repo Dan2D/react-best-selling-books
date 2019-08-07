@@ -2,7 +2,6 @@ import React from "react";
 import {connect} from "react-redux";
 import {Link} from 'react-router-dom';
 import {genreView} from "../../../store/actions/pageActions";
-import { et } from "date-fns/esm/locale";
 
 function NavGenreBtns(props) {
 
@@ -25,15 +24,14 @@ function NavGenreBtns(props) {
   function genGenreBtns(array) {
     return array.map(btn => {
       return (
-        <Link to={`/genre/${btn.list_name_encoded}`}>
+        <Link key={btn.display_name} to={`/genre/${btn.list_name_encoded}`}>
           <button
-            key={btn.display_name}
             data-name={btn.list_name_encoded}
             data-min-date={btn.oldest_published_date}
             data-max-date={btn.newest_published_date}
             onMouseDown={handleGenreClick}
           >
-              {btn.display_name}
+            {btn.display_name}
           </button>
         </Link>
       );

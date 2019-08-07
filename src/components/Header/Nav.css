@@ -32,7 +32,7 @@ div.search,
   width: 100vw;
   flex-direction: column;
   background: #fffef8;
-  z-index: 1;
+  z-index: 2;
 }
 
 .nav-top {
@@ -64,6 +64,10 @@ div.search,
   color: #333126;
 }
 
+.nav__home-btn img {
+  height: 20px;
+}
+
 .nav-menu {
   width:100%;
   display: flex;
@@ -91,7 +95,7 @@ div.search,
 
 .search__type {
   min-width: 70px;
-  background-image: url("https://image.flaticon.com/icons/png/512/60/60995.png");
+  background-image: url("../../Images/arrow-down.png");
   background-repeat: no-repeat;
   background-size: 8px;
   background-position: 90%;
@@ -203,6 +207,27 @@ div.search,
 .date-picker input,
 .date-picker button {
   padding: 2px;
+}
+
+.date-picker,
+.date-picker__wk-btn {
+  display: flex;
+  align-items: center;
+}
+
+.arrow-down,
+.arrow-left,
+.arrow-right {
+  height: 5px;
+  width: 10px;
+}
+
+.arrow-left {
+  transform: rotate(90deg)
+}
+
+.arrow-right {
+  transform: rotate(-90deg)
 }
 
 .date-picker {

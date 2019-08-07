@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from 'react-router-dom';
 import {connect} from "react-redux";
 import {getHomeContent} from "../../store/actions/pageActions";
 import Search from "./Search/Search";
@@ -7,14 +8,20 @@ import NavGenres from "./Genre-Menu/NavGenres";
 import "./Nav.css";
 
 function Nav(props) {
-  console.log("NAV LOADED");
+  const handleHomeClick = () => {
+    if (props.content !== "home"){
+      return props.dispatch(getHomeContent)
+    }
+  }
   return (
     <nav className="nav">
       <div className="nav-top">
         <div className="nav__title-corner">
-          <button className="nav__home-btn" onClick={() => props.dispatch(getHomeContent)}>
-            <div className="fas fa-home fa-lg" />
+          <Link to="/">
+          <button className="nav__home-btn" onClick={handleHomeClick}>
+            <img src={require("../../Images/home.png")} alt="home-btn"/>
           </button>
+          </Link>
           <h1 className="nav__site-title">BSB</h1>
         </div>
         <div className="nav-menu">
@@ -45,4 +52,10 @@ const MemoNav = React.memo(Nav, (prevProps, nextProps) => {
   );
 });
 
-export default connect(null)(MemoNav)
+const mapStateToProps = state => {
+  return {
+    content: state.page.content
+  }
+}
+
+export default connect(mapStateToProps)(MemoNav)

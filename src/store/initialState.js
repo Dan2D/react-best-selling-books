@@ -6,7 +6,7 @@ export const initialState = {
     dateMax: new Date()
   },
   page: {
-    content: "home",
+    content: "",
     genreTxt: "",
     genres: {},
     books: {

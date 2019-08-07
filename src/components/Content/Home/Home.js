@@ -3,6 +3,7 @@ import Loading from '../../Loading';
 import MinGenre from "./MinGenre";
 import {getHomeContent} from "../../../store/actions/pageActions";
 import { connect } from "react-redux";
+import '../../App.css';
 
 class Home extends Component{
   componentDidMount(){
@@ -10,11 +11,7 @@ class Home extends Component{
   }
 
 render(){
-  if (this.props.isLoading){
-    return <Loading/>
-  }
   if (this.props.genreLst.length > 0) {
-    console.log("HOME LOADED");
     var mainGenres = this.props.genreLst.slice(0, 5);
     var minGenreLst = [];
     function genMinGenre(genreLst) {
@@ -30,7 +27,13 @@ render(){
     }
     genMinGenre(mainGenres);
   }
-  return <div className="overview-container">{minGenreLst}</div>;
+  return (
+          <>
+            {/* <Loading isLoading={this.props.isLoading}/> */}
+            <div className="overview-container">{minGenreLst}</div>;
+          </>
+  )
+  
 }
 
 

@@ -4,8 +4,6 @@ import {getSearchTitle} from "../../../store/actions/pageActions"
 import smoothscroll from "smoothscroll-polyfill";
 
 function SrchBtns(props) {
-  console.log(props, "PAGE BTN")
-
   smoothscroll.polyfill();
   let placeholders = document.getElementsByClassName("srch-book-placeholder");
   let books = document.getElementsByClassName("book-hide");
@@ -17,7 +15,6 @@ function SrchBtns(props) {
       books[i].style.display = "none";
     }
     window.scrollTo(0, 0);
-    console.log(props.srchTxt)
     return props.dispatch(getSearchTitle(props.srchTxt, pg));
   }
 

@@ -4,13 +4,9 @@ import Loading from '../../Loading';
 import { connect } from "react-redux";
 
 class GenreBks extends Component {
-  componentDidMount(){
-    let genreBks = this.props.books
-  }
   render() {
-    // console.log(this.props.books, "GENRE BOOKS LOADED");
     if (this.props.loading){
-      return <Loading/>
+      return <Loading content={this.props.content}/>
     }
     document
       .querySelectorAll("genre-menu__btns")

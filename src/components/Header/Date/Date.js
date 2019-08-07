@@ -58,8 +58,8 @@ function NavDate(props) {
 
   return (
     <div className="date-picker">
-      <button onClick={handleWkJmpClk} data-name="prev">
-        <div className="fas fa-caret-left fa-reg" />
+      <button className="date-picker__wk-btn" onClick={handleWkJmpClk} data-name="prev">
+        <img className="arrow-left" src={require("../../../Images/arrow-down.png")} alt="arrow"/>
         {" Prev Week"}
       </button>
       <DatePicker
@@ -73,9 +73,9 @@ function NavDate(props) {
         showYearDropdown
         dropdownMode="select"
       />
-      <button onClick={handleWkJmpClk} data-name="next">
+      <button className="date-picker__wk-btn" onClick={handleWkJmpClk} data-name="next">
         {"Next Week "}
-        <div className="fas fa-caret-right fa-reg" />
+        <img className="arrow-right" src={require("../../../Images/arrow-down.png")} alt="arrow"/>
       </button>
       <button className="date-picker__go-btn" onClick={handleDateSelect}>
         GO

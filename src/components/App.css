@@ -8,6 +8,36 @@
   margin: 135px 10px 0 10px;
 }
 
+.loading {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  z-index: -5;
+  opacity: 0;
+  top: 0;
+  width:100vw;
+  height: 100vh;
+  background: white;
+  transition: all ease 500ms;
+}
+
+.loading img {
+  height: 100px;
+  perspective: 50px;
+  animation: loading 3000ms linear;
+}
+
+.loading-active {
+  z-index: 1;
+  opacity: 1;
+  transition: all ease 500ms;
+}
+
+.loading-active img {
+  animation: loading 3000ms linear infinite;
+}
+
 .overview-genre__title {
   font-size: 17px;
   margin: 15px 0;
@@ -44,6 +74,36 @@
   font-style: italic;
 }
 
+/* .fade-enter {
+  opacity: 0;
+  z-index: 5;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  z-index: 5;
+  transition: all 1000ms ease;
+}
+
+.fade-exit {
+  opacity: 1;
+  z-index: 5;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  z-index: 0;
+  transition: all 1000ms ease;
+} */
+
+@keyframes loading {
+  0% {
+    transform: rotate3d(0, 1, 0, 0deg)
+  }
+  100% {
+    transform: rotate3d(0, 1, 0, 360deg)
+  }
+}
 @media (min-width: 641px) {
   p,
   a,
