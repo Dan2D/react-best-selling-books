@@ -1,11 +1,11 @@
 import React, {Suspense, lazy} from "react";
-import BkPlaceholder from './BkPlaceholder';
+import BkPlaceholder from './Book-Components/BkPlaceholder';
 import "./Books.css"
 
 function Book(props) {
-  const LazyBkMain = lazy(() =>  import('./BookMainInfo'));
+  const LazyBkMain = lazy(() =>  import('./Book-Components/BookMainInfo'));
   const LazyMinBkSub = lazy(() => import('./Overview/MinBookSubInfo'));
-  const LazyBkSub = lazy(() => import('./BookSubInfo'));
+  const LazyBkSub = lazy(() => import('./Book-Components/BookSubInfo'));
 
   return (
     <div className="book-container" data-ref={props.type}>

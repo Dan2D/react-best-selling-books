@@ -31,9 +31,7 @@ function Nav(props) {
       </div>
       <div className="nav-bottom">
         <NavGenres
-          onGenreClick={(genre, minDate, maxDate) =>
-            props.onGenreClick(genre, minDate, maxDate)
-          }
+          onGenreClick={(genre, minDate, maxDate) => props.onGenreClick(genre, minDate, maxDate)}
           genreLst={props.navGenres}
         />
       </div>

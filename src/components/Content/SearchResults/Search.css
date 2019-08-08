@@ -55,11 +55,14 @@
   margin: 10px;
 }
 
-.srch-pagination button {
+.srch-pagination a {
   font-size: 14px;
+  color: black;
+  text-decoration: none;
+  margin: 0 5px;
 }
 
-.srch-pagination button.current-pg {
+.srch-pagination a.current-pg {
   color: blue;
   pointer-events: none;
 }

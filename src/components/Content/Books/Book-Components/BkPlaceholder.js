@@ -5,7 +5,6 @@ function BkPlaceholder(props) {
     return (
         <ContentLoader
       className="book-placeholder"
-      // style={{ display: props.type === "overview" ? "none" : "block" }}
       height={550}
       width={300}
       speed={2}

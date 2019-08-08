@@ -1,5 +1,6 @@
 import React from "react";
 import Book from "../Books/Book";
+import {isbnAssign} from '../../Utils/bookhelpers';
 import {connect} from "react-redux";
 import {Link} from 'react-router-dom';
 import {genreView} from "../../../store/actions/pageActions";
@@ -14,19 +15,6 @@ function MinGenre(props) {
     let minDate = genre.dataset.minDate;
     let maxDate = genre.dataset.maxDate;
     return props.dispatch(genreView(genreName, minDate, maxDate));
-  }
-
-  function isbnAssign(book){
-    isbn = book.primary_isbn13;
-    if (props.content === "genre") {
-      let isbns = book.isbns.filter(
-        (isbn, indx) => indx === book.isbns.length - 1
-      );
-      if (isbns[0] !== undefined && isbns !== null) {
-        return isbn = isbns[0].isbn13;
-      }
-    }
-    return isbn
   }
 
   let bookArr = props.books.map(book => {

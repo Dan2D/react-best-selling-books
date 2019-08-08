@@ -10,22 +10,19 @@
   .book-placeholder {
     width: var(--book-size);
   }
-  
-  .book-hide {
+  .book-hide,
+  .book-container__gen-info,
+  .book-container__author-info,
+  .srch-bk-container__author-info,
+  .book-container__ratings,
+  .sngl-bk-main {
     display: -webkit-box;
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
   }
-  
+    
   .book-container__gen-info {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
     flex-direction: column;
     align-items: flex-start;
     text-align: left;
@@ -34,6 +31,12 @@
   
   .book-container__rank {
       font-size: 14px;
+  }
+
+  .book-hide {
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
   }
 
   .book-container__gen-info img {
@@ -50,6 +53,17 @@
     width: calc(var(--book-size) + 1vw);
     height: calc((var(--book-size) + 1vw) * 1.5);
   }
+
+  .book-title,
+  .author-btn {
+    text-decoration: none;
+    color: black;
+  }
+
+  .book-title:hover,
+  .author-btn:hover {
+    text-decoration: underline;
+  }
   
   .book-container__gen-info button,
   .srch-bk-container__author-info button {
@@ -60,10 +74,6 @@
   
   .book-container__author-info,
   .srch-bk-container__author-info {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
     align-items: flex-start;
     width: 110%;
     overflow: hidden;
@@ -99,10 +109,6 @@
   
   .book-container__ratings {
     margin: 5px 0;
-    display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6, BB7 */
-    display: -ms-flexbox; /* TWEENER - IE 10 */
-    display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
-    display: flex; /* NEW, Spec - Firefox, Chrome, Opera */
   }
   
   .book-container[data-ref="genre"],
@@ -137,7 +143,7 @@
     width: 32vw;
   }
   
-  .book-container[data-ref="book"] button.book-title {
+  .book-container[data-ref="book"] a.book-title {
     pointer-events: none;
   }
   
@@ -155,10 +161,6 @@
   }
   
   .sngl-bk-main {
-    display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6, BB7 */
-    display: -ms-flexbox; /* TWEENER - IE 10 */
-    display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
-    display: flex; /* NEW, Spec - Firefox, Chrome, Opera */
     flex-direction: column;
   }
   
@@ -209,10 +211,6 @@
   .srch-bk-container__title {
     font-size: 13px;
     margin: 0;
-  }
-  
-  .book-hide > p {
-    width: 110%;
   }
   
   @media (min-width: 641px) {

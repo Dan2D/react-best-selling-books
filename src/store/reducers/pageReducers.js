@@ -50,6 +50,8 @@ const pageReducer = (state = initialState, action) => {
       return {
         ...state,
         content: "search",
+        text: action.searchTxt,
+        type: "title",
         books: {
           ...state.books,
           bookArr: action.bookArr,
@@ -61,6 +63,8 @@ const pageReducer = (state = initialState, action) => {
       return {
         ...state,
         content: "search",
+        text: action.searchTxt,
+        type: "author",
         books: {
           ...state.books,
           bookArr: action.bookArr,

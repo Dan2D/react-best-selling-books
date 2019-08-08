@@ -1,7 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {updateSearchTxt, updateSearchTyp, } from "../../../store/actions/searchActions";
-import {getSearchTitle, getSearchAuth} from "../../../store/actions/pageActions";
 import {connect} from "react-redux";
 
 function Search(props) {
@@ -27,12 +26,6 @@ function Search(props) {
       return;
     }
     let searchLnk = document.getElementById("search-link");
-    if (props.searchType === 'title'){
-      props.dispatch(getSearchTitle(props.searchTxt));
-      searchLnk.click()
-      return
-    }
-    props.dispatch(getSearchAuth(props.searchTxt));
     searchLnk.click()
   }
 
@@ -55,8 +48,8 @@ function Search(props) {
         onKeyDown={handleEnter}
         value={props.searchTxt}
       />
-      <Link id="search-link" to={`/search/${props.searchTxt}`}>
-        <button className="search search__btn" onClick={handleSearchSubmit}>
+      <Link id="search-link" to={`/search/${props.searchType}=${props.searchTxt}/1`}>
+        <button className="search search__btn">
           Search
         </button>
       </Link>

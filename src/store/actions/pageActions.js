@@ -97,6 +97,7 @@ export const getSearchTitle = (searchTxt, pg = 1) => {
       });
       dispatch({
         type: SEARCH_TITLE,
+        searchTxt,
         bookArr,
         totalResults,
         pg

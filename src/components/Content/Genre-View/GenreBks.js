@@ -1,22 +1,20 @@
 import React, { Component } from "react";
 import Book from "../Books/Book";
-import Loading from '../../Loading';
+
+import {isbnAssign, dateFormat, monthDateStatus} from '../../Utils/bookhelpers';
 import { connect } from "react-redux";
 
 class GenreBks extends Component {
   render() {
     if (this.props.loading){
-      return <Loading content={this.props.content}/>
+      return <div/>
     }
-    document
-      .querySelectorAll("genre-menu__btns")
-      .forEach(item => (item.style.visibility = "hidden"));
+    document.querySelectorAll("genre-menu__btns").forEach(item => (item.style.visibility = "hidden"));
     let dateMin = dateFormat(this.props.dateMin);
     let dateMax = dateFormat(this.props.dateMax);
-    let monthly, isbn;
 
-    let bookArr = this.props.books.map((book, indx) => {
-      isbn = isbnAssign(book);
+    let bookArr = this.props.genre.books.map((book, indx) => {
+      let isbn = isbnAssign(book);
       return (
         <Book
           key={book.title + "-" + indx}
@@ -31,29 +29,6 @@ class GenreBks extends Component {
       );
     });
 
-    function dateFormat(date) {
-      if (date >= new Date() - 7) {
-        return "Current";
-      }
-      let dateStr = date.toISOString().substr(0, 10);
-      dateStr = dateStr.split("-");
-      dateStr.push(dateStr.shift());
-      dateStr = dateStr.join("/");
-      return dateStr;
-    }
-    function isbnAssign(book) {
-      return (isbn = book.primary_isbn13);
-    }
-
-    if (
-      this.props.genre.display_name.includes("Audio") ||
-      this.props.genre.display_name === "Business" ||
-      this.props.genre.display_name === "Science" ||
-      this.props.genre.display_name === "Sports and Fitness"
-    ) {
-      monthly = "(List is updated monthly)";
-    }
-
     return (
       <div className="genre-container">
         <div className="genre-container__title-block">
@@ -61,7 +36,7 @@ class GenreBks extends Component {
           <p>
             Active from: {dateMin} to {dateMax}
           </p>
-          <p>{monthly}</p>
+          <p>{monthDateStatus(this.props.genre.display_name)}</p>
         </div>
         <div className="booklist-container">{bookArr}</div>
       </div>
@@ -73,9 +48,6 @@ const mapStateToProps = state => {
   
   return {
     genre: state.page.genres,
-    books: state.page.genres.books,
-    content: state.page.content,
-    date: state.date.dateCurr,
     dateMin: state.date.dateMin,
     dateMax: state.date.dateMax,
     loading: state.page.isLoading

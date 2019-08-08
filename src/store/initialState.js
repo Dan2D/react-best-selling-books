@@ -12,7 +12,7 @@ export const initialState = {
     books: {
       bookArr: [],
       results: 0,
-       pg: 1,
+       pg: 0,
        author: {},
        cover: '',
     },
