@@ -1,5 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import {isLoading} from "../../../store/actions/pageActions";
 import {updateSearchTxt, updateSearchTyp, } from "../../../store/actions/searchActions";
 import {connect} from "react-redux";
 
@@ -48,7 +49,11 @@ function Search(props) {
         onKeyDown={handleEnter}
         value={props.searchTxt}
       />
-      <Link id="search-link" to={`/search/${props.searchType}=${props.searchTxt}/1`}>
+      <Link 
+        id="search-link" 
+        to={`/search/${props.searchType}=${props.searchTxt.replace(" ", "+")}&pg=1`}
+        onClick={() => props.dispatch(isLoading(true))}
+        >
         <button className="search search__btn">
           Search
         </button>

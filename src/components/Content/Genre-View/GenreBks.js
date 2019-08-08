@@ -1,26 +1,25 @@
-import React, { Component } from "react";
+import React from "react";
 import Book from "../Books/Book";
-
+import {genreView} from "../../../store/actions/pageActions";
 import {isbnAssign, dateFormat, monthDateStatus} from '../../Utils/bookhelpers';
 import { connect } from "react-redux";
 
-class GenreBks extends Component {
-  render() {
-    if (this.props.loading){
+function GenreBks(props) {
+  if (props.genre.genreTxt !== props.match.params.genre && props.isLoading){
+    props.dispatch(genreView(props.match.params.genre, props.location.state.minDate, props.location.state.maxDate));
+  }
+    if (props.isLoading){
       return <div/>
     }
     document.querySelectorAll("genre-menu__btns").forEach(item => (item.style.visibility = "hidden"));
-    let dateMin = dateFormat(this.props.dateMin);
-    let dateMax = dateFormat(this.props.dateMax);
+    let dateMin = dateFormat(props.dateMin);
+    let dateMax = dateFormat(props.dateMax);
 
-    let bookArr = this.props.genre.books.map((book, indx) => {
+    let bookArr = props.books.map((book, indx) => {
       let isbn = isbnAssign(book);
       return (
         <Book
           key={book.title + "-" + indx}
-          onBkClick={(cover, isbn) => this.props.onBkClick(cover, isbn)}
-          onAuthClick={(author, srchTyp) => this.props.onAuthClick(author, srchTyp)}
-          isLoading={true}
           type="genre"
           indx={indx}
           isbn={isbn}
@@ -32,25 +31,26 @@ class GenreBks extends Component {
     return (
       <div className="genre-container">
         <div className="genre-container__title-block">
-          <h3>{this.props.genre.display_name}</h3>
+          <h3>{props.genre.display_name}</h3>
           <p>
             Active from: {dateMin} to {dateMax}
           </p>
-          <p>{monthDateStatus(this.props.genre.display_name)}</p>
+          <p>{monthDateStatus(props.genre.display_name)}</p>
+          </div>
+          <div className="booklist-container">
+          {bookArr}
         </div>
-        <div className="booklist-container">{bookArr}</div>
       </div>
     );
   }
-}
 
-const mapStateToProps = state => {
-  
+const mapStateToProps = (state) => {
   return {
     genre: state.page.genres,
+    books: state.page.genres.books,
     dateMin: state.date.dateMin,
     dateMax: state.date.dateMax,
-    loading: state.page.isLoading
+    isLoading: state.page.isLoading
   };
 };
 

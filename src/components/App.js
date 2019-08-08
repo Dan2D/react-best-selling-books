@@ -21,7 +21,7 @@ class App extends Component {
                   <Route path="/" exact component={Home} />
                   <Route path="/genre/:genre"  component={GenreBks} />
                   <Route path="/book/:id"  component={SnglBk} />
-                  <Route path="/search/:type=:text/:pg" component={SrchRslt} />
+                  <Route path="/search/:type=:text&pg=:pg" component={SrchRslt} />
                 </Switch>
           {this.props.isLoading ? null : <Footer />}
         </div>

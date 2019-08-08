@@ -14,6 +14,7 @@ function Book(props) {
           key={props.book.title + "main-info"}
           type={props.type}
           isbn={props.isbn}
+          buyLnk={props.book.buy_links[2]}
           title={props.book.title}
           author={props.book.author}
           bkImg={props.book.book_image}

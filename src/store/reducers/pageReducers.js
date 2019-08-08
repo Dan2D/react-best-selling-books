@@ -41,7 +41,8 @@ const pageReducer = (state = initialState, action) => {
               books: {
                   ...state.books,
                   bookArr: action.bookInfo,
-                  cover: action.cover
+                  cover: action.cover,
+                  id: action.id
               }
           }
     case UPDATE_CONTENT_DATE:

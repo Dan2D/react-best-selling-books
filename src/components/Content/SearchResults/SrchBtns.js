@@ -1,4 +1,6 @@
 import React from "react";
+import {isLoading} from "../../../store/actions/pageActions";
+import {connect} from "react-redux";
 import {Link} from 'react-router-dom';
 import smoothscroll from "smoothscroll-polyfill";
 
@@ -14,6 +16,7 @@ function SrchBtns(props) {
       books[i].style.display = "none";
     }
     window.scrollTo(0, 0);
+    props.dispatch(isLoading(true));
   }
 
   function genPgBtns(pgTotal) {
@@ -32,7 +35,7 @@ function SrchBtns(props) {
     }
     for (i; i <= end; i++) {
       pgArr.push(
-        <Link to={`/search/${props.searchType}=${props.searchTxt}/${i}`}
+        <Link to={`/search/${props.searchType}=${props.searchTxt}&pg=${i}`}
           key={i}
           className={i === props.pg ? "current-pg" : null}
           onClick={e => handlePgBtnClick(e.target.innerText)}
@@ -48,14 +51,14 @@ function SrchBtns(props) {
   return (
     <div className="srch-pagination">
       {props.pg > 4 ? (
-        <Link to={`/search/${props.searchType}=${props.searchTxt}/1`}
+        <Link to={`/search/${props.searchType}=${props.searchTxt}&pg=1`}
          onClick={() => handlePgBtnClick(1)}>
           {"<"}
         </Link>
       ) : null}
       {pgArr}
       {props.pg + 4 < props.pgTotal ? (
-        <Link to={`/search/${props.searchType}=${props.searchTxt}/${props.pgTotal}`}
+        <Link to={`/search/${props.searchType}=${props.searchTxt}&pg=${props.pgTotal}`}
          onClick={() => handlePgBtnClick(props.pgTotal)}>
          {">"}
         </Link>
@@ -64,4 +67,4 @@ function SrchBtns(props) {
   );
 }
 
-export default SrchBtns;
+export default connect(null)(SrchBtns);

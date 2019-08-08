@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {getSearchAuth} from '../../../../store/actions/pageActions';
+import {isLoading, getSearchAuth} from '../../../../store/actions/pageActions';
 import {connect} from 'react-redux';
 
 function AuthorArray(props) {
@@ -15,9 +15,12 @@ function AuthorArray(props) {
           }
           return (
             <span key={author}>
-              <Link to={`/search/${author.replace(" ", "+")}`}
+              <Link to={`/search/author=${author.replace(" ", "+")}&pg=1`}
                 className="author-btn"
-                onClick={() => props.dispatch(getSearchAuth(author))}
+                onClick={() => {
+                  props.dispatch(isLoading(true));
+                  props.dispatch(getSearchAuth(author));
+                }}
               >
                 {author + comma}
               </Link>

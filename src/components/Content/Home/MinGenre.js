@@ -1,21 +1,17 @@
 import React from "react";
 import Book from "../Books/Book";
 import {isbnAssign} from '../../Utils/bookhelpers';
+import {isLoading} from "../../../store/actions/pageActions";
 import {connect} from "react-redux";
 import {Link} from 'react-router-dom';
-import {genreView} from "../../../store/actions/pageActions";
 
 function MinGenre(props) {
   let isbn;
-  function handleGenreClick() {
-    let genre = document.querySelector(
-      "button[data-name=" + props.genre.list_name_encoded + "]"
-    );
-    let genreName = genre.dataset.name;
-    let minDate = genre.dataset.minDate;
-    let maxDate = genre.dataset.maxDate;
-    return props.dispatch(genreView(genreName, minDate, maxDate));
-  }
+  let genre = document.querySelector(
+    "button[data-name=" + props.genre.list_name_encoded + "]"
+  );
+  let minDate = genre.dataset.minDate;
+  let maxDate = genre.dataset.maxDate;
 
   let bookArr = props.books.map(book => {
     isbn = isbnAssign(book);
@@ -32,9 +28,9 @@ function MinGenre(props) {
   return (
     <div className="overview-genre">
       <Link 
-       to={`/genre/${props.genre.list_name_encoded}`}
+       to={{pathname: `/genre/${props.genre.list_name_encoded}`, state: {minDate, maxDate}}}
        className="overview-genre__title" 
-       onClick={handleGenreClick}
+       onClick={() => props.dispatch(isLoading(true))}
       >
         {props.genre.display_name}
       </Link>

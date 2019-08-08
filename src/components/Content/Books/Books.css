@@ -15,7 +15,8 @@
   .book-container__author-info,
   .srch-bk-container__author-info,
   .book-container__ratings,
-  .sngl-bk-main {
+  .sngl-bk-main,
+  .sngl-bk-sub {
     display: -webkit-box;
     display: -ms-flexbox;
     display: -webkit-flex;
@@ -190,6 +191,7 @@
   }
   
   .sngl-bk-sub {
+    flex-direction:column;
     margin-bottom: 2vh;
   }
 
@@ -361,10 +363,6 @@
     
       .sngl-bk-main__cover-title button {
         font-size: 16px;
-      }
-    
-      .sngl-bk-main__dscrpt {
-        /* width: 85vw; */
       }
     
       .sngl-bk-main__dscrpt p {

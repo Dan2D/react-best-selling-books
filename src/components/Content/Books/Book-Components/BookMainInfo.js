@@ -1,5 +1,6 @@
 import React from "react";
 import AuthorArray from "./AuthorArray";
+import {isLoading} from "../../../../store/actions/pageActions";
 import {Link} from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -16,12 +17,19 @@ function BookMainInfo(props) {
         <strong>#{props.rank}</strong>
       </div>
       <div className="book-container__cover" data-ref={props.type}>
-        <Link to={{pathname: `/book/${props.isbn}`, state: {bkCover}}}>
+        <Link 
+        to={{pathname: `/book/${props.isbn}`, state: {bkCover, buyLnk: props.buyLnk}}}
+        onClick={() => props.dispatch(isLoading(true))}
+        >
           <img  src={bkCover} alt={props.title} />
         </Link>
         {props.type === "genre" ? descriptionBlock : <></>}
       </div>
-      <Link to={{pathname: `/book/${props.isbn}`, state: {bkCover}}} className="book-title">
+      <Link 
+      to={{pathname: `/book/${props.isbn}`, state: {bkCover, buyLnk: props.buyLnk}}} 
+      className="book-title"
+      onClick={() => props.dispatch(isLoading(true))}
+      >
         {props.title}
       </Link>
       <div className="book-container__author-info">

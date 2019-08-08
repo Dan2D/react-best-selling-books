@@ -6,6 +6,7 @@ import {getBkDtl} from "../../../../store/actions/pageActions";
 import {connect} from "react-redux";
 
 function SingleBk (props) {
+  console.log(props.location.state)
     if (props.content !== "detail"){
       props.dispatch(getBkDtl(props.location.state.bkCover, props.match.params.id));
       return <Loading isLoading={props.isLoading}/>
@@ -32,6 +33,20 @@ function SingleBk (props) {
           <p>{`Total Pg: ${props.book.pgNum}`}</p>
           <p>{`ISBN13: ${props.book.isbn13}`}</p>
           <p>{`Published: ${props.book.pubMt}/${props.book.pubDy}/${props.book.pubYr}`}</p>
+          <a
+          href={`https://www.goodreads.com/book/show/${props.id}`}
+          rel="noopener noreferrer"
+          target="_blank"
+        > Read Reviews
+        </a>
+        <a
+          className="book-buy-link"
+          href={props.location.state.buyLnk.url}
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Buy this Book
+        </a>
         </div>
       </div>
     );
@@ -41,7 +56,8 @@ const mapStateToProps = (state, ownProps) => {
   return {
     isLoading: state.page.isLoading,
     book: state.page.books.bookArr,
-    content: state.page.content
+    content: state.page.content,
+    id: state.page.books.id
   }
 }
 

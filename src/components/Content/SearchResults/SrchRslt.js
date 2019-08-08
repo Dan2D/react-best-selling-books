@@ -24,7 +24,7 @@ function SrchRslt(props) {
       return <NotFound />;
     }
 
-    let bksPrPg = props.searchType === "title" ? 20 : null;
+    let bksPrPg = props.match.params.type === "title" ? 20 : null;
     let pgTotal = props.results > 2000 ? 100 : Math.ceil(props.results / bksPrPg);
 
     let bookCode = props.bookArr.map((book, indx) => {

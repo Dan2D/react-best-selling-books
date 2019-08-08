@@ -7,7 +7,6 @@ const searchReducers = (state = initialState, action) => {
         case SEARCH_AUTH:
             return {
                 ...state,
-                searchTxt: action.searchTxt,
                 searchType: 'author'
             }
             case GET_HOME_CONTENT:
