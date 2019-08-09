@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/react-best-selling-books/static/css/main.2431bd37.chunk.css",
+    "main.css": "/react-best-selling-books/static/css/main.1a8370b6.chunk.css",
     "main.js": "/react-best-selling-books/static/js/main.2b42ce69.chunk.js",
     "main.js.map": "/react-best-selling-books/static/js/main.2b42ce69.chunk.js.map",
     "runtime~main.js": "/react-best-selling-books/static/js/runtime~main.a7e0618b.js",
@@ -15,10 +15,10 @@
     "static/js/5.96d9815c.chunk.js": "/react-best-selling-books/static/js/5.96d9815c.chunk.js",
     "static/js/5.96d9815c.chunk.js.map": "/react-best-selling-books/static/js/5.96d9815c.chunk.js.map",
     "index.html": "/react-best-selling-books/index.html",
-    "precache-manifest.61f27c46271108835e115c5eb6e9def5.js": "/react-best-selling-books/precache-manifest.61f27c46271108835e115c5eb6e9def5.js",
+    "precache-manifest.c95fc95d15b779a47f186dc7ad9c2061.js": "/react-best-selling-books/precache-manifest.c95fc95d15b779a47f186dc7ad9c2061.js",
     "service-worker.js": "/react-best-selling-books/service-worker.js",
     "static/css/2.c7bb94bc.chunk.css.map": "/react-best-selling-books/static/css/2.c7bb94bc.chunk.css.map",
-    "static/css/main.2431bd37.chunk.css.map": "/react-best-selling-books/static/css/main.2431bd37.chunk.css.map",
+    "static/css/main.1a8370b6.chunk.css.map": "/react-best-selling-books/static/css/main.1a8370b6.chunk.css.map",
     "static/media/404.png": "/react-best-selling-books/static/media/404.ab11e70c.png"
   }
 }
