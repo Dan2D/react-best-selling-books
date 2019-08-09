@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a011c08fb1e270d2e95eea807bcd9b00",
+    "revision": "19f42fb37dfdd26a8efcd46ec14d97a1",
     "url": "https://dan2d.github.io/react-best-selling-books/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://dan2d.github.io/react-best-selling-books/static/css/2.c7bb94bc.chunk.css"
   },
   {
-    "revision": "7d81998f0e7b3334ef7a",
+    "revision": "7c0d02a5928201ac9e27",
     "url": "https://dan2d.github.io/react-best-selling-books/static/css/main.2431bd37.chunk.css"
   },
   {
@@ -28,8 +28,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://dan2d.github.io/react-best-selling-books/static/js/5.96d9815c.chunk.js"
   },
   {
-    "revision": "7d81998f0e7b3334ef7a",
-    "url": "https://dan2d.github.io/react-best-selling-books/static/js/main.5b4f439d.chunk.js"
+    "revision": "7c0d02a5928201ac9e27",
+    "url": "https://dan2d.github.io/react-best-selling-books/static/js/main.30b18c31.chunk.js"
   },
   {
     "revision": "68698d29c641f4bb4541",

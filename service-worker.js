@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "https://dan2d.github.io/react-best-selling-books/precache-manifest.0694d4c3430f272b3479d0ab10fd0151.js"
+  "https://dan2d.github.io/react-best-selling-books/precache-manifest.d22eaad637982bee38c62d6a0f273b5d.js"
 );
 
 self.addEventListener('message', (event) => {
