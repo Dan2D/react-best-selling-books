@@ -16,7 +16,7 @@ function NavSubGenre(props) {
     let subGenreArr = genreArr.map(genre => {
       let modifier = "";
       if (genre.title === "Misc." || genre.title === "Children's Books") {
-        modifier = " sub-genre--left";
+        modifier = " sub-genre--right";
       }
       return (
         <div key={genre.title} className={"genre-menu__sub-genre" + modifier}>

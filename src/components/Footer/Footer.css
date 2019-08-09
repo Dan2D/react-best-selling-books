@@ -8,9 +8,10 @@
   }
 
 .footer-container {
+  justify-content: space-between;
   z-index: 0;
-    width: 98vw;
-    font-size: 11px;
+    width: 100vw;
+    font-size: 15px;
     padding: 5px;
     background: #787257;
   }
@@ -40,6 +41,7 @@
   .footer-container__right {
     text-align: right;
     white-space: nowrap;
+    margin-right: 15px;
   }
   
   .copyright,
@@ -50,7 +52,7 @@
     color: #bfbba0;
   }
 
-  @media (min-width: 641px) {
+  @media (min-width: 768px) {
 
     .footer-container {
         justify-content: space-between;
@@ -64,6 +66,10 @@
       .copyright,
       .footer-container a {
         font-size: 12px;
+      }
+
+      .footer-container__right {
+        margin-right: 25px;
       }
 
   }

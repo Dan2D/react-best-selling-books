@@ -2,12 +2,16 @@ import React from "react";
 import {Link} from 'react-router-dom';
 import {connect} from "react-redux";
 import {getHomeContent} from "../../store/actions/pageActions";
+import {getGenres} from "../../store/actions/menuActions";
 import Search from "./Search/Search";
 import Date from "./Date/Date";
 import NavGenres from "./Genre-Menu/NavGenres";
 import "./Nav.css";
 
 function Nav(props) {
+  if (parseInt(props.menu.length) === 0){
+    props.dispatch(getGenres);
+   }
   const handleHomeClick = () => {
     if (props.content !== "home"){
       return props.dispatch(getHomeContent)
@@ -52,7 +56,8 @@ const MemoNav = React.memo(Nav, (prevProps, nextProps) => {
 
 const mapStateToProps = state => {
   return {
-    content: state.page.content
+    content: state.page.content,
+    menu: state.menu
   }
 }
 

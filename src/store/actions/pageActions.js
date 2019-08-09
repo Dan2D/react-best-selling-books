@@ -54,8 +54,10 @@ export const getHomeContent = dispatch => {
   });
 };
 
-export const genreView = (genreTxt, dateMin, dateMax) => {
+export const genreView = (genreTxt) => {
+  console.log(`https://api.nytimes.com/svc/books/v3/lists/${genreTxt}.json?api-key=${NYT_API_KEY}`)
   return function(dispatch) {
+    dispatch({type: IS_LOADING, payload: true});
     fetchJSON(
       `${CORS}https://api.nytimes.com/svc/books/v3/lists/${genreTxt}.json?api-key=${NYT_API_KEY}`
     ).then(genres => {
@@ -63,8 +65,6 @@ export const genreView = (genreTxt, dateMin, dateMax) => {
         type: GET_NEW_GENRE,
         payload: genres.results,
         genreTxt,
-        dateMin,
-        dateMax
       });
       dispatch({type: IS_LOADING, payload: false});
     });
@@ -73,6 +73,7 @@ export const genreView = (genreTxt, dateMin, dateMax) => {
 
 export const getSearchTitle = (searchTxt, pg = 1) => {
   return function(dispatch) {
+    dispatch({type: IS_LOADING, payload: true});
     fetchXML(
       `${CORS}https://www.goodreads.com/search/index.xml?key=${GR_KEY}&search=title&q=${searchTxt}&page=${pg}`
     ).then(data => {
@@ -107,6 +108,7 @@ export const getSearchTitle = (searchTxt, pg = 1) => {
 
 export const getSearchAuth = searchTxt => {
   return function(dispatch) {
+    dispatch({type: IS_LOADING, payload: true});
     getAuthId(
       `${CORS}https://www.goodreads.com/api/author_url/${searchTxt}?key=${GR_KEY}`
     )
@@ -152,6 +154,7 @@ export const getSearchAuth = searchTxt => {
 
 export const getBkDtl = (cover, isbn) => {
   return function(dispatch){
+    dispatch({type: IS_LOADING, payload: true});
     let bkId;
     return getBookId(`${CORS}https://www.goodreads.com/book/isbn/${isbn}?key=${GR_KEY}`)
     .then(id => {

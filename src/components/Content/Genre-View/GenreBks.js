@@ -1,19 +1,23 @@
 import React from "react";
 import Book from "../Books/Book";
+import Loading from "../../Loading";
 import {genreView} from "../../../store/actions/pageActions";
 import {isbnAssign, dateFormat, monthDateStatus} from '../../Utils/bookhelpers';
 import { connect } from "react-redux";
 
-function GenreBks(props) {
-  if (props.genre.genreTxt !== props.match.params.genre && props.isLoading){
-    props.dispatch(genreView(props.match.params.genre, props.location.state.minDate, props.location.state.maxDate));
+ function GenreBks(props) {
+    if (props.genre.list_name_encoded !== props.match.params.genre){
+      props.dispatch(genreView(props.match.params.genre));
   }
-    if (props.isLoading){
-      return <div/>
+    if (props.content !== "genre" && props.genreTxt !== props.match.params.genre){
+      return <Loading isLoading={props.isLoading}/>
     }
     document.querySelectorAll("genre-menu__btns").forEach(item => (item.style.visibility = "hidden"));
-    let dateMin = dateFormat(props.dateMin);
-    let dateMax = dateFormat(props.dateMax);
+    let genre = document.querySelector(
+      "button[data-name=" + props.genre.list_name_encoded + "]"
+    );
+    let minDate = dateFormat(genre.dataset.minDate);
+    let maxDate = dateFormat(genre.dataset.maxDate);
 
     let bookArr = props.books.map((book, indx) => {
       let isbn = isbnAssign(book);
@@ -33,7 +37,7 @@ function GenreBks(props) {
         <div className="genre-container__title-block">
           <h3>{props.genre.display_name}</h3>
           <p>
-            Active from: {dateMin} to {dateMax}
+            Active from: {minDate} to {maxDate}
           </p>
           <p>{monthDateStatus(props.genre.display_name)}</p>
           </div>
@@ -46,7 +50,10 @@ function GenreBks(props) {
 
 const mapStateToProps = (state) => {
   return {
+    menu: state.menu,
     genre: state.page.genres,
+    content: state.page.content,
+    genreTxt: state.page.genreTxt,
     books: state.page.genres.books,
     dateMin: state.date.dateMin,
     dateMax: state.date.dateMax,

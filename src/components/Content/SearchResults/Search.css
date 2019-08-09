@@ -26,11 +26,16 @@
 
 #authorInfo {
   width: 90vw;
-  margin: 2vw 0 0 2vw;
+  margin: 15px;
+  font-size: 14px;
 }
 
 #authorInfo a {
   display: inline;
+}
+
+.author-main {
+  margin: 10px;
 }
 
 .srch-author-container__auth-name,
@@ -76,16 +81,16 @@
   max-width: 80vw;
 }
 
-@media (min-width: 641px) {
+@media (min-width: 768px) {
   .srch-author-container {
     flex-direction: row;
     align-items: flex-start;
   }
 
-  #authorInfo {
+  /* #authorInfo {
     width: 60vw;
     margin: 0 0 0 2vw;
-  }
+  } */
 
   .no-results {
     display: -webkit-box;

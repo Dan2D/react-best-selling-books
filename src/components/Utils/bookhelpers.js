@@ -6,6 +6,7 @@ export function isbnAssign(book) {
 }
 
 export function dateFormat(date){
+    date = new Date(date);
     if (date >= new Date() - 7) {
         return "Current";
     }

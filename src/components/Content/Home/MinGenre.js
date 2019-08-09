@@ -7,11 +7,7 @@ import {Link} from 'react-router-dom';
 
 function MinGenre(props) {
   let isbn;
-  let genre = document.querySelector(
-    "button[data-name=" + props.genre.list_name_encoded + "]"
-  );
-  let minDate = genre.dataset.minDate;
-  let maxDate = genre.dataset.maxDate;
+
 
   let bookArr = props.books.map(book => {
     isbn = isbnAssign(book);
@@ -28,7 +24,7 @@ function MinGenre(props) {
   return (
     <div className="overview-genre">
       <Link 
-       to={{pathname: `/genre/${props.genre.list_name_encoded}`, state: {minDate, maxDate}}}
+       to={{pathname: `/genre/${props.genre.list_name_encoded}`}}
        className="overview-genre__title" 
        onClick={() => props.dispatch(isLoading(true))}
       >

@@ -1,5 +1,5 @@
 :root {
-    --book-size: 30vw;
+    --book-size: 28vw;
   }
 
 .book-container {
@@ -53,6 +53,8 @@
   .book-container__cover img {
     width: calc(var(--book-size) + 1vw);
     height: calc((var(--book-size) + 1vw) * 1.5);
+    max-width: 150px;
+    max-height: 225px;
   }
 
   .book-title,
@@ -198,7 +200,7 @@
   
 .srch-bk-container {
     width: var(--book-size);
-    margin: 0 3vw 5vw 3vw;
+    margin: 0 10px 10px 10px;
   }
 
   .srch-bk-container__indx  {
@@ -215,7 +217,7 @@
     margin: 0;
   }
   
-  @media (min-width: 641px) {
+  @media (min-width: 768px) {
     :root {
       --book-size: 20vw;
     }

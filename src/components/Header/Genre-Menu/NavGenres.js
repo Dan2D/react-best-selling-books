@@ -1,15 +1,9 @@
-import React, {useEffect} from "react";
+import React from "react";
 import NavSubGenre from "./NavSubGenre";
 import {connect} from "react-redux";
 import {getGenres} from "../../../store/actions/menuActions";
 
 function NavGenres(props) {
-
-  useEffect(() => {
-    if (parseInt(props.menu.length) === 0){
-     return props.getGenres()
-    }
-  })
   let genreObj = { navSubGenres: [] };
 
   function genGenreArr(filterTxt, flags, searchType) {

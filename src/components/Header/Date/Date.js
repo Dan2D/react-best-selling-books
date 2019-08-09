@@ -20,10 +20,7 @@ function NavDate(props) {
 
   function handleDtChng(date) {
     props.changeWeek(date);
-  }
-
-  function handleDateSelect() {
-    let srchDt = props.date.toISOString().substr(0, 10);
+    let srchDt = date.toISOString().substr(0, 10);
     if (props.content === "home") {
       return props.updateHomeDate(srchDt);
     }
@@ -76,9 +73,6 @@ function NavDate(props) {
       <button className="date-picker__wk-btn" onClick={handleWkJmpClk} data-name="next">
         {"Next Week "}
         <img className="arrow-right" src={require("../../../Images/arrow-down.png")} alt="arrow"/>
-      </button>
-      <button className="date-picker__go-btn" onClick={handleDateSelect}>
-        GO
       </button>
     </div>
   );
