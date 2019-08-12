@@ -55,7 +55,6 @@ export const getHomeContent = dispatch => {
 };
 
 export const genreView = (genreTxt) => {
-  console.log(`https://api.nytimes.com/svc/books/v3/lists/${genreTxt}.json?api-key=${NYT_API_KEY}`)
   return function(dispatch) {
     dispatch({type: IS_LOADING, payload: true});
     fetchJSON(

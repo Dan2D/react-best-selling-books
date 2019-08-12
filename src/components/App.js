@@ -14,14 +14,14 @@ class App extends Component {
   
   render() {
     return (
-      <Router>
+      <Router basename="/react-best-selling-books">
         <div className="App">
-          <Nav />
+        <Nav />
                 <Switch>
-                  <Route path="/" exact component={Home} />
-                  <Route path="/genre/:genre"  component={GenreBks} />
-                  <Route path="/book/:id"  component={SnglBk} />
-                  <Route path="/search/:type=:text&pg=:pg" component={SrchRslt} />
+                    <Route path="/" exact component={Home} />
+                    <Route path="/genre/:genre"  component={GenreBks} />
+                    <Route path="/book/:id"  component={SnglBk} />
+                    <Route path="/search/:type=:text&pg=:pg" component={SrchRslt} />
                 </Switch>
           {this.props.isLoading ? null : <Footer />}
         </div>

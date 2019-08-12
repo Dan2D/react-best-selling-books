@@ -9,7 +9,7 @@ import NotFound from "./NotFound";
 import "./Search.css";
 
 function SrchRslt(props) {
-    if (props.page.text !== props.match.params.text ||props.pg != props.match.params.pg ||props.page.type !== props.match.params.type){
+    if (props.pg != props.match.params.pg || props.page.type !== props.match.params.type || props.page.text !== props.match.params.text){
       if (props.match.params.type === "title"){
         props.dispatch(getSearchTitle(props.match.params.text, props.match.params.pg));
       }
@@ -91,6 +91,7 @@ const mapStateToProps = (state) => {
     pg: state.page.books.pg,
     results: state.page.books.results,
     author: state.page.books.author,
+    search: state.search
   }
 }
 

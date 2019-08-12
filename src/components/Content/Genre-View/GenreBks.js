@@ -6,7 +6,7 @@ import {isbnAssign, dateFormat, monthDateStatus} from '../../Utils/bookhelpers';
 import { connect } from "react-redux";
 
  function GenreBks(props) {
-    if (props.genre.list_name_encoded !== props.match.params.genre){
+    if (props.genre.list_name_encoded !== props.match.params.genre || props.genreTxt !== props.match.params.genre || props.content !== "genre"){
       props.dispatch(genreView(props.match.params.genre));
   }
     if (props.content !== "genre" && props.genreTxt !== props.match.params.genre){

@@ -1,7 +1,6 @@
 {
   "name": "react-best-selling-books",
   "version": "0.1.0",
-  "private": true,
   "homepage": "https://dan2d.github.io/react-best-selling-books/",
   "dependencies": {
     "react": "^16.8.6",

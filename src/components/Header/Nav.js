@@ -9,6 +9,7 @@ import NavGenres from "./Genre-Menu/NavGenres";
 import "./Nav.css";
 
 function Nav(props) {
+  console.log(props.location)
   if (parseInt(props.menu.length) === 0){
     props.dispatch(getGenres);
    }

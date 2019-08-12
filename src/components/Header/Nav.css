@@ -322,29 +322,3 @@ div.react-datepicker-popper {
 
 }
 
-@media screen and (min-width: 961px) {
-  /* :root {
-    --nav-height: 15vw;
-  }
-
-  div.search {
-    top: calc(var(--nav-height) / 4);
-  } */
-}
-
-@media screen and (min-width: 1281px) {
-  :root {
-    --nav-height: 10vw;
-  }
-
-  .nav__title-corner {
-    width: calc(var(--nav-height) - 3vw);
-    height: calc(var(--nav-height) - 3vw);
-  }
-
-  .nav__site-title {
-    font-size: 35px;
-    line-height: 25px;
-  }
-}
-

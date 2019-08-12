@@ -25,6 +25,7 @@ const pageReducer = (state = initialState, action) => {
       return {
         ...state,
         content: 'home',
+        text: "",
         genres: action.payload
       };
     case GET_NEW_GENRE:
@@ -32,12 +33,15 @@ const pageReducer = (state = initialState, action) => {
         ...state,
         genres: action.payload,
         content: "genre",
+        text: "",
         genreTxt: action.genreTxt
       };
       case DETAIL_BK_VIEW:
           return {
               ...state,
               content: 'detail',
+              genreTxt: "",
+              text: "",
               books: {
                   ...state.books,
                   bookArr: action.bookInfo,
@@ -78,6 +82,7 @@ const pageReducer = (state = initialState, action) => {
         return {
           ...state,
           content: "search",
+          text: "",
           books: {
             ...state.books,
             bookArr: [],

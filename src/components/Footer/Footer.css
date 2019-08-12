@@ -52,7 +52,7 @@
     color: #bfbba0;
   }
 
-  @media (min-width: 768px) {
+  @media screen and (min-width: 768px) {
 
     .footer-container {
         justify-content: space-between;
@@ -74,7 +74,7 @@
 
   }
 
-  @media (min-width: 1281px) {
+  @media screen and (min-width: 1281px) {
 
     .footer-container {
         padding: 10px 20px;
@@ -84,4 +84,7 @@
         width: 70%;
       }
 
+      .footer-container__right {
+        margin-right: 45px;
+      }
   }

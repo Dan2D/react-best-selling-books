@@ -52,7 +52,11 @@ function Search(props) {
       <Link 
         id="search-link" 
         to={`/search/${props.searchType}=${props.searchTxt.replace(" ", "+")}&pg=1`}
-        onClick={() => props.dispatch(isLoading(true))}
+        onClick={() => {
+          if (props.searchTxt === props.page.text && props.searchType === props.page.type){
+            return;
+          }
+            props.dispatch(isLoading(true))}}
         >
         <button className="search search__btn">
           Search
@@ -73,6 +77,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     searchTxt: state.search.searchTxt,
     searchType: state.search.searchType,
+    page: state.page
   }
 }
 
