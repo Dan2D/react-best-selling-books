@@ -1,39 +1,39 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "89429ee24a82f6401bd599488650da3a",
+    "revision": "fdb92ee3fa9060e2c2c755217c7d9a9c",
     "url": "/react-best-selling-books/index.html"
   },
   {
-    "revision": "465e880c2584ff1ac210",
+    "revision": "8da2e6651331a47d6054",
     "url": "/react-best-selling-books/static/css/2.c7bb94bc.chunk.css"
   },
   {
-    "revision": "0beed1330f87fb28569e",
+    "revision": "86a6447b1d700ace5cad",
     "url": "/react-best-selling-books/static/css/main.35809ef5.chunk.css"
   },
   {
-    "revision": "465e880c2584ff1ac210",
-    "url": "/react-best-selling-books/static/js/2.71cd74de.chunk.js"
+    "revision": "8da2e6651331a47d6054",
+    "url": "/react-best-selling-books/static/js/2.8713e98e.chunk.js"
   },
   {
     "revision": "768e00e01ae4dc603fd4",
     "url": "/react-best-selling-books/static/js/3.a5878e9b.chunk.js"
   },
   {
-    "revision": "c8b13ed99e87c9b87211",
-    "url": "/react-best-selling-books/static/js/4.6e7f5c80.chunk.js"
+    "revision": "7a730de974155483ee0f",
+    "url": "/react-best-selling-books/static/js/4.5dd02b5e.chunk.js"
   },
   {
     "revision": "55cd3fd63e53708854ed",
     "url": "/react-best-selling-books/static/js/5.96d9815c.chunk.js"
   },
   {
-    "revision": "0beed1330f87fb28569e",
-    "url": "/react-best-selling-books/static/js/main.3ccedd20.chunk.js"
+    "revision": "86a6447b1d700ace5cad",
+    "url": "/react-best-selling-books/static/js/main.5cc4358d.chunk.js"
   },
   {
-    "revision": "d32bc1b7ea9dc694ba60",
-    "url": "/react-best-selling-books/static/js/runtime~main.a7e0618b.js"
+    "revision": "37053fe43509289c56c3",
+    "url": "/react-best-selling-books/static/js/runtime~main.57f7900f.js"
   },
   {
     "revision": "ab11e70ca52caa9aefdadf0c021ba5b9",
