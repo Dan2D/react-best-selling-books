@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[5],{138:function(e,n,s){"use strict";s.r(n);var t=s(0),a=s.n(t);n.default=function(e){return a.a.createElement("div",{className:"book-container__week-list"},a.a.createElement("p",{className:"book-list-duration"},1!==e.wksOnLst?e.wksOnLst+" Weeks On List...":"New This Week"))}}}]);
-//# sourceMappingURL=5.96d9815c.chunk.js.map
